@@ -7,7 +7,9 @@ The application will use a mock server with fictional data on tutors, subjects, 
 
 ## Developers
 @xbeatriz https://github.com/xbeatriz
+
 @FenrirDrage https://github.com/FenrirDrage
+
 @isabellabertucci https://github.com/isabellabertucci
 
 ## Features
