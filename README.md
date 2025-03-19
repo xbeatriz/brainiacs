@@ -6,11 +6,11 @@ This project aims to develop a web application that connects students with tutor
 The application will use a mock server with fictional data on tutors, subjects, and available schedules to simulate the tutoring service.
 
 ## Developers
-@xbeatriz https://github.com/xbeatriz
+Beatriz Costa: @xbeatriz https://github.com/xbeatriz
 
-@FenrirDrage https://github.com/FenrirDrage
+Sérgio Alves: @FenrirDrage https://github.com/FenrirDrage
 
-@isabellabertucci https://github.com/isabellabertucci
+Isabella Bertucci: @isabellabertucci https://github.com/isabellabertucci
 
 ## Features
 The application will support three types of users:
