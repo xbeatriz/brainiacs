@@ -1,0 +1,24 @@
+{
+  "name": "brainiacs",
+  "version": "1.0.0",
+  "description": "This project aims to develop a web application that connects students with tutors, enabling them to search for and schedule tutoring sessions based on their preferences and needs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xbeatriz/brainiacs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xbeatriz/brainiacs/issues"
+  },
+  "homepage": "https://github.com/xbeatriz/brainiacs#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.14",
+    "tailwindcss": "^4.0.14"
+  }
+}
