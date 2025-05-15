@@ -1,88 +1,98 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brainiacs</title>
+  <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
+  <link rel="stylesheet" href="/CSS/minecss.css" />
 </head>
 
-<body>
-  <!-- Navbar -->
-  <header class="mb-2 px-4 shadow">
-    <div class="relative mx-auto flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between">
-      <a class="flex items-center text-2xl font-black" href="/">
-        <span class="mr-2 text-4xl text-blue-600">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="32" height="32"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brain">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" />
-            <path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" />
-            <path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" />
-            <path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" />
-            <path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" />
-            <path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" />
-          </svg>
-        </span>
-        <span>Brainiacs</span>
-      </a>
-      <input class="peer hidden" type="checkbox" id="navbar-open">
-      <label class="absolute right-0 mt-2 cursor-pointer text-xl sm:hidden" for="navbar-open">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 6l16 0" />
-          <path d="M4 12l16 0" />
-          <path d="M4 18l16 0" />
-        </svg>
-      </label>
-      <nav aria-label="Header-Navigation" class="peer-checked:block hidden py-4 sm:block sm:py-0">
-        <ul class="flex flex-col sm:flex-row sm:gap-x-8 gap-y-4">
-          <li><a class="text-gray-600 hover:text-blue-600" href="#">Schedule a session</a></li>
-          <li><a class="text-gray-600 hover:text-blue-600" href="#">Be a tutor</a></li>
-          <li class="mt-2 sm:mt-0"><a
-              class="hover:bg-blue-600 hover:text-white border-2 px-6 py-2 rounded-xl border-blue-600 font-medium text-blue-600"
-              href="#">Login</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<body class="font-sans text-gray-800">
 
   <!-- Header -->
-  <header class="text-center py-10">
-    <h2 class="text-3xl font-bold">Encontre o Tutor Ideal</h2>
-    <p class="text-gray-700 mt-2">Pesquise tutores qualificados em várias disciplinas</p>
-    <input id="search" type="text" placeholder="Digite uma disciplina..." class="mt-4 p-2 border rounded w-1/2">
+  <header class="flex justify-between items-center px-8 py-4 shadow-md">
+    <div class="text-2xl font-bold text-orange-500">🧠 Brainiacs</div>
+    <nav class="space-x-6 text-gray-700">
+      <a href="#" class="hover:text-orange-500">Courses</a>
+      <a href="#" class="hover:text-orange-500">Be a tutor</a>
+      <a href="#" class="hover:text-orange-500">Community</a>
+    </nav>
+    <a href="./views/login.html" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Log in</a>
   </header>
 
-  <!-- Lista de Tutores -->
-  <section id="tutor-list" class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-xl font-bold">Maria Silva</h3>
-      <p class="text-gray-700">Matemática</p>
-      <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded contact-btn">Contactar</button>
+  <!-- Hero Section -->
+  <section class="flex flex-col md:flex-row items-center justify-between px-8 py-12 bg-orange-50">
+    <div class="md:w-1/2 space-y-4">
+      <h1 class="text-4xl md:text-5xl font-bold">Learn from certified and experienced teachers</h1>
+      <p class="text-gray-600">Let us be part of your personal and professional growth by providing a fun and effective
+        way to learn.</p>
+      <div class="flex mt-4">
+        <input type="text" placeholder="What would you like to learn?" class="border p-2 rounded-l w-full max-w-md" />
+        <button class="bg-orange-500 text-white px-4 py-2 rounded-r">Search</button>
+      </div>
     </div>
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-xl font-bold">Carlos Pereira</h3>
-      <p class="text-gray-700">Física</p>
-      <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded contact-btn">Contactar</button>
-    </div>
-    <div class="bg-white p-4 rounded-lg shadow">
-      <h3 class="text-xl font-bold">Ana Costa</h3>
-      <p class="text-gray-700">Química</p>
-      <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded contact-btn">Contactar</button>
+    <div class="md:w-1/2 mt-8 md:mt-0 relative">
+      <img src="./media/img/hero-image.png" alt="Happy student" class="rounded-lg shadow-lg" />
+      <!-- Exemplo de balões/flutuantes -->
+      <div class="absolute top-4 left-4 bg-white p-2 rounded shadow text-sm">🎉 250k Students</div>
+      <div class="absolute bottom-4 right-4 bg-white p-2 rounded shadow text-sm">✅ Congratulations</div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white text-center p-4 mt-10">
-    <p>&copy; 2025 Tutores+ - Todos os direitos reservados</p>
-  </footer>
+  <!-- Highlights Bar -->
+  <div class="flex justify-around bg-yellow-200 py-4 text-sm font-semibold text-center">
+    <span>All levels welcome</span>
+    <span>Real conversations with native speakers</span>
+    <span>Anytime, anywhere, 24/7</span>
+  </div>
 
-  <script src="scr/scripts.js"></script>
+  <!-- Features Section -->
+  <section class="px-8 py-12 bg-white text-center">
+    <h2 class="text-3xl font-bold mb-4">All-in-one <span class="text-orange-500">Platform</span></h2>
+    <p class="text-gray-600 max-w-2xl mx-auto mb-8">Let us be part of your personal and professional growth by providing
+      a fun and effective way to learn.</p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-100 p-6 rounded shadow">
+        <h3 class="font-bold mb-2">50+ Best website themes & templates</h3>
+        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded shadow">
+        <h3 class="font-bold mb-2">50+ Best creative website themes & templates</h3>
+        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded shadow">
+        <h3 class="font-bold mb-2">50+ Best e-commerce website templates</h3>
+        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="px-8 py-12 bg-orange-50 text-center">
+    <h2 class="text-3xl font-bold">What is <span class="text-orange-500">Brainiacs</span></h2>
+    <p class="text-gray-600 max-w-3xl mx-auto my-6">Let us be part of your personal and professional growth by providing
+      a fun and effective way to learn. Let us be part of your personal and professional growth by providing a fun and
+      effective way to learn...</p>
+
+    <div class="flex flex-col md:flex-row justify-center gap-8 mt-8">
+      <div class="bg-white p-6 rounded shadow w-full md:w-1/3">
+        <img src="./media/img/instructor.png" alt="Instructor" class="w-full mb-4 rounded" />
+        <h3 class="font-semibold mb-2">FOR INSTRUCTORS</h3>
+        <a href="./views/tutor.html" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Start a
+          class today</a>
+      </div>
+      <div class="bg-white p-6 rounded shadow w-full md:w-1/3">
+        <img src="./media/img/student.png" alt="Student" class="w-full mb-4 rounded" />
+        <h3 class="font-semibold mb-2">FOR STUDENT</h3>
+        <a href="./views/student.html" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Start a
+          class today</a>
+      </div>
+    </div>
+  </section>
+
 </body>
 
 </html>

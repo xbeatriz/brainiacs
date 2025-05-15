@@ -1,15 +1,19 @@
-document.getElementById('search').addEventListener('input', function() {
-    let searchValue = this.value.toLowerCase();
-    let tutors = document.querySelectorAll('#tutor-list div');
-    
-    tutors.forEach(tutor => {
-        let subject = tutor.querySelector('p').textContent.toLowerCase();
-        tutor.style.display = subject.includes(searchValue) ? 'block' : 'none';
-    });
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const fadeInSections = document.querySelectorAll("section, .fade-in");
 
-document.querySelectorAll('.contact-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        alert('Entraremos em contacto com o tutor!');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    fadeInSections.forEach((section) => {
+      section.classList.add("fade-in");
+      observer.observe(section);
     });
-});
+  });
