@@ -1,0 +1,288 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Dashboard - Explicador
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Alkatra', cursive;
+    }
+  </style>
+ </head>
+ <body class="bg-[#E6E0D5] min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-[900px] w-full rounded-[15px] border-4 border-[#A9A9A0] bg-[#F9F6F1] shadow-lg">
+   <!-- Header -->
+   <header class="flex justify-between items-center bg-white rounded-t-[15px] px-6 py-4">
+    <div class="flex items-center space-x-2">
+     <i class="fas fa-brain text-black text-lg">
+     </i>
+     <span class="font-black text-lg select-none">
+      Brainiacs
+     </span>
+     <span class="text-xs font-normal select-none">
+      Tutor
+     </span>
+    </div>
+    <button aria-label="User menu" class="w-8 h-8 rounded-full bg-[#FF5403] text-white font-semibold text-sm flex items-center justify-center">
+     A
+    </button>
+   </header>
+   <!-- Title -->
+   <h1 class="text-center text-black text-[32px] leading-[38px] font-black mt-8 px-4">
+    seus alunos e blablabla
+    <br/>
+    dfgwgwdssd
+   </h1>
+   <!-- Filters and Add Subject -->
+   <form class="mt-8 mx-6 mb-10 rounded-lg border border-[#D9D9D9] bg-[#FAF7F3] p-6 grid grid-cols-1 sm:grid-cols-5 gap-4 items-center">
+    <input class="col-span-1 sm:col-span-1 px-4 py-2 rounded-full border border-[#D9D9D9] text-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5403]" placeholder="Search by Student" type="text"/>
+    <select class="col-span-1 sm:col-span-1 px-4 py-2 rounded-full border border-[#D9D9D9] text-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5403]">
+     <option>
+      xxxx
+     </option>
+    </select>
+    <select class="col-span-1 sm:col-span-1 px-4 py-2 rounded-full border border-[#D9D9D9] text-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5403]">
+     <option>
+      xxx
+     </option>
+    </select>
+    <button class="col-span-1 sm:col-span-1 bg-[#FF5403] text-white rounded-full px-6 py-2 text-sm font-medium hover:bg-[#e04a02] transition" type="button">
+     Add subject
+    </button>
+    <select class="col-span-1 sm:col-span-1 px-4 py-2 rounded-full border border-[#D9D9D9] text-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5403]">
+     <option>
+      xxx
+     </option>
+    </select>
+    <select class="col-span-1 sm:col-span-1 px-4 py-2 rounded-full border border-[#D9D9D9] text-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5403]">
+     <option>
+      xxxxx
+     </option>
+    </select>
+   </form>
+   <!-- Table -->
+   <div class="overflow-x-auto rounded-b-[15px]">
+    <table class="w-full text-left text-sm text-[#374151]">
+     <thead class="bg-[#F3F4F6] text-xs uppercase text-[#374151]">
+      <tr>
+       <th class="px-6 py-3 font-semibold" scope="col">
+        NAME
+       </th>
+       <th class="px-6 py-3 font-semibold" scope="col">
+        TITLE
+       </th>
+       <th class="px-6 py-3 font-semibold" scope="col">
+        STATUS
+       </th>
+       <th class="px-6 py-3 font-semibold" scope="col">
+        ROLE
+       </th>
+       <th class="px-6 py-3" scope="col">
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <!-- Row 1 -->
+      <tr class="border-b border-[#E5E7EB] bg-white">
+       <td class="flex items-center gap-3 px-6 py-4 whitespace-nowrap">
+        <img alt="Photo of a man with glasses smiling" class="w-8 h-8 rounded-full object-cover" height="32" src="https://storage.googleapis.com/a1aa/image/97ead2e2-0b94-4c72-3102-1bf81b861cca.jpg" width="32"/>
+        <div>
+         <p class="font-semibold text-xs text-black leading-tight">
+          Musharof Chowdhury
+         </p>
+         <p class="text-[#6B7280] text-[10px] leading-tight">
+          musharof@example.com
+         </p>
+        </div>
+       </td>
+       <td class="px-6 py-4 text-[#6B7280] text-[11px] leading-tight">
+        Multidisciplinary Web Entrepreneur
+        <br/>
+        Developer
+       </td>
+       <td class="px-6 py-4">
+        <span class="inline-block bg-[#D1F2D8] text-[#22C55E] text-[10px] font-semibold px-2 py-0.5 rounded-full select-none">
+         Active
+        </span>
+       </td>
+       <td class="px-6 py-4 text-[11px] text-[#6B7280]">
+        Admin
+       </td>
+       <td class="px-6 py-4">
+        <button class="text-[#2563EB] text-xs font-medium border border-[#2563EB] rounded-full px-4 py-1 hover:bg-[#2563EB] hover:text-white transition">
+         Edit
+        </button>
+       </td>
+      </tr>
+      <!-- Row 2 -->
+      <tr class="border-b border-[#E5E7EB] bg-white">
+       <td class="flex items-center gap-3 px-6 py-4 whitespace-nowrap">
+        <img alt="Photo of a woman with black hair looking sideways" class="w-8 h-8 rounded-full object-cover" height="32" src="https://storage.googleapis.com/a1aa/image/085cfc16-1e83-4ce0-2423-3bc8df91d43a.jpg" width="32"/>
+        <div>
+         <p class="font-semibold text-xs text-black leading-tight">
+          Nenifer Lofess
+         </p>
+         <p class="text-[#6B7280] text-[10px] leading-tight">
+          loffes.cooper@example.com
+         </p>
+        </div>
+       </td>
+       <td class="px-6 py-4 text-[#6B7280] text-[11px] leading-tight">
+        Regional Paradigm Technician
+        <br/>
+        Optimization
+       </td>
+       <td class="px-6 py-4">
+        <span class="inline-block bg-[#D1F2D8] text-[#22C55E] text-[10px] font-semibold px-2 py-0.5 rounded-full select-none">
+         Active
+        </span>
+       </td>
+       <td class="px-6 py-4 text-[11px] text-[#6B7280]">
+        Owner
+       </td>
+       <td class="px-6 py-4">
+        <button class="text-[#2563EB] text-xs font-medium border border-[#2563EB] rounded-full px-4 py-1 hover:bg-[#2563EB] hover:text-white transition">
+         Edit
+        </button>
+       </td>
+      </tr>
+      <!-- Row 3 -->
+      <tr class="border-b border-[#E5E7EB] bg-white">
+       <td class="flex items-center gap-3 px-6 py-4 whitespace-nowrap">
+        <img alt="Photo of a man with short hair smiling" class="w-8 h-8 rounded-full object-cover" height="32" src="https://storage.googleapis.com/a1aa/image/b727c3aa-1835-420a-7dc5-4bbb91802857.jpg" width="32"/>
+        <div>
+         <p class="font-semibold text-xs text-black leading-tight">
+          Jhon Smith
+         </p>
+         <p class="text-[#6B7280] text-[10px] leading-tight">
+          jhon.smith@example.com
+         </p>
+        </div>
+       </td>
+       <td class="px-6 py-4 text-[#6B7280] text-[11px] leading-tight">
+        Regional Paradigm Technician
+        <br/>
+        Optimization
+       </td>
+       <td class="px-6 py-4">
+        <span class="inline-block bg-[#D1F2D8] text-[#22C55E] text-[10px] font-semibold px-2 py-0.5 rounded-full select-none">
+         Active
+        </span>
+       </td>
+       <td class="px-6 py-4 text-[11px] text-[#6B7280]">
+        Member
+       </td>
+       <td class="px-6 py-4">
+        <button class="text-[#2563EB] text-xs font-medium border border-[#2563EB] rounded-full px-4 py-1 hover:bg-[#2563EB] hover:text-white transition">
+         Edit
+        </button>
+       </td>
+      </tr>
+      <!-- Row 4 -->
+      <tr class="border-b border-[#E5E7EB] bg-white">
+       <td class="flex items-center gap-3 px-6 py-4 whitespace-nowrap">
+        <img alt="Photo of a woman with blonde hair smiling" class="w-8 h-8 rounded-full object-cover" height="32" src="https://storage.googleapis.com/a1aa/image/21587ba0-8ae0-45bc-38ab-f3bb188be99b.jpg" width="32"/>
+        <div>
+         <p class="font-semibold text-xs text-black leading-tight">
+          Sulium Keliym
+         </p>
+         <p class="text-[#6B7280] text-[10px] leading-tight">
+          suliym.info@example.com
+         </p>
+        </div>
+       </td>
+       <td class="px-6 py-4 text-[#6B7280] text-[11px] leading-tight">
+        Lead Implementation Liaison
+        <br/>
+        Mobility
+       </td>
+       <td class="px-6 py-4">
+        <span class="inline-block bg-[#D1F2D8] text-[#22C55E] text-[10px] font-semibold px-2 py-0.5 rounded-full select-none">
+         Active
+        </span>
+       </td>
+       <td class="px-6 py-4 text-[11px] text-[#6B7280]">
+        Admin
+       </td>
+       <td class="px-6 py-4">
+        <button class="text-[#2563EB] text-xs font-medium border border-[#2563EB] rounded-full px-4 py-1 hover:bg-[#2563EB] hover:text-white transition">
+         Edit
+        </button>
+       </td>
+      </tr>
+      <!-- Row 5 -->
+      <tr class="border-b border-[#E5E7EB] bg-white">
+       <td class="flex items-center gap-3 px-6 py-4 whitespace-nowrap">
+        <img alt="Photo of a man with short hair and tie" class="w-8 h-8 rounded-full object-cover" height="32" src="https://storage.googleapis.com/a1aa/image/9f2ea186-9759-4c91-c2ee-23bc43872250.jpg" width="32"/>
+        <div>
+         <p class="font-semibold text-xs text-black leading-tight">
+          Alex Semuyel
+         </p>
+         <p class="text-[#6B7280] text-[10px] leading-tight">
+          alex.semuel@example.com
+         </p>
+        </div>
+       </td>
+       <td class="px-6 py-4 text-[#6B7280] text-[11px] leading-tight">
+        Applications Engineer
+        <br/>
+        Security
+       </td>
+       <td class="px-6 py-4">
+        <span class="inline-block bg-[#FEE2E2] text-[#EF4444] text-[10px] font-semibold px-2 py-0.5 rounded-full select-none">
+         Deactivate
+        </span>
+       </td>
+       <td class="px-6 py-4 text-[11px] text-[#6B7280]">
+        Admin
+       </td>
+       <td class="px-6 py-4">
+        <button class="text-[#2563EB] text-xs font-medium border border-[#2563EB] rounded-full px-4 py-1 hover:bg-[#2563EB] hover:text-white transition">
+         Edit
+        </button>
+       </td>
+      </tr>
+      <!-- Row 6 -->
+      <tr class="bg-white">
+       <td class="flex items-center gap-3 px-6 py-4 whitespace-nowrap">
+        <img alt="Photo of a man with blonde hair and blue eyes" class="w-8 h-8 rounded-full object-cover" height="32" src="https://storage.googleapis.com/a1aa/image/e733568e-649f-422b-450f-15c4c554cfb7.jpg" width="32"/>
+        <div>
+         <p class="font-semibold text-xs text-black leading-tight">
+          Humil Limition
+         </p>
+         <p class="text-[#6B7280] text-[10px] leading-tight">
+          limition@example.com
+         </p>
+        </div>
+       </td>
+       <td class="px-6 py-4 text-[#6B7280] text-[11px] leading-tight">
+        Regional Paradigm Technician
+        <br/>
+        Optimization
+       </td>
+       <td class="px-6 py-4">
+        <span class="inline-block bg-[#D1F2D8] text-[#22C55E] text-[10px] font-semibold px-2 py-0.5 rounded-full select-none">
+         Active
+        </span>
+       </td>
+       <td class="px-6 py-4 text-[11px] text-[#6B7280]">
+        Member
+       </td>
+       <td class="px-6 py-4">
+        <button class="text-[#2563EB] text-xs font-medium border border-[#2563EB] rounded-full px-4 py-1 hover:bg-[#2563EB] hover:text-white transition">
+         Edit
+        </button>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+ </body>
+</html>

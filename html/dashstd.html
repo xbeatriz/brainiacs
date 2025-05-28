@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brainiacs Student Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+    }
+  </style>
+</head>
+<body class="bg-[#fbf9f4] min-h-screen flex items-center justify-center p-4">
+  <div
+    class="w-full max-w-5xl border-4 border-[#a9a49d] rounded-2xl p-6"
+    style="background-color:#fbf9f4"
+  >
+    <header class="flex items-center justify-between mb-16 px-4 sm:px-8">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-brain text-black text-lg"></i>
+        <h1 class="font-bold text-black text-xl leading-none">Brainiacs</h1>
+        <span class="text-[9px] text-black/60 font-sans">Student</span>
+      </div>
+      <nav class="hidden sm:flex space-x-10 text-[#4f5d6e] font-sans text-sm">
+        <a href="#" class="hover:underline">My Sessions</a>
+        <a href="#" class="hover:underline">Community</a>
+        <a href="#" class="hover:underline">Progress</a>
+      </nav>
+      <div class="flex items-center space-x-1">
+        <div
+          class="w-8 h-8 rounded-full bg-[#ff5a00] text-white font-bold flex items-center justify-center cursor-pointer select-none"
+        >
+          A
+        </div>
+        <i class="fas fa-chevron-down text-[#4f5d6e] text-xs"></i>
+      </div>
+    </header>
+
+    <main class="text-center px-4 sm:px-0">
+      <h2
+        class="text-3xl sm:text-4xl font-bold max-w-3xl mx-auto leading-tight"
+        style="font-family: 'Baloo 2', cursive"
+      >
+        Your Learning Space<br />
+        Track Sessions, Connect, and Level Up
+      </h2>
+      <p class="text-[#a9a49d] mt-2 font-sans text-base">Powered by Brainiacs</p>
+
+      <section
+        class="mt-12 flex flex-col sm:flex-row justify-center gap-8 max-w-4xl mx-auto"
+      >
+        <div
+          class="bg-white rounded-xl border border-[#e6e9f0] w-40 h-40 flex flex-col items-center justify-center space-y-3 cursor-pointer"
+        >
+          <i
+            class="fas fa-project-diagram text-[#ff5a00] text-3xl"
+            aria-hidden="true"
+          ></i>
+          <span class="font-bold text-black font-sans">My Sessions</span>
+        </div>
+        <div
+          class="bg-white rounded-xl border border-[#e6e9f0] w-40 h-40 flex flex-col items-center justify-center space-y-3 cursor-pointer"
+        >
+          <i
+            class="fas fa-project-diagram text-[#ff5a00] text-3xl"
+            aria-hidden="true"
+          ></i>
+          <span class="font-bold text-black font-sans">Community</span>
+        </div>
+        <div
+          class="bg-white rounded-xl border border-[#e6e9f0] w-40 h-40 flex flex-col items-center justify-center space-y-3 cursor-pointer"
+        >
+          <i
+            class="fas fa-palette text-[#ff5a00] text-3xl"
+            aria-hidden="true"
+          ></i>
+          <span class="font-bold text-black font-sans">Progress</span>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
