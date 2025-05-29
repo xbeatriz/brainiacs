@@ -38,20 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
 const courseBtn = document.getElementById('btn-course');
 if (courseBtn) {
   courseBtn.addEventListener('click', () => {
-    window.location.href = '/course.html';
+    window.location.href = 'courses.html';
   });
 }
 
 const hiwBtn = document.getElementById('btn-hiw');
 if (hiwBtn) {
   hiwBtn.addEventListener('click', () => {
-    window.location.href = '/404.html';
+    window.location.href = '404.html';
   });
 }
 
 const communityBtn = document.getElementById('btn-community');
 if (communityBtn) {
   communityBtn.addEventListener('click', () => {
-    window.location.href = '/comunity.html';
+    window.location.href = 'comunity.html';
   });
 }
