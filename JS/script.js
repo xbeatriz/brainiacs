@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (estudanteBtn) {
     estudanteBtn.addEventListener('click', () => {
       localStorage.setItem('role', 'estudante');
-      window.location.href = './html/istudent.html';
+      window.location.href = '/html/istudent.html';
     });
   }
   if (tutorBtn) {
     tutorBtn.addEventListener('click', () => {
       localStorage.setItem('role', 'tutor');
-      window.location.href = './html/itutor.html';
+      window.location.href = '/html/itutor.html';
     });
   }
 });
