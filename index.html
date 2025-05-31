@@ -4,19 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="media/icon/icon_brain.png" type="image/png">
   <title>Brainiacs</title>
   <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
   <link rel="stylesheet" href="/CSS/minecss.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet" />
 </head>
 
-<body class="font-sans text-gray-800">
+<body class="font-sans text-gray-800" >
   <section class="centered-container">
-    <h2 class="text-4xl font-bold mb-6">Escolha seu caminho com <span class="text-orange-500">Brainiacs</span></h2>
-    <p class="text-gray-600 max-w-xl mb-10">Seja você um estudante em busca de aprendizado ou um tutor pronto para
-      compartilhar seu conhecimento, temos o que você precisa.</p>
+    <h1 class="text-4xl font-extrabold mb-4 text-center">Welcome to Brainiac's</h1>
+
+    <video class="mb-8 w-full max-w-3xl mx-auto rounded-lg shadow-lg" controls autoplay muted playsinline>
+      <source src="media/video/video_example.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <h2 class="text-2xl font-bold mb-6">Choose your path with <span class="text-orange-500">Brainiacs</span></h2>
+    <p class="text-gray-600 max-w-xl mb-10">Whether you're a student looking or a tutor ready to share your knowledge, we've got you covered.</p>
     <div class="flex space-x-8">
-      <a class="btn-custom" id="btn-estudante">Estudante</a>
-      <a class="btn-custom" id="btn-tutor">Tutor</a>
+      <button class="bg-orange-500 text-white text-s font-semibold px-5 py-2 rounded-full hover:bg-orange-600 transition" id="btn-estudante">Estudante</button>
+      <button class="bg-white text-orange-500 text-sm font-semibold px-5 py-2 rounded-full border border-orange-500 hover:bg-orange-50 transition" id="btn-tutor">Tutor</button>
     </div>
   </section>
   <script type="module" src="/JS/script.js"></script>
