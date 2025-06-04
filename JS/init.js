@@ -1,7 +1,14 @@
-// init.js
+//imports
+import * as tutors from "./models/TutorModel.js";
+import * as User from "./models/UserModel.js";
 
+// init.js
+initdata();
+
+function initdata() {
 // ** Dados dos Cursos e Tutores **
-const courses = [
+if (!localStorage.courses){
+  const courses = [
   { category: "Art & Design", count: 38 },
   { category: "Development", count: 38 },
   { category: "Communication", count: 38 },
@@ -13,7 +20,10 @@ const courses = [
   { category: "Science", count: 38 },
   { category: "Network", count: 38 },
 ];
+localStorage.setItem("courses", JSON.stringify(courses));
+}
 
+if (!localStorage.tutors) {
 const tutors = [
   {
     name: "Lucas Moreira",
@@ -58,40 +68,23 @@ const tutors = [
     image: "path/to/joao.jpg", // Substitua pelo caminho correto da imagem
   },
 ];
-
-// ** Função para Exibir Cursos **
-function displayCourses() {
-  const coursesContainer = document.getElementById("courses-container"); // ID do container no HTML
-  courses.forEach(course => {
-    const courseElement = document.createElement("div");
-    courseElement.className = "course";
-    courseElement.innerHTML = `
-      <h3>${course.category}</h3>
-      <p>${course.count} Courses</p>
-    `;
-    coursesContainer.appendChild(courseElement);
-  });
+localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-// ** Função para Exibir Tutores **
-function displayTutors() {
-  const tutorsContainer = document.getElementById("tutors-container"); // ID do container no HTML
-  tutors.forEach(tutor => {
-    const tutorElement = document.createElement("div");
-    tutorElement.className = "tutor";
-    tutorElement.innerHTML = `
-      <img src="${tutor.image}" alt="${tutor.name}">
-      <h4>${tutor.name}</h4>
-      <p>${tutor.specialty}</p>
-      <p>${tutor.rate} €/h</p>
-      <p>${tutor.students} Students</p>
-    `;
-    tutorsContainer.appendChild(tutorElement);
-  });
+//Users predefinidos
+if (!localStorage.User) {
+  const User = [
+    { username: "admin", password: "admin" },
+    { username: "user1", password: "password1" },
+    { username: "user2", password: "password2" },
+  ];
+  localStorage.setItem("users", JSON.stringify(User));s
 }
+
 
 // ** Inicialização **
 document.addEventListener("DOMContentLoaded", () => {
   displayCourses();
   displayTutors();
 });
+}
