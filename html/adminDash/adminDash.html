@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard | Brainiacs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Navbar Admin -->
+  <script type="module" src="/JS/views/NavbarAdminView.js" defer></script>
+  <script type="module">
+    import { renderNavbarAdminDashboard } from "/JS/views/NavbarAdminView.js";
+    renderNavbarAdminDashboard();
+  </script>
+</head>
+
+<body class="bg-[#FBF9F5] pt-16 text-gray-800">
+  <div id="navbarAdminDashboard"></div>
+
+  <main class="max-w-7xl mx-auto px-6 py-8">
+    <!-- Welcome -->
+    <section class="mb-8">
+      <h1 class="text-3xl font-bold">Welcome, Admin</h1>
+      <p class="text-sm text-gray-600">Manage subjects, grades, and system searches.</p>
+    </section>
+
+    <!-- Summary Cards -->
+    <section class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <h2 class="text-lg font-semibold">Subjects</h2>
+        <p class="text-2xl font-bold text-orange-600">12</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <h2 class="text-lg font-semibold">Grades</h2>
+        <p class="text-2xl font-bold text-orange-600">9</p>
+      </div>
+      <div class="bg-white shadow rounded-xl p-4 text-center">
+        <h2 class="text-lg font-semibold">Recent Searches</h2>
+        <p class="text-2xl font-bold text-orange-600">134</p>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="flex flex-wrap gap-4 mb-10">
+      <a href="/html/admin/add-subject.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition">
+        + New Subject
+      </a>
+      <a href="/html/admin/add-grade.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition">
+        + New Grade
+      </a>
+    </section>
+
+    <!-- Data Sections -->
+    <section class="grid lg:grid-cols-2 gap-8">
+      <!-- Subjects List -->
+      <div class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-lg font-semibold mb-4">Subjects</h2>
+        <ul class="divide-y text-sm">
+          <li class="py-2 flex justify-between">
+            <span>Mathematics</span>
+            <a href="#" class="text-orange-500 hover:underline">Edit</a>
+          </li>
+          <li class="py-2 flex justify-between">
+            <span>History</span>
+            <a href="#" class="text-orange-500 hover:underline">Edit</a>
+          </li>
+          <!-- Add more subjects -->
+        </ul>
+      </div>
+
+      <!-- Grades List -->
+      <div class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-lg font-semibold mb-4">Grades</h2>
+        <ul class="divide-y text-sm">
+          <li class="py-2 flex justify-between">
+            <span>6th Grade</span>
+            <a href="#" class="text-orange-500 hover:underline">Edit</a>
+          </li>
+          <li class="py-2 flex justify-between">
+            <span>7th Grade</span>
+            <a href="#" class="text-orange-500 hover:underline">Edit</a>
+          </li>
+          <!-- Add more grades -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Recent Searches -->
+    <section class="bg-white rounded-xl shadow p-6 my-10">
+      <h2 class="text-lg font-semibold mb-4">Recent Searches</h2>
+      <table class="w-full text-sm text-left">
+        <thead class="text-gray-600 border-b">
+          <tr>
+            <th class="py-2">Term</th>
+            <th class="py-2">User</th>
+            <th class="py-2">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="py-2">Rule of three</td>
+            <td>joao@email.com</td>
+            <td>2025-06-11</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2">French Revolution</td>
+            <td>maria@email.com</td>
+            <td>2025-06-10</td>
+          </tr>
+          <!-- Add more rows -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script type="module" src="/JS/script.js"></script>
+  <script type="module" src="/JS/init.js"></script>
+</body>
+</html>
