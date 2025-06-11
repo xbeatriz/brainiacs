@@ -1,11 +1,11 @@
-export function renderNavbarDashboard() {
-  const navbarDashboard = `
+export function renderNavbarTutorDashboard() {
+  const navbarTutorDashboard = `
     <nav class="bg-white border-gray-200 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         
         <!-- Logo -->
-        <a href="/html/studentDash/studentDash.html" class="flex items-center space-x-3">
-          <img src="/media/img/logo-student.svg" class="h-5" alt="Brainiacs Logo" />
+        <a href="/html/tutorDash/tutorDash.html" class="flex items-center space-x-3">
+          <img src="/media/img/logo-tutor.svg" class="h-5" alt="Brainiacs Logo" />
          
         </a>
 
@@ -28,14 +28,6 @@ export function renderNavbarDashboard() {
           </button>
         </div>
 
-        <!-- Navigation -->
-        <div class="hidden w-full md:flex md:w-auto md:order-1" id="navbar-dashboard">
-          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-white text-sm">
-            <li><a href="/html/studentDash/mySessions.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-orange-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">My Sessions</a></li>
-            <li><a href="/html/studentDash/progress.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-orange-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Progress</a></li>
-            <li><a href="/html/studentDash/communitys.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-orange-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Community</a></li>
-          </ul>
-        </div>
 
         <!-- Dropdown menu do avatar -->
         <div class="hidden z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-md absolute right-4 top-16 w-48" id="user-dropdown">
@@ -63,5 +55,6 @@ export function renderNavbarDashboard() {
     </nav>
   `;
 
-  document.getElementById("navbarDashboard").innerHTML = navbarDashboard;
+  document.getElementById("navbarTutorDashboard").innerHTML =
+    navbarTutorDashboard;
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Tutor | Brainiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-[#FBF9F5] pt-16 text-gray-800">
+    <div id="navbarTutorDashboard"></div>
+
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-3xl font-bold">Bem-vindo, Professor Rafael</h1>
+                <p class="text-sm text-gray-600">Acompanhe suas sessões e desempenho.</p>
+            </div>
+            <a href="/html/create-session.html"
+                class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition">
+                Nova sessão
+            </a>
+        </div>
+
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <h2 class="text-lg font-semibold">Sessões Futura</h2>
+                <p class="text-2xl font-bold text-orange-600">5</p>
+            </div>
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <h2 class="text-lg font-semibold">Sessões Dadas</h2>
+                <p class="text-2xl font-bold">28</p>
+            </div>
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <h2 class="text-lg font-semibold">Avaliação Média</h2>
+                <p class="text-2xl font-bold">4.8 ⭐</p>
+            </div>
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <h2 class="text-lg font-semibold">Alunos Atendidos</h2>
+                <p class="text-2xl font-bold">12</p>
+            </div>
+        </div>
+
+        <h2 class="text-xl font-semibold mb-4">Próximas Sessões</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="font-semibold text-lg">Matemática Básica</h3>
+                <p class="text-sm text-gray-500">com João — 12/06 às 15h</p>
+                <a href="#" class="text-orange-500 text-sm mt-2 inline-block">Entrar na sala</a>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 my-8 rounded-xl shadow mb-10">
+            <h2 class="text-lg font-semibold mb-4">Desempenho Mensal</h2>
+            <canvas id="chartPerformance" height="100"></canvas>
+        </div>
+
+        <script type="module" src="/JS/script.js"></script>
+        <script type="module" src="/JS/init.js"></script>
+        <script type="module">
+            import { renderNavbarTutorDashboard } from '/JS/views/NavbarTutorView.js';
+
+            renderNavbarTutorDashboard();
+        </script>
+
+        <script>
+            const ctx = document.getElementById('chartPerformance').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Sessões realizadas',
+                        data: [4, 6, 5, 8, 7, 9],
+                        borderColor: 'rgb(249 115 22)',
+                        backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+</body>
+
+</html>
