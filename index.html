@@ -1,37 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="media/icon/icon_brain.png" type="image/png">
+  <link rel="icon" href="media/icon/icon_brain.svg" type="image/png" />
   <title>Brainiacs</title>
   <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
   <link rel="stylesheet" href="/CSS/minecss.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 
-<body class="font-sans text-gray-800" >
-  <section class="centered-container">
-    <h1 class="text-4xl font-extrabold mb-4 text-center">Welcome to Brainiac's</h1>
+<body class=" text-gray-800 bg-[#FBF9F5] min-h-screen ">
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  <script type="module">
+    import { renderNavbar } from './JS/views/NavbarView.js';
+    renderNavbar();
+  </script>
 
-    <video class="mb-8 w-full max-w-3xl mx-auto rounded-lg shadow-lg" controls autoplay muted playsinline>
+  <!-- Hero Section -->
+  <section class=" px-6 py-16 max-w-7xl mx-auto px-6 md:px-20">
+    <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+      <div class="md:w-1/2">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+          Learn from certified and experienced teachers
+        </h1>
+        <p class="text-gray-600 mb-6">
+          Let us be part of your personal and professional growth by providing a fun and effective way to learn.
+        </p>
+
+        <div class="flex items-center max-w-md bg-white border border-gray-300 rounded-full px-4 py-2">
+          <input type="text" placeholder="What would you like to learn?" class="flex-grow outline-none text-sm px-2" />
+          <button class="bg-orange-500 text-white text-sm px-6 py-2 rounded-full hover:bg-orange-600">
+            Search
+          </button>
+        </div>
+      </div>
+
+      <div class="md:w-1/2 relative">
+        <img src="media/img/heroImg.png" alt="Student" class="w-full max-w-md mx-auto rounded-xl" />
+      </div>
+    </div>
+  </section>
+  <!-- Promo Video Section -->
+<section class="bg-white py-12 px-4">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-6">
+      Discover <span class="text-orange-500">Brainiacs</span> in action
+    </h2>
+    <p class="text-gray-700 mb-8 max-w-2xl mx-auto text-sm md:text-base">
+      Watch our short video to understand how Brainiacs can transform your learning experience—anytime, anywhere.
+    </p>
+    <video class="w-full max-w-3xl mx-auto rounded-xl shadow-lg" controls autoplay muted playsinline>
       <source src="media/video/video_example.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+  </div>
+</section>
 
-    <h2 class="text-2xl font-bold mb-6">Choose your path with <span class="text-orange-500">Brainiacs</span></h2>
-    <p class="text-gray-600 max-w-xl mb-10">Whether you're a student looking or a tutor ready to share your knowledge, we've got you covered.</p>
-    <div class="flex space-x-8">
-      <button class="bg-orange-500 text-white text-s font-semibold px-5 py-2 rounded-full hover:bg-orange-600 transition" id="btn-estudante">Estudante</button>
-      <button class="bg-white text-orange-500 text-sm font-semibold px-5 py-2 rounded-full border border-orange-500 hover:bg-orange-50 transition" id="btn-tutor">Tutor</button>
+
+  <!-- Highlights Bar -->
+  <section class="bg-[#FFF1CD] py-4">
+    <div
+      class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between text-center text-sm font-medium text-gray-800 px-6 gap-3">
+      <span>All levels welcome</span>
+      <span>Real conversations with native speakers</span>
+      <span>Anytime, anywhere, 24/7</span>
     </div>
   </section>
 
-  <script type="module" src="/JS/init.js"></script>
-  <script type="module" src="/JS/script.js"></script>
+  <!-- Feature Cards -->
+  <section class="py-16 px-6">
+    <div class="max-w-7xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-extrabold">
+        All-in-one <span class="text-orange-500">Platform</span>
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+        Let us be part of your personal and professional growth by providing a fun and effective way to learn.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-[#DEEABA] rounded-xl p-6 text-center">
+        <div class="text-2xl mb-2">🎨</div>
+        <h3 class="font-semibold mb-2">50+ Best creative website themes & templates</h3>
+        <p class="text-sm text-gray-700">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem consectetur adipiscing elit.
+        </p>
+      </div>
+      <div class="bg-[#FFF1CD] rounded-xl p-6  text-center">
+        <div class="text-2xl mb-2">📚</div>
+        <h3 class="font-semibold mb-2">50+ Best creative website themes & templates</h3>
+        <p class="text-sm text-gray-700">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem consectetur adipiscing elit.
+        </p>
+      </div>
+      <div class="bg-[#FFEEE6] rounded-xl p-6  text-center">
+        <div class="text-2xl mb-2">💡</div>
+        <h3 class="font-semibold mb-2">50+ Best creative website themes & templates</h3>
+        <p class="text-sm text-gray-700">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem consectetur adipiscing elit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-7xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-extrabold">
+        What is <span class="text-orange-500">Brainiacs</span>
+      </h2>
+      <p class="text-gray-600 mt-4 max-w-3xl mx-auto">
+        Let us be part of your personal and professional growth by providing a fun and effective way to learn. Let us be
+        part of your personal and professional growth by providing a fun and effective way to learn.
+      </p>
+    </div>
+
+    <!-- Cards: For Instructors / Students -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+      <div class="bg-[#F6F1DC] rounded-xl p-6 text-center ">
+        <img src="media/img/instructor.png" alt="Instructor" class="rounded-lg mb-4 mx-auto h-48 object-cover w-full" />
+        <h3 class="font-bold text-lg mb-2 uppercase text-gray-800">For Instructors</h3>
+        <button
+          class="mt-2 bg-orange-500 text-white font-semibold text-sm px-5 py-2 rounded-full hover:bg-orange-600 transition">
+          Start teaching today
+        </button>
+      </div>
+      <div class="bg-[#F6F1DC] rounded-xl p-6 text-center ">
+        <img src="media/img/students.png" alt="Students" class="rounded-lg mb-4 mx-auto h-48 object-cover w-full" />
+        <h3 class="font-bold text-lg mb-2 uppercase text-gray-800">For Students</h3>
+        <button
+          class="mt-2 bg-orange-500 text-white font-semibold text-sm px-5 py-2 rounded-full hover:bg-orange-600 transition">
+          Start a class today
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-5xl mx-auto text-center">
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-2xl font-bold text-orange-500">25K+</h4>
+        <p class="text-sm text-gray-600 mt-1">Active Students</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-2xl font-bold text-orange-500">899</h4>
+        <p class="text-sm text-gray-600 mt-1">Total Courses</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-2xl font-bold text-orange-500">158</h4>
+        <p class="text-sm text-gray-600 mt-1">Instructors</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-2xl font-bold text-orange-500">100%</h4>
+        <p class="text-sm text-gray-600 mt-1">Satisfaction Rate</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-6 max-w-7xl ">
+    <div class="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
+      <!-- Texto -->
+      <div class="lg:w-1/2">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-4 leading-snug">
+          Everything you can do in a physical classroom,<br class="hidden md:block" />
+          you can do with <span class="text-orange-500">Brainiacs</span>
+        </h2>
+        <p class="text-gray-600 mb-4 text-sm">
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking
+          at its layout.
+        </p>
+        <p class="text-gray-600 mb-6 text-sm">
+          A domain name is one of the first steps to establishing your brand. Secure a consistent brand image with a
+          domain name that matches your business.
+        </p>
+        <button
+          class="bg-orange-500 text-white font-semibold text-sm px-6 py-2 rounded-full hover:bg-orange-600 transition">
+          Start a class today
+        </button>
+      </div>
+
+      <div">
+        <img src="media/img/learns.png" alt="Students studying" class="" />
+    </div>
+    </div>
+  </section>
+  <div id="footer"></div>
+
+  <script type="module">
+    import { renderFooter } from './JS/views/FooterView.js';
+    renderFooter();
+  </script>
+
+
 </body>
 
 </html>

@@ -1,478 +1,87 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Brainiacs
-  </title>
-  <script src="https://cdn.tailwindcss.com">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="media/icon/icon_brain.svg" type="image/png" />
+  <title>Brainiacs</title>
+  <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
+  <link rel="stylesheet" href="/CSS/minecss.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-[#FBF9F5] text-gray-800">
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Hero -->
+  <section class="text-center px-6 pt-16 pb-10">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Smarter Courses.<br />Smarter You.</h1>
+    <p class="text-gray-600 text-sm mb-6">Powered by Brainiacs</p>
+
+    <!-- Filters -->
+    <div class="bg-white max-w-5xl mx-auto rounded-2xl shadow px-6 py-6 space-y-4">
+
+      <div class="flex flex-wrap gap-2">
+        <button id="btn-online"
+          class="filter-btn bg-orange-500 text-white text-sm px-4 py-1 rounded-full">Online</button>
+        <button id="btn-nearby" class="filter-btn bg-orange-100 text-orange-600 text-sm px-4 py-1 rounded-full">Near by
+          me</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+        <input type="text" placeholder="What would you like to learn?" class="col-span-2 border px-4 py-2 rounded-md" />
+        <select class="border px-4 py-2 rounded-md">
+          <option>Grade level</option>
+        </select>
+        <select class="border px-4 py-2 rounded-md">
+          <option>Availability</option>
+        </select>
+        <select class="border px-4 py-2 rounded-md">
+          <option>Price limit</option>
+        </select>
+        <select class="border px-4 py-2 rounded-md">
+          <option>Location</option>
+        </select>
+        <select class="border px-4 py-2 rounded-md">
+          <option>Radius</option>
+        </select>
+        <button
+          class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition col-span-1 md:col-span-1">
+          Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="px-6 pb-20">
+    <div id="courses-container"
+      class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center text-sm">
+      <!-- Cards dos cursos vão ser inseridos aqui via JS -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+
+  <script type="module" src="/JS/script.js"></script>
+ <script type="module">
+    import { renderNavbar } from '/JS/views/NavbarView.js';
+    renderNavbar();
   </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
- </head>
- <body class="bg-[#FFF9F4] text-[#1E1E1E]">
-  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-   <div class="flex items-center space-x-2">
-    <img alt="Brainiacs logo black square with letter B" class="w-8 h-8" height="32" src="https://storage.googleapis.com/a1aa/image/8382da38-19e0-475d-baac-d20bbdcc4d71.jpg" width="32"/>
-    <span class="font-semibold text-base text-[#1E1E1E]">
-     Brainiacs
-    </span>
-   </div>
-   <nav class="hidden sm:flex space-x-8 text-sm font-semibold text-[#6B7280]">
-    <a class="text-[#FF5C00]" href="#">
-     Courses
-    </a>
-    <a href="#">
-     Why to start
-    </a>
-    <a href="#">
-     Community
-    </a>
-   </nav>
-   <button class="hidden sm:block bg-[#FF5C00] text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-[#e04e00] transition" type="button">
-    Login
-   </button>
-   <button aria-label="Open menu" class="sm:hidden text-[#FF5C00] text-lg" type="button">
-    <i class="fas fa-bars">
-    </i>
-   </button>
-  </header>
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-   <section class="text-center mt-10 sm:mt-16 px-2 sm:px-0">
-    <h1 class="font-extrabold text-3xl sm:text-4xl leading-tight text-[#1E1E1E]">
-     Smarter Courses.
-     <br/>
-     Smarter You.
-    </h1>
-    <p class="text-xs sm:text-sm text-[#9CA3AF] mt-1 font-normal">
-     Powered by Brainiacs
-    </p>
-   </section>
-   <section class="mt-8 sm:mt-12 bg-white rounded-xl shadow-md max-w-5xl mx-auto p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0">
-    <div class="flex items-center space-x-2 bg-[#FF5C00] text-white rounded-full px-3 py-1 text-xs font-semibold w-max">
-     <i class="fas fa-fire">
-     </i>
-     <span>
-      Top Search
-     </span>
-    </div>
-    <select aria-label="Select course category" class="flex-grow border border-[#D1D5DB] rounded-lg px-3 py-2 text-sm text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#FF5C00]">
-     <option>
-      What would you like to learn?
-     </option>
-     <option>
-      Art &amp; Design
-     </option>
-     <option>
-      Development
-     </option>
-     <option>
-      Communication
-     </option>
-     <option>
-      Videography
-     </option>
-     <option>
-      Photography
-     </option>
-     <option>
-      Marketing
-     </option>
-     <option>
-      Content Writing
-     </option>
-     <option>
-      Finance
-     </option>
-     <option>
-      Science
-     </option>
-     <option>
-      Network
-     </option>
-    </select>
-    <select aria-label="Select course level" class="flex-grow border border-[#D1D5DB] rounded-lg px-3 py-2 text-sm text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#FF5C00]">
-     <option>
-      Choose level
-     </option>
-     <option>
-      Beginner
-     </option>
-     <option>
-      Intermediate
-     </option>
-     <option>
-      Advanced
-     </option>
-    </select>
-    <select aria-label="Select course location" class="flex-grow border border-[#D1D5DB] rounded-lg px-3 py-2 text-sm text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#FF5C00]">
-     <option>
-      Location
-     </option>
-     <option>
-      Online
-     </option>
-     <option>
-      Onsite
-     </option>
-    </select>
-    <button class="bg-[#FF5C00] text-white font-semibold rounded-lg px-6 py-2 text-sm hover:bg-[#e04e00] transition" type="button">
-     Search
-    </button>
-   </section>
-   <section class="mt-10 sm:mt-14 max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6">
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Art &amp; Design category with orange background and white letters AD" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/dab66aff-c7c4-450a-bfe1-643ed10eb401.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Art &amp; Design
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      30 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Development category with orange background and white letters DV" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/f9213566-d8c9-4e7f-a6d4-6ed5bd0b15fd.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Development
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      38 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Communication category with orange background and white letters CM" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/f183712b-f723-4730-f985-8beefd2cf016.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Communication
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      28 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Videography category with orange background and white letters VG" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/4f5dcdb9-1ae1-4ab3-a2f5-74c59cd7e592.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Videography
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      38 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Photography category with orange background and white letters PH" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/9782236b-533c-4ebf-631f-11200dbb435f.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Photography
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      30 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Marketing category with orange background and white letters MK" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/1ee14b26-21eb-4060-1bbb-276beeadcf16.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Marketing
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      30 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Content Writing category with orange background and white letters CW" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/b514e521-a157-4162-c330-4d7c45dd6a7f.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Content Writing
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      38 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Finance category with orange background and white letters FI" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/bf9c7aa0-c6df-45a5-b8b8-f8d5aef1c3a3.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Finance
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      28 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Science category with orange background and white letters SC" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/1c66fe46-a649-4a74-22ed-157ef57a4856.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Science
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      38 Tutors
-     </p>
-    </div>
-    <div class="bg-white rounded-xl shadow-md flex flex-col items-center py-6 px-3 cursor-pointer hover:shadow-lg transition">
-     <img alt="Icon representing Network category with orange background and white letters NW" class="w-10 h-10 mb-2" height="40" src="https://storage.googleapis.com/a1aa/image/5aca9dce-8d4f-4e63-a016-a96bf4c28645.jpg" width="40"/>
-     <p class="text-xs font-semibold text-[#1E1E1E]">
-      Network
-     </p>
-     <p class="text-[10px] text-[#9CA3AF] mt-1">
-      28 Tutors
-     </p>
-    </div>
-   </section>
-   <section class="max-w-5xl mx-auto mt-10 sm:mt-14 px-4 sm:px-0 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-[#6B7280]">
-    <p class="mb-3 sm:mb-0 font-semibold">
-     All levels welcome
-    </p>
-    <p class="mb-3 sm:mb-0 font-semibold">
-     Real conversations with native speakers
-    </p>
-    <p class="font-semibold">
-     Anytime, anywhere, 24/7
-    </p>
-   </section>
-   <section class="max-w-5xl mx-auto mt-12 sm:mt-16 px-4 sm:px-0">
-    <h2 class="text-center font-extrabold text-xl sm:text-2xl text-[#1E1E1E]">
-     All-in-one
-     <span class="text-[#FF5C00]">
-      Platform
-     </span>
-    </h2>
-    <p class="text-center text-xs sm:text-sm text-[#6B7280] mt-2 max-w-3xl mx-auto">
-     Let us be part of your personal and professional growth by providing a fun and effective way to learn.
-    </p>
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
-     <div class="bg-[#D9E8C2] rounded-lg p-4 text-xs sm:text-sm text-[#4B5320] font-semibold">
-      <p>
-       SD+ Best creative available themes &amp; templates
-      </p>
-      <p class="mt-2 font-normal text-[#6B7280]">
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem consectetur adipisicing elit.
-      </p>
-     </div>
-     <div class="bg-[#D9E8C2] rounded-lg p-4 text-xs sm:text-sm text-[#4B5320] font-semibold">
-      <p>
-       SD+ Best creative available themes &amp; templates
-      </p>
-      <p class="mt-2 font-normal text-[#6B7280]">
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem consectetur adipisicing elit.
-      </p>
-     </div>
-     <div class="bg-[#FAD6D1] rounded-lg p-4 text-xs sm:text-sm text-[#7F3B2D] font-semibold">
-      <p>
-       SD+ Best creative available themes &amp; templates
-      </p>
-      <p class="mt-2 font-normal text-[#6B7280]">
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem consectetur adipisicing elit.
-      </p>
-     </div>
-    </div>
-   </section>
-   <section class="max-w-5xl mx-auto mt-12 sm:mt-16 px-4 sm:px-0 text-center">
-    <h3 class="font-extrabold text-lg sm:text-xl text-[#1E1E1E]">
-     What is
-     <span class="text-[#FF5C00]">
-      Brainiacs
-     </span>
-    </h3>
-    <p class="text-xs sm:text-sm text-[#6B7280] mt-2 max-w-3xl mx-auto">
-     Let us be part of your personal and professional growth by providing a fun and effective way to learn.Let us be part of your personal and professional growth by providing a fun and effective way to learn.Let us be part of your personal and professional growth by providing a fun and effective way to learn.Let us be part of your personal and professional growth by providing a fun and effective way to learn.
-    </p>
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-     <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-      <img alt="Instructor image of a man in black suit gesturing while teaching" class="rounded-md mb-4 w-full object-cover" height="180" src="https://storage.googleapis.com/a1aa/image/9f9fb9d1-9ccc-4e8b-383b-aa187ab35a80.jpg" width="300"/>
-      <button class="bg-[#FF5C00] text-white font-semibold rounded-md px-6 py-2 text-sm hover:bg-[#e04e00] transition" type="button">
-       Start as Instructor
-      </button>
-     </div>
-     <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-      <img alt="Student image of group of people studying together at table" class="rounded-md mb-4 w-full object-cover" height="180" src="https://storage.googleapis.com/a1aa/image/0cc72702-e4ba-4a12-5d79-1e6d8b85ce21.jpg" width="300"/>
-      <button class="bg-[#FF5C00] text-white font-semibold rounded-md px-6 py-2 text-sm hover:bg-[#e04e00] transition" type="button">
-       Try as a Brainiacs Student
-      </button>
-     </div>
-    </div>
-   </section>
-   <section class="max-w-5xl mx-auto mt-12 sm:mt-16 px-4 sm:px-0 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs sm:text-sm text-[#6B7280]">
-    <div>
-     <p class="font-extrabold text-[#FF5C00] text-lg sm:text-xl">
-      25K+
-     </p>
-     <p class="mt-1 font-semibold text-[#1E1E1E]">
-      Active Students
-     </p>
-    </div>
-    <div>
-     <p class="font-extrabold text-[#FF5C00] text-lg sm:text-xl">
-      899
-     </p>
-     <p class="mt-1 font-semibold text-[#1E1E1E]">
-      Total Courses
-     </p>
-    </div>
-    <div>
-     <p class="font-extrabold text-[#FF5C00] text-lg sm:text-xl">
-      158
-     </p>
-     <p class="mt-1 font-semibold text-[#1E1E1E]">
-      Instructor
-     </p>
-    </div>
-    <div>
-     <p class="font-extrabold text-[#FF5C00] text-lg sm:text-xl">
-      100%
-     </p>
-     <p class="mt-1 font-semibold text-[#1E1E1E]">
-      Satisfaction Rate
-     </p>
-    </div>
-   </section>
-   <section class="max-w-5xl mx-auto mt-12 sm:mt-16 px-4 sm:px-0 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-    <div>
-     <h4 class="font-extrabold text-[#1E1E1E] text-lg sm:text-xl mb-3">
-      Everything you can do in a physical classroom, you can do with
-      <span class="text-[#FF5C00]">
-       Brainiacs
-      </span>
-     </h4>
-     <p class="text-xs sm:text-sm text-[#6B7280] mb-6 max-w-md">
-      E-learning established to find a master will be interested by the combination of a proper technology of the layout. The point of using Learn is to find a fit to a proper.
-     </p>
-     <p class="text-xs sm:text-sm text-[#6B7280] mb-6 max-w-md">
-      A domain name is one of the first things to establishing your brand. Secure a consistent brand image with a domain name that matches your business.
-     </p>
-     <button class="bg-[#FF5C00] text-white font-semibold rounded-full px-6 py-2 text-sm hover:bg-[#e04e00] transition" type="button">
-      Start to Learn Today
-     </button>
-    </div>
-    <div class="grid grid-cols-2 gap-4">
-     <img alt="Two women working together on laptop smiling" class="rounded-md w-full object-cover" height="180" src="https://storage.googleapis.com/a1aa/image/7abc983c-f844-43bc-329e-0235a8f6d2bf.jpg" width="300"/>
-     <img alt="Man with glasses smiling wearing brown shirt" class="rounded-md w-full object-cover" height="140" src="https://storage.googleapis.com/a1aa/image/ec230dd1-1131-44e1-dc7a-0df0d12ee932.jpg" width="140"/>
-     <img alt="Man wearing glasses and blue shirt working on laptop" class="rounded-md w-full object-cover" height="140" src="https://storage.googleapis.com/a1aa/image/f550fe17-4366-4473-af3b-3b0b62e0a044.jpg" width="140"/>
-    </div>
-   </section>
-  </main>
-  <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mt-16 text-xs sm:text-sm text-[#6B7280] bg-white">
-   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-t border-[#E5E7EB] pt-6 space-y-6 sm:space-y-0">
-    <div class="flex items-center space-x-2">
-     <img alt="Brainiacs logo black square with letter B" class="w-8 h-8" height="32" src="https://storage.googleapis.com/a1aa/image/8382da38-19e0-475d-baac-d20bbdcc4d71.jpg" width="32"/>
-     <span class="font-semibold text-[#1E1E1E]">
-      Brainiacs
-     </span>
-    </div>
-    <p class="max-w-xs">
-     Get all perspective activities, to build your skills and career growth.
-    </p>
-    <p class="text-[#FF5C00] font-semibold cursor-pointer">
-     +123 4567890
-    </p>
-   </div>
-   <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-5xl mx-auto text-[#6B7280]">
-    <div>
-     <h5 class="font-semibold mb-2 text-[#1E1E1E]">
-      Resources
-     </h5>
-     <ul class="space-y-1">
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Seo Development
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Our Products
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Pricing
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Our Strategy
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div>
-     <h5 class="font-semibold mb-2 text-[#1E1E1E]">
-      Company
-     </h5>
-     <ul class="space-y-1">
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        About Us
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Contact Us
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Careers
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Blog
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div>
-     <h5 class="font-semibold mb-2 text-[#1E1E1E]">
-      Quick Links
-     </h5>
-     <ul class="space-y-1">
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Premium Support
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Give a Review
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Terms &amp; Conditions
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-[#FF5C00]" href="#">
-        Contact Help
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div>
-     <h5 class="font-semibold mb-2 text-[#1E1E1E]">
-      Follow Us On
-     </h5>
-     <div class="flex space-x-4 text-[#FF5C00] text-lg">
-      <a aria-label="Facebook" class="hover:text-[#e04e00]" href="#">
-       <i class="fab fa-facebook-f">
-       </i>
-      </a>
-      <a aria-label="Twitter" class="hover:text-[#e04e00]" href="#">
-       <i class="fab fa-twitter">
-       </i>
-      </a>
-      <a aria-label="Instagram" class="hover:text-[#e04e00]" href="#">
-       <i class="fab fa-instagram">
-       </i>
-      </a>
-      <a aria-label="LinkedIn" class="hover:text-[#e04e00]" href="#">
-       <i class="fab fa-linkedin-in">
-       </i>
-      </a>
-     </div>
-    </div>
-   </div>
-   <p class="mt-10 text-center text-[#9CA3AF] text-xs">
-    © 2023 Brainiacs.
-   </p>
-  </footer>
- </body>
+
+  <script type="module">
+    import { renderFooter } from '/JS/views/footerView.js';
+    renderFooter();
+  </script>
+
+</body>
+
+
 </html>

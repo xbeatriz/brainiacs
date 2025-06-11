@@ -1,185 +1,72 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Community Dashboard
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
- </head>
- <body class="bg-[#f0ede5] min-h-screen flex justify-center items-start p-4">
-  <div class="max-w-[960px] w-full rounded-xl border border-[#3b82f6] bg-white shadow-md">
-   <!-- Header -->
-   <header class="flex items-center justify-between px-8 py-4 border-b border-[#3b82f6] rounded-t-xl">
-    <div class="flex items-center space-x-2">
-     <i class="fas fa-brain text-black text-xl">
-     </i>
-     <span class="font-extrabold text-black text-lg select-none">
-      Brainiacs
-     </span>
-     <span class="text-[9px] text-black select-none">
-      Student
-     </span>
-    </div>
-    <nav class="flex space-x-12 text-sm font-medium">
-     <a class="text-[#475569] hover:text-[#475569] transition-colors duration-200" href="#">
-      My Sessions
-     </a>
-     <a class="text-[#fb5a1e] font-semibold hover:text-[#fb5a1e] transition-colors duration-200" href="#">
-      Community
-     </a>
-     <a class="text-[#475569] hover:text-[#475569] transition-colors duration-200" href="#">
-      Progress
-     </a>
-    </nav>
-    <div class="relative flex items-center space-x-2 cursor-pointer select-none">
-     <div class="w-8 h-8 rounded-full bg-[#fb5a1e] flex items-center justify-center text-white font-semibold">
-      A
-     </div>
-     <i class="fas fa-chevron-down text-[#475569]">
-     </i>
-    </div>
-   </header>
-   <!-- Content -->
-   <main class="flex flex-col md:flex-row gap-6 p-6">
-    <!-- Left content -->
-    <section class="flex-1 bg-white rounded-xl p-6 flex flex-col">
-     <button aria-label="Back" class="flex items-center space-x-2 text-[#475569] text-sm font-normal mb-6">
-      <i class="fas fa-arrow-left">
-      </i>
-      <span>
-       Back
-      </span>
-     </button>
-     <article class="flex flex-col space-y-4">
-      <h2 class="font-semibold text-lg leading-6">
-       Full-stack Web Developer for beginner
-      </h2>
-      <p class="text-[13px] text-[#6b7280] leading-relaxed max-w-[600px]">
-       Hi, I’m Lucas! A full-stack developer with 7+ years of experience in
-            JavaScript, React, and Node.js. I help students build real-world web
-            apps with practical, beginner-friendly sessions. I'm patient, clear,
-            and focused on making coding simple and effective. Let’s learn and
-            build together!
-      </p>
-      <div class="flex space-x-3">
-       <button class="bg-[#fb5a1e] text-white text-[11px] font-semibold rounded-full px-4 py-1">
-        Posts
-       </button>
-       <button class="border border-[#fb5a1e] text-[#fb5a1e] text-[11px] font-semibold rounded-full px-4 py-1">
-        Files
-       </button>
-       <button class="border border-[#fb5a1e] text-[#fb5a1e] text-[11px] font-semibold rounded-full px-4 py-1">
-        Members
-       </button>
-      </div>
-     </article>
-     <!-- Comments -->
-     <div class="mt-6 flex flex-col divide-y divide-[#e5e7eb]">
-      <!-- Comment 1 -->
-      <div class="py-4 flex space-x-4">
-       <img alt="Profile picture of Isabella Bertucci smiling outdoors with greenery background" class="w-10 h-10 rounded-full object-cover" height="40" src="https://storage.googleapis.com/a1aa/image/c736afc4-cbfd-413d-a914-c736c1e7eff5.jpg" width="40"/>
-       <div class="flex-1">
-        <div class="flex items-center space-x-2 mb-1">
-         <span class="font-semibold text-sm text-black">
-          Isabella Bertucci
-         </span>
-         <span class="text-xs text-[#6b7280]">
-          3 days ago
-         </span>
-        </div>
-        <p class="text-[13px] text-[#6b7280] leading-relaxed max-w-[600px]">
-         Hi, I’m Lucas! A full-stack developer with 7+ years of experience
-                in JavaScript, React, and Node.js. I help students build real-world
-                web apps with practical, beginner-friendly sessions. I'm patient,
-                clear, and focused on making coding simple and effective. Let’s
-                learn and build together!
-        </p>
-       </div>
-      </div>
-      <!-- Comment 2 -->
-      <div class="py-4 flex space-x-4">
-       <img alt="Profile picture of Isabella Bertucci smiling outdoors with greenery background" class="w-10 h-10 rounded-full object-cover" height="40" src="https://storage.googleapis.com/a1aa/image/c736afc4-cbfd-413d-a914-c736c1e7eff5.jpg" width="40"/>
-       <div class="flex-1">
-        <div class="flex items-center space-x-2 mb-1">
-         <span class="font-semibold text-sm text-black">
-          Isabella Bertucci
-         </span>
-         <span class="text-xs text-[#6b7280]">
-          3 days ago
-         </span>
-        </div>
-        <p class="text-[13px] text-[#6b7280] leading-relaxed max-w-[600px]">
-         Hi, I’m Lucas! A full-stack developer with 7+ years of experience
-                in JavaScript, React, and Node.js. I help students build real-world
-                web apps with practical, beginner-friendly sessions. I'm patient,
-                clear, and focused on making coding simple and effective. Let’s
-                learn and build together!
-        </p>
-       </div>
-      </div>
-      <!-- Comment 3 -->
-      <div class="py-4 flex space-x-4">
-       <img alt="Profile picture of Isabella Bertucci smiling outdoors with greenery background" class="w-10 h-10 rounded-full object-cover" height="40" src="https://storage.googleapis.com/a1aa/image/c736afc4-cbfd-413d-a914-c736c1e7eff5.jpg" width="40"/>
-       <div class="flex-1">
-        <div class="flex items-center space-x-2 mb-1">
-         <span class="font-semibold text-sm text-black">
-          Isabella Bertucci
-         </span>
-         <span class="text-xs text-[#6b7280]">
-          3 days ago
-         </span>
-        </div>
-        <p class="text-[13px] text-[#6b7280] leading-relaxed max-w-[600px]">
-         Hi, I’m Lucas! A full-stack developer with 7+ years of experience
-                in JavaScript, React, and Node.js. I help students build real-world
-                web apps with practical, beginner-friendly sessions. I'm patient,
-                clear, and focused on making coding simple and effective. Let’s
-                learn and build together!
-        </p>
-       </div>
-      </div>
-      <!-- Comment 4 -->
-      <div class="py-4 flex space-x-4">
-       <img alt="Profile picture of Isabella Bertucci smiling outdoors with greenery background" class="w-10 h-10 rounded-full object-cover" height="40" src="https://storage.googleapis.com/a1aa/image/c736afc4-cbfd-413d-a914-c736c1e7eff5.jpg" width="40"/>
-       <div class="flex-1">
-        <div class="flex items-center space-x-2 mb-1">
-         <span class="font-semibold text-sm text-black">
-          Isabella Bertucci
-         </span>
-         <span class="text-xs text-[#6b7280]">
-          3 days ago
-         </span>
-        </div>
-        <p class="text-[13px] text-[#6b7280] leading-relaxed max-w-[600px]">
-         Hi, I’m Lucas! A full-stack developer with 7+ years of experience
-                in JavaScript, React, and Node.js. I help students build real-world
-                web apps with practical, beginner-friendly sessions. I'm patient,
-                clear, and focused on making coding simple and effective. Let’s
-                learn and build together!
-        </p>
-       </div>
-      </div>
-     </div>
-    </section>
-    <!-- Right content -->
-    <aside class="w-full md:w-[320px] flex flex-col space-y-6">
-     <div class="bg-[#fff1eb] rounded-xl flex items-center justify-center p-12" style="min-height: 180px">
-      <img alt="Orange network icon with nodes and connecting lines on light orange background" class="w-16 h-16" height="64" src="https://storage.googleapis.com/a1aa/image/991b0430-f989-4eb1-2573-9818d0097b1f.jpg" width="64"/>
-     </div>
-     <button class="bg-[#fb5a1e] text-white text-sm font-semibold rounded-full py-3 px-6 w-full">
-      Join into this community
-     </button>
-    </aside>
-   </main>
-  </div>
- </body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Community | Brainiacs</title>
+        <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Eclonica&family=Inter:wght@400;600;700&display=swap"
+                rel="stylesheet" />
+        <style>
+                .font-eclonica {
+                        font-family: 'Eclonica', sans-serif;
+                }
+        </style>
+</head>
+
+<body class="bg-[#FBF9F5] text-gray-800 min-h-screen">
+        <!-- Navbar -->
+        <div id="navbar"></div>
+
+        <!-- Hero + Search Filters -->
+        <section class="text-center py-20 px-6">
+                <h1 class="text-4xl md:text-5xl font-eclonica font-bold leading-tight mb-4">
+                        Stronger Connections<br>Smarter Learning
+                </h1>
+                <p class="text-gray-500 mb-10">Powered by Brainiacs</p>
+
+                <!-- Filtro -->
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 bg-white p-4 rounded-2xl shadow">
+                        <input type="text" placeholder="Community name"
+                                class="border border-gray-300 rounded px-4 py-2 text-sm focus:ring-2 focus:ring-orange-400" />
+                        <input type="text" placeholder="Location"
+                                class="border border-gray-300 rounded px-4 py-2 text-sm focus:ring-2 focus:ring-orange-400" />
+                        <select
+                                class="border border-gray-300 rounded px-4 py-2 text-sm focus:ring-2 focus:ring-orange-400">
+                                <option>Subjects</option>
+                                <option>Math</option>
+                                <option>Programming</option>
+                                <option>Finance</option>
+                        </select>
+                        <button
+                                class="bg-orange-500 text-white rounded-full px-4 py-2 hover:bg-orange-600 transition">Search</button>
+                </div>
+        </section>
+
+        <!-- Community Groups -->
+        <section class="px-6 pb-20">
+                <div id="community-container"
+                        class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- JS will populate cards here -->
+                </div>
+        </section>
+
+        <!-- Footer -->
+        <div id="footer"></div>
+
+        <!-- Scripts -->
+        <script type="module" src="/JS/script.js"></script>
+        <script type="module" src="/JS/init.js"></script>
+        <script type="module">
+                import { renderNavbar } from '/JS/views/NavbarView.js';
+                import { renderFooter } from '/JS/views/footerView.js';
+
+                renderNavbar();
+                renderFooter();
+
+        </script>
+</body>
+
 </html>

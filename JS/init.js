@@ -23,6 +23,33 @@ if (!localStorage.courses){
 localStorage.setItem("courses", JSON.stringify(courses));
 }
 
+if (!localStorage.community){
+  const community = [
+  {
+      id: 1,
+      title: "Linear Algebra Circle",
+      subject: "Linear Algebra",
+      description: "A study group focused on solving problem sets, discussing theory, and preparing for exams.",
+      image: "https://placehold.co/400"
+    },
+    {
+      id: 2,
+      title: "Code & Logic Lab",
+      subject: "Development",
+      description: "Explore programming fundamentals, algorithms, and web projects.",
+      image: "https://placehold.co/400"
+    },
+    {
+      id: 3,
+      title: "Finance Fundamentals",
+      subject: "Finance",
+      description: "Discuss budgeting, investment basics, and financial modeling.",
+      image: "https://placehold.co/400"
+    }
+  ];
+localStorage.setItem("community", JSON.stringify(community));
+}
+
 if (!localStorage.tutors) {
 const tutors = [
   {
@@ -71,6 +98,7 @@ const tutors = [
 localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
+
 //Users predefinidos
 if (!localStorage.User) {
   const User = [
@@ -78,13 +106,9 @@ if (!localStorage.User) {
     { username: "user1", password: "password1" },
     { username: "user2", password: "password2" },
   ];
-  localStorage.setItem("users", JSON.stringify(User));s
+  localStorage.setItem("users", JSON.stringify(User));
 }
 
 
-// ** Inicialização **
-document.addEventListener("DOMContentLoaded", () => {
-  displayCourses();
-  displayTutors();
-});
+
 }
