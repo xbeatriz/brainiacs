@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Progresso | Brainiacs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script type="module" src="/JS/views/NavbarStudentView.js" defer></script>
+    <script type="module">
+        import { renderNavbarDashboard } from "/JS/views/NavbarStudentView.js";
+        renderNavbarDashboard();
+    </script>
+</head>
+<body class="bg-[#FBF9F5] pt-16">
+
+  <div id="navbarDashboard"></div>
+
+  <main class="max-w-screen-xl mx-auto px-6 py-10">
+    <!-- Cabeçalho -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Meu Progresso</h1>
+          <p class="text-gray-600 mt-1">Acompanhe seu desempenho e evolução nas matérias.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Card exemplo -->
+      <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">Matemática</h2>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-orange-500 h-3 rounded-full" style="width: 75%"></div>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">75% concluído</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">Física</h2>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-orange-500 h-3 rounded-full" style="width: 50%"></div>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">50% concluído</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">Português</h2>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-orange-500 h-3 rounded-full" style="width: 90%"></div>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">90% concluído</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 text-center">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">História</h2>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-orange-500 h-3 rounded-full" style="width: 65%"></div>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">65% concluído</p>
+      </div>
+    </section>
+
+    <!-- Gráficos -->
+    <section class="grid md:grid-cols-2 gap-8 mb-12">
+      <!-- Progresso Geral -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Evolução Geral</h2>
+        <canvas id="chartProgress"></canvas>
+      </div>
+
+      <!-- Desempenho por matéria -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Desempenho por Matéria</h2>
+        <canvas id="chartSubjects"></canvas>
+      </div>
+    </section>
+
+  </main>
+  <script type="module" src="/JS/script.js"></script>
+    <script type="module" src="/JS/init.js"></script>
+    <script type="module">
+        import { renderNavbarDashboard } from '/JS/views/NavbarStudentView.js';
+
+        renderNavbarDashboard();
+    </script>
+
+  <script>
+    // Gráfico de Linha
+    new Chart(document.getElementById('chartProgress'), {
+      type: 'line',
+      data: {
+        labels: ['Abr', 'Mai', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Progresso (%)',
+          data: [40, 60, 70, 85],
+          borderColor: '#f97316',
+          backgroundColor: 'rgba(249, 115, 22, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: '#f97316'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { callback: v => v + '%' }
+          }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    // Gráfico de Barras
+    new Chart(document.getElementById('chartSubjects'), {
+      type: 'bar',
+      data: {
+        labels: ['Matemática', 'Física', 'Português', 'História'],
+        datasets: [{
+          label: 'Desempenho',
+          data: [75, 50, 90, 65],
+          backgroundColor: '#f97316',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { callback: v => v + '%' }
+          }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    
+  </script>
+</body>
+</html>

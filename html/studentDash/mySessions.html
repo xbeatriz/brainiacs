@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Minhas Sessões | Brainiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+</head>
+
+<body class="bg-[#FBF9F5] pt-16">
+    <!-- Navbar -->
+    <div id="navbarDashboard"></div>
+
+    <!-- Conteúdo principal -->
+    <main class="max-w-screen-xl mx-auto px-6 py-8">
+        <!-- Título e saudação -->
+        <section class="mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Minhas Sessões</h1>
+                    <p class="text-gray-600 text-sm">Aqui estão suas sessões agendadas e anteriores.</p>
+                </div>
+                <div>
+                    <a href="/html/courses.html"
+                        class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm transition">
+                        Agendar nova sessão
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sessões agendadas -->
+        <section>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Sessões Agendadas</h2>
+            <div id="upcoming-sessions" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS vai injetar os cards aqui -->
+            </div>
+        </section>
+
+        <!-- Sessões anteriores -->
+        <section class="mt-10">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Sessões Anteriores</h2>
+            <div id="past-sessions" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS vai injetar os cards aqui -->
+            </div>
+        </section>
+    </main>
+    <script type="module" src="/JS/script.js"></script>
+    <script type="module" src="/JS/init.js"></script>
+    <script type="module">
+        import { renderNavbarDashboard } from '/JS/views/NavbarStudentView.js';
+
+        renderNavbarDashboard();
+    </script>
+
+    <script type="module">
+        import { createSessionCard } from '/JS/components/SessionCard.js';
+
+        const upcomingSessions = [
+            {
+                date: '13/06/2025',
+                time: '14:00',
+                topic: 'Trigonometria Avançada',
+                tutor: 'Ana Silva',
+                isPast: false
+            },
+            {
+                date: '15/06/2025',
+                time: '09:30',
+                topic: 'Redação ENEM',
+                tutor: 'Carlos Souza',
+                isPast: false
+            },
+            {
+                date: '15/06/2025',
+                time: '09:30',
+                topic: 'Redação ENEM',
+                tutor: 'Carlos Souza',
+                isPast: false
+            },
+            {
+                date: '15/06/2025',
+                time: '09:30',
+                topic: 'Redação ENEM',
+                tutor: 'Carlos Souza',
+                isPast: false
+            },
+            {
+                date: '15/06/2025',
+                time: '09:30',
+                topic: 'Redação ENEM',
+                tutor: 'Carlos Souza',
+                isPast: false
+            },
+        ];
+
+        const pastSessions = [
+            {
+                date: '10/06/2025',
+                time: '10:00',
+                topic: 'História do Brasil',
+                tutor: 'Beatriz Lima',
+                isPast: true
+            },
+            {
+                date: '08/06/2025',
+                time: '16:00',
+                topic: 'Física - Cinemática',
+                tutor: 'Rafael Torres',
+                isPast: true
+            }
+        ];
+
+        const renderSessions = (containerId, sessions) => {
+            const container = document.getElementById(containerId);
+            sessions.forEach(session => {
+                const card = createSessionCard(session);
+                container.appendChild(card);
+            });
+        };
+
+        renderSessions('upcoming-sessions', upcomingSessions);
+        renderSessions('past-sessions', pastSessions);
+    </script>
+
+</body>
+
+</html>

@@ -132,4 +132,45 @@ document.addEventListener("DOMContentLoaded", () => {
   displayCommunity();
 });
 
+// Toggle menu mobile
+document.addEventListener("click", function (e) {
+  const toggleButton = e.target.closest("[data-collapse-toggle]");
+  if (!toggleButton) return;
+
+  const targetId = toggleButton.getAttribute("data-collapse-toggle");
+  const menu = document.getElementById(targetId);
+  if (!menu) return;
+
+  const expanded = toggleButton.getAttribute("aria-expanded") === "true";
+  toggleButton.setAttribute("aria-expanded", !expanded);
+  if (menu.classList.contains("hidden")) {
+    menu.classList.remove("hidden");
+  } else {
+    menu.classList.add("hidden");
+  }
+});
+
+// Toggle dropdown avatar
+document.addEventListener("click", function (e) {
+  const userButton = e.target.closest("#user-menu-button");
+  const dropdown = document.getElementById("user-dropdown");
+  if (!userButton) {
+    // Se clicou fora do botão do usuário, fecha o dropdown
+    if (dropdown && !dropdown.classList.contains("hidden")) {
+      dropdown.classList.add("hidden");
+      userButton?.setAttribute("aria-expanded", "false");
+    }
+    return;
+  }
+
+  const expanded = userButton.getAttribute("aria-expanded") === "true";
+  userButton.setAttribute("aria-expanded", !expanded);
+
+  if (dropdown.classList.contains("hidden")) {
+    dropdown.classList.remove("hidden");
+  } else {
+    dropdown.classList.add("hidden");
+  }
+});
+
 
