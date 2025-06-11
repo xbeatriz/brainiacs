@@ -2,7 +2,7 @@
 import { createCourseCard } from '/JS/components/CourseCard.js';
 import { createCommunityCard } from '/JS/components/CommunityCard.js';
 import { renderNavbar } from './views/NavbarView.js';
-import { renderFooter} from './views/FuterView.js'
+import { renderFooter} from './views/FooterView.js'
 
 // Render Navbar and Footer
 renderNavbar();
