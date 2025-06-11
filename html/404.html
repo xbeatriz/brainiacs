@@ -1,20 +1,43 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Not Found | Brainiacs</title>
+  <link rel="icon" href="media/icon/icon_brain.svg" type="image/png" />
+  <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
+  <link rel="stylesheet" href="/CSS/minecss.css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
-<body class="bg-[#f0e6d2] m-4">
-  <div class="max-w-6xl mx-auto bg-gradient-to-r from-[#fc5519] via-[#fb5f1f] to-[#fc5519] border-2 border-purple-500 rounded-sm">
-    <div class="flex justify-center items-center h-48">
-      <div class="text-center text-white">
-        <h1 class="font-extrabold text-6xl leading-none">404</h1>
-        <p class="mt-2 font-semibold text-base">Oops! That page can’t be found</p>
-        <p class="mt-1 text-xs font-normal">The page you are looking for it maybe deleted</p>
-        <button class="mt-4 px-4 py-1 border border-white rounded text-sm hover:bg-white hover:text-[#fc5519] transition-colors duration-300">Go To Home</button>
-      </div>
+
+<body class="bg-[#FBF9F5] text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  <script type="module">
+    import { renderNavbar } from './JS/views/NavbarView.js';
+    renderNavbar();
+  </script>
+
+  <!-- Main content -->
+  <main class="flex-grow flex items-center justify-center px-4">
+    <div class="text-center max-w-md">
+      <h1 class="text-7xl font-extrabold text-orange-500 mb-4">404</h1>
+      <h2 class="text-2xl font-semibold mb-2">Oops! Page not found.</h2>
+      <p class="text-gray-500 mb-6">The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/index.html" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition">
+        Go to Homepage
+      </a>
     </div>
-  </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script type="module">
+    import { renderFooter } from './JS/views/FooterView.js';
+    renderFooter();
+  </script>
+
 </body>
 </html>
