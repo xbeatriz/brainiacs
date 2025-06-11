@@ -48,7 +48,7 @@
 
                   <p class="text-sm text-gray-600 mt-4 text-center">
                         Already have an account?
-                        <a href="#" class="text-orange-500 font-medium">Log In</a>
+                        <a class="text-orange-500 font-medium" id="login">Log In</a>
                   </p>
             </div>
       </section>
@@ -56,15 +56,9 @@
       <!-- Footer -->
       <div id="footer"></div>
 
-      <script type="module">
-            import { renderNavbar } from '/JS/views/NavbarView.js';
-            renderNavbar();
-      </script>
-
-      <script type="module">
-            import { renderFooter } from '/JS/views/footerView.js';
-            renderFooter();
-      </script>
+      <!-- Scripts -->
+      <script type="module" src="/JS/init.js"></script>
+      <script type="module" src="/JS/script.js"></script>
 </body>
 
 </html>

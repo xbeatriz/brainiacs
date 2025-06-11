@@ -1,42 +1,14 @@
+//imports
 import { createCourseCard } from '/JS/components/CourseCard.js';
+import { createCommunityCard } from '/JS/components/CommunityCard.js';
+import { renderNavbar } from './views/NavbarView.js';
+import { renderFooter} from './views/FuterView.js'
 
-
-let hasCheckedRole = false; // Flag para verificar se já foi feita a verificação
-document.addEventListener('DOMContentLoaded', () => {
-  // Verifica se já foi feita a verificação
-  if (!hasCheckedRole) {
-    const role = localStorage.getItem('role');
-    const currentUrl = window.location.href;
-    if (role === 'estudante' && !currentUrl.includes('istudent.html')) {
-      window.location.href = './html/istudent.html';
-      return; // interrompe execução para evitar setar listeners
-    }
-    if (role === 'tutor' && !currentUrl.includes('itutor.html')) {
-      window.location.href = './html/itutor.html';
-      return;
-    }
-    hasCheckedRole = true; // Marca que a verificação foi feita
-  }
-  // Seleciona os botões por id
-  const estudanteBtn = document.getElementById('btn-estudante');
-  const tutorBtn = document.getElementById('btn-tutor');
-  if (estudanteBtn) {
-    estudanteBtn.addEventListener('click', () => {
-      localStorage.setItem('role', 'estudante');
-      window.location.href = '/html/istudent.html';
-    });
-  }
-  if (tutorBtn) {
-    tutorBtn.addEventListener('click', () => {
-      localStorage.setItem('role', 'tutor');
-      window.location.href = '/html/itutor.html';
-    });
-  }
-});
-
+// Render Navbar and Footer
+renderNavbar();
+renderFooter();
 
 // route botoes
-
 const courseBtn = document.getElementById('btn-course');
 if (courseBtn) {
   courseBtn.addEventListener('click', () => {
@@ -57,21 +29,6 @@ if (communityBtn) {
     window.location.href = 'comunity.html';
   });
 }
-
-/* btn */
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('bg-orange-500', 'text-white');
-        btn.classList.add('bg-orange-100', 'text-orange-600');
-      });
-
-      button.classList.remove('bg-orange-100', 'text-orange-600');
-      button.classList.add('bg-orange-500', 'text-white');
-    });
-  });
-});
 
 
 /* card courses */
@@ -109,8 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   displayCourses();
 });
 
-import { createCommunityCard } from '/JS/components/CommunityCard.js';
-
+//community
 function displayCommunity() {
   const container = document.getElementById('community-container');
   if (!container) return;

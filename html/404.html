@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,10 +16,7 @@
 
   <!-- Navbar -->
   <div id="navbar"></div>
-  <script type="module">
-    import { renderNavbar } from './JS/views/NavbarView.js';
-    renderNavbar();
-  </script>
+
 
   <!-- Main content -->
   <main class="flex-grow flex items-center justify-center px-4">
@@ -26,7 +24,8 @@
       <h1 class="text-7xl font-extrabold text-orange-500 mb-4">404</h1>
       <h2 class="text-2xl font-semibold mb-2">Oops! Page not found.</h2>
       <p class="text-gray-500 mb-6">The page you're looking for doesn't exist or has been moved.</p>
-      <a href="/index.html" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition">
+      <a href="/index.html"
+        class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition">
         Go to Homepage
       </a>
     </div>
@@ -34,10 +33,10 @@
 
   <!-- Footer -->
   <div id="footer"></div>
-  <script type="module">
-    import { renderFooter } from './JS/views/FooterView.js';
-    renderFooter();
-  </script>
+  <!-- Scripts -->
+  <script type="module" src="/JS/init.js"></script>
+  <script type="module" src="/JS/script.js"></script>
 
 </body>
+
 </html>
