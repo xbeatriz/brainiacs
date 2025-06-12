@@ -70,6 +70,45 @@
   <div id="footer"></div>
 
 
+  <!-- Modals -->
+  <!-- LOGIN MODAL -->
+  <div id="mdlLogin" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+      <h2 class="text-xl font-semibold mb-4">Login</h2>
+      <form id="frmLogin" class="space-y-4">
+        <input type="text" id="txtUsername" placeholder="Username" class="w-full border p-2 rounded" required />
+        <input type="password" id="txtPassword" placeholder="Password" class="w-full border p-2 rounded" required />
+        <div id="msgLogin" class="text-sm"></div>
+        <div class="flex justify-end space-x-2">
+          <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
+          <button type="button" class="btnCloseModal text-gray-500">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div id="mdlRegister" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+      <h2 class="text-xl font-semibold mb-4">Register</h2>
+      <form id="frmRegister" class="space-y-4">
+        <input type="text" id="txtUsernameRegister" placeholder="Username" class="w-full border p-2 rounded" required />
+        <input type="password" id="txtPasswordRegister" placeholder="Password" class="w-full border p-2 rounded"
+          required />
+        <input type="password" id="txtPasswordRegister2" placeholder="Confirm Password"
+          class="w-full border p-2 rounded" required />
+        <div id="msgRegister" class="text-sm"></div>
+        <div class="flex justify-end space-x-2">
+          <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Register</button>
+          <button type="button" class="btnCloseModal text-gray-500">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+
   <!-- Scripts -->
   <script type="module" src="/JS/init.js"></script>
   <script type="module" src="/JS/script.js"></script>

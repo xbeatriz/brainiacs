@@ -28,8 +28,10 @@ export function renderNavbar() {
 `;
 
 if (User.isLogged()) {
+  const user = User.getUserLogged();
+  const dashboardUrl = getDashboardUrl(user.role);
   navbar += `
-        <a href="/html/dashstd.html" class="text-gray-900 hover:text-orange-500">${User.getUserLogged().username}</a>
+        <a href="${dashboardUrl}" class="text-gray-900 hover:text-orange-500">${User.getUserLogged().username}</a>
         <button id="btnLogout" class="text-gray-900 hover:text-orange-500">Logout</button>
   `;
 } else {
@@ -112,6 +114,7 @@ document.getElementById("navbar").innerHTML = navbar;
             document.getElementById("txtPassword").value
           );
           displayMessage("msgLogin", "User logged in with success!", "success");
+          localStorage.setItem("userLogged", JSON.stringify(User.getUserLogged()));
           setTimeout(() => location.reload(), 1500);
         } catch (e) {
           displayMessage("msgLogin", e.message, "danger");
@@ -123,6 +126,8 @@ document.getElementById("navbar").innerHTML = navbar;
      .getElementById("btnLogout")
       ?.addEventListener("click", () => {
       User.logout();
+      localStorage.removeItem("userLogged");
+      displayMessage("msgLogin", "User logged out with success!", "success");
       location.reload();
     });
 
@@ -133,6 +138,19 @@ document.getElementById("navbar").innerHTML = navbar;
       setTimeout(() => {
         divMessage.innerHTML = "";
       }, 2000);
+    }
+
+    //função direcionamento
+    function getDashboardUrl(role) {
+      switch (role) {
+        case "admin":
+          return "/html/adminDash/adminDash.html";
+        case "tutor":
+          return "/html/tutorDash/tutorDash.html";
+        case "user":
+        default:
+          return "/html/studentDash/studentDash.html";
+      }
     }
 
 }
