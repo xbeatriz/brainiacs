@@ -108,9 +108,21 @@ document.getElementById("navbar").innerHTML = navbar;
           if (registerPassword.value !== registerPassword2.value) {
             throw Error("Password and Confirm Password are not equal");
           }
-          User.add(registerUsername.value, registerPassword.value);
+
+          // Verifica a página atual para definir o role
+          let registerRole = "user"; // default
+
+          if (window.location.pathname.includes("be-a-tutor.html")) {
+            registerRole = "tutor";
+          }
+
+          User.add(registerUsername.value, registerPassword.value, registerRole);
           displayMessage("msgRegister", "User registered with success!", "success");
-          setTimeout(() => location.reload(), 1000);
+          //setTimeout(() => location.reload(), 1000);
+          // Atualiza a interface sem reload
+          document.getElementById("frmRegister").reset();
+          document.getElementById("mdlRegister").classList.add("hidden");
+          document.getElementById("mdlRegister").classList.remove("flex");
         } catch (e) {
           displayMessage("msgRegister", e.message, "danger");
         }

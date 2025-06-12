@@ -1,3 +1,6 @@
+//imports
+import * as tutors from "./models/TutorModel.js";
+
 export function renderNavbarTutorDashboard() {
   const navbarTutorDashboard = `
     <nav class="bg-white border-gray-200 fixed w-full z-20 top-0 left-0 border-b border-gray-200">

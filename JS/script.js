@@ -7,41 +7,7 @@ import { renderFooter} from './views/FoterView.js'
 renderNavbar();
 renderFooter();
 
-
-let hasCheckedRole = false; // Flag para verificar se já foi feita a verificação
-document.addEventListener('DOMContentLoaded', () => {
-  // Verifica se já foi feita a verificação
-  if (!hasCheckedRole) {
-    const role = localStorage.getItem('role');
-    const currentUrl = window.location.href;
-    if (role === 'estudante' && !currentUrl.includes('istudent.html')) {
-      window.location.href = './html/istudent.html';
-      return; // interrompe execução para evitar setar listeners
-    }
-    if (role === 'tutor' && !currentUrl.includes('itutor.html')) {
-      window.location.href = './html/itutor.html';
-      return;
-    }
-    hasCheckedRole = true; // Marca que a verificação foi feita
-  }
-  // Seleciona os botões por id
-  const estudanteBtn = document.getElementById('btn-estudante');
-  const tutorBtn = document.getElementById('btn-tutor');
-  if (estudanteBtn) {
-    estudanteBtn.addEventListener('click', () => {
-      localStorage.setItem('role', 'estudante');
-      window.location.href = '/html/istudent.html';
-    });
-  }
-  if (tutorBtn) {
-    tutorBtn.addEventListener('click', () => {
-      localStorage.setItem('role', 'tutor');
-      window.location.href = '/html/itutor.html';
-    });
-  }
-});
-
-/* card courses */
+// Funções
 function displayCourses() {
   const container = document.getElementById('courses-container');
   if (!container) return;
@@ -72,12 +38,6 @@ function displayCourses() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  displayCourses();
-});
-
-
-
 function displayCommunity() {
   const container = document.getElementById('community-container');
   if (!container) return;
@@ -94,6 +54,14 @@ function displayCommunity() {
     container.appendChild(card);
   });
 }
+
+
+// Event Listeners
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayCourses();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   displayCommunity();

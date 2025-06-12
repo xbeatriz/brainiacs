@@ -2,15 +2,19 @@ let users;
 
 // CARREGAR UTILIZADORES DA LOCALSTORAGE
 export function init() {
-  users = localStorage.users ? JSON.parse(localStorage.users) : [];
+   users = localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : [];
+}
+
+export function getAllUsers() {
+  return users;
 }
 
 // ADICIONAR UTILIZADOR
-export function add(username, password) {
+export function add(username, password, role = "user") {
   if (users.some((user) => user.username === username)) {
     throw Error(`User with username "${username}" already exists!`);
   } else {
-    users.push(new User(username, password));
+    users.push(new User(username, password,role));
     localStorage.setItem("users", JSON.stringify(users));
   }
 }
@@ -49,9 +53,11 @@ export function getUserLogged() {
 class User {
   username = "";
   password = "";
+  role = "user";
 
-  constructor(username, password) {
+  constructor(username, password, role = "user") {
     this.username = username;
     this.password = password;
+    this.role = role;
   }
 }
