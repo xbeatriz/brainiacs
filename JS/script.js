@@ -1,4 +1,11 @@
 import { createCourseCard } from '/JS/components/CourseCard.js';
+import { createCommunityCard } from '/JS/components/CommunityCard.js';
+import { renderNavbar } from './views/NavbarView.js';
+import { renderFooter} from './views/FoterView.js'
+
+// Render Navbar and Footer
+renderNavbar();
+renderFooter();
 
 
 let hasCheckedRole = false; // Flag para verificar se já foi feita a verificação
@@ -33,46 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-
-// route botoes
-
-const courseBtn = document.getElementById('btn-course');
-if (courseBtn) {
-  courseBtn.addEventListener('click', () => {
-    window.location.href = 'courses.html';
-  });
-}
-
-const hiwBtn = document.getElementById('btn-hiw');
-if (hiwBtn) {
-  hiwBtn.addEventListener('click', () => {
-    window.location.href = '404.html';
-  });
-}
-
-const communityBtn = document.getElementById('btn-community');
-if (communityBtn) {
-  communityBtn.addEventListener('click', () => {
-    window.location.href = 'comunity.html';
-  });
-}
-
-/* btn */
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('bg-orange-500', 'text-white');
-        btn.classList.add('bg-orange-100', 'text-orange-600');
-      });
-
-      button.classList.remove('bg-orange-100', 'text-orange-600');
-      button.classList.add('bg-orange-500', 'text-white');
-    });
-  });
-});
-
 
 /* card courses */
 function displayCourses() {
@@ -109,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   displayCourses();
 });
 
-import { createCommunityCard } from '/JS/components/CommunityCard.js';
+
 
 function displayCommunity() {
   const container = document.getElementById('community-container');

@@ -1,36 +1,138 @@
-export function renderNavbar() {
-  const navbar = `
-    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-        <a href="/" class="flex items-center space-x-2">
-          <img src="/media/img/logo.svg" class="h-5" alt="Brainiacs Logo">
-        </a>
-        <div class="flex md:order-2 space-x-2 md:space-x-0">
-          <a href="/html/login.html" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
-  Login
-</a>
-          <button data-collapse-toggle="navbar-sticky" type="button" 
-            class="inline-flex items-center p-2 w-9 h-9 justify-center text-sm text-gray-500 rounded-lg 
-            md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" 
-            aria-controls="navbar-sticky" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                    d="M1 1h15M1 7h15M1 13h15" />
-            </svg>
-          </button>
-        </div>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-          <ul class="flex flex-col p-2 md:p-0 mt-3 font-medium border border-gray-100 rounded-lg bg-gray-50 
-                     md:space-x-6 md:flex-row md:mt-0 md:border-0 md:bg-white text-sm">
-            <li><a href="/html/courses.html" class="block py-1.5 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Courses</a></li>
-            <li><a href="/html/be-a-tutor.html" class="block py-1.5 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Be a Tutor</a></li>
-            <li><a href="/html/comunity.html" class="block py-1.5 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-orange-500 md:p-0">Community</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  `;
+//imports
+import * as User from "../models/UserModel.js";
 
-  document.getElementById("navbar").innerHTML = navbar;
+export function renderNavbar() {
+  // Initialize the User model
+  User.init();
+
+  let navbar = `
+  <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto p-2">
+
+      <!-- LOGO -->
+      <a href="/" class="flex items-center space-x-2">
+        <img src="/media/img/logo.svg" class="h-5" alt="Brainiacs Logo">
+      </a>
+
+      <!-- MENU CENTRAL -->
+      <div class="hidden md:flex mx-auto">
+        <ul class="flex space-x-6 font-medium text-sm">
+          <li><a href="/html/courses.html" class="text-gray-900 hover:text-orange-500">Courses</a></li>
+          <li><a href="/html/be-a-tutor.html" class="text-gray-900 hover:text-orange-500">Be a Tutor</a></li>
+          <li><a href="/html/comunity.html" class="text-gray-900 hover:text-orange-500">Community</a></li>
+        </ul>
+      </div>
+
+      <!-- BOTÕES À DIREITA -->
+      <div class="flex items-center gap-2">
+`;
+
+if (User.isLogged()) {
+  navbar += `
+        <a href="/html/dashstd.html" class="text-gray-900 hover:text-orange-500">${User.getUserLogged().username}</a>
+        <button id="btnLogout" class="text-gray-900 hover:text-orange-500">Logout</button>
+  `;
+} else {
+  navbar += `
+      <button 
+        id="loginButton"
+        data-dialog-target="mdlLogin"
+        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
+        Login
+      </button>
+
+      <button 
+        id="registerButton" 
+        data-bs-toggle="modal" 
+        data-bs-target="mdlRegister"
+        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
+        Register
+      </button>
+  `;
+}
+
+navbar += `
+      </div>
+    </div>
+  </nav>
+`;
+
+document.getElementById("navbar").innerHTML = navbar;
+
+  // ABRIR MODAIS
+  document.getElementById("loginButton")?.addEventListener("click", () => {
+    document.getElementById("mdlLogin").classList.remove("hidden");
+    document.getElementById("mdlLogin").classList.add("flex");
+  });
+
+  document.getElementById("registerButton")?.addEventListener("click", () => {
+    document.getElementById("mdlRegister").classList.remove("hidden");
+    document.getElementById("mdlRegister").classList.add("flex");
+  });
+
+  // FECHAR MODAIS
+  document.querySelectorAll(".btnCloseModal").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.getElementById("mdlLogin")?.classList.add("hidden");
+      document.getElementById("mdlLogin")?.classList.remove("flex");
+      document.getElementById("mdlRegister")?.classList.add("hidden");
+      document.getElementById("mdlRegister")?.classList.remove("flex");
+    });
+  });
+
+
+  // REGISTER
+    document
+      .getElementById("frmRegister")
+      ?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const registerUsername = document.getElementById("txtUsernameRegister");
+        const registerPassword = document.getElementById("txtPasswordRegister");
+        const registerPassword2 = document.getElementById("txtPasswordRegister2");
+        try {
+          if (registerPassword.value !== registerPassword2.value) {
+            throw Error("Password and Confirm Password are not equal");
+          }
+          User.add(registerUsername.value, registerPassword.value);
+          displayMessage("msgRegister", "User registered with success!", "success");
+          setTimeout(() => location.reload(), 1000);
+        } catch (e) {
+          displayMessage("msgRegister", e.message, "danger");
+        }
+      });
+
+  // LOGIN
+    document
+      .getElementById("frmLogin")
+      ?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        try {
+          User.login(
+            document.getElementById("txtUsername").value,
+            document.getElementById("txtPassword").value
+          );
+          displayMessage("msgLogin", "User logged in with success!", "success");
+          setTimeout(() => location.reload(), 1500);
+        } catch (e) {
+          displayMessage("msgLogin", e.message, "danger");
+        }
+      });
+
+  // LOGOUT
+    document
+     .getElementById("btnLogout")
+      ?.addEventListener("click", () => {
+      User.logout();
+      location.reload();
+    });
+
+    // MENSAGEM
+    function displayMessage(modal, message, type) {
+      const divMessage = document.getElementById(modal);
+      divMessage.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
+      setTimeout(() => {
+        divMessage.innerHTML = "";
+      }, 2000);
+    }
+
 }
