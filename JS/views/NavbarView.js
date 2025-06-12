@@ -5,6 +5,18 @@ export function renderNavbar() {
   // Initialize the User model
   User.init();
 
+  // Obtem o caminho da página atual
+  const currentPath = window.location.pathname;
+
+  // Decide se mostra "Be a Tutor" ou "Be a Student"
+  let tutorMenuLabel = "Be a Tutor";
+  let tutorMenuLink = "/html/be-a-tutor.html";
+
+  if (currentPath.includes("be-a-tutor.html")) {
+    tutorMenuLabel = "Be a Student";
+    tutorMenuLink = "/";
+  }
+
   let navbar = `
   <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
     <div class="max-w-screen-xl flex items-center justify-between mx-auto p-2">
@@ -18,14 +30,15 @@ export function renderNavbar() {
       <div class="hidden md:flex mx-auto">
         <ul class="flex space-x-6 font-medium text-sm">
           <li><a href="/html/courses.html" class="text-gray-900 hover:text-orange-500">Courses</a></li>
-          <li><a href="/html/be-a-tutor.html" class="text-gray-900 hover:text-orange-500">Be a Tutor</a></li>
+          <li><a href="${tutorMenuLink}" class="text-gray-900 hover:text-orange-500">${tutorMenuLabel}</a></li>
           <li><a href="/html/comunity.html" class="text-gray-900 hover:text-orange-500">Community</a></li>
         </ul>
       </div>
 
       <!-- BOTÕES À DIREITA -->
       <div class="flex items-center gap-2">
-`;
+  `;
+
 
 if (User.isLogged()) {
   const user = User.getUserLogged();
