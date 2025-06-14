@@ -147,23 +147,55 @@ document.getElementById("navbar").innerHTML = navbar;
       });
 
   // LOGOUT
-    document
-     .getElementById("btnLogout")
-      ?.addEventListener("click", () => {
-      User.logout();
-      localStorage.removeItem("userLogged");
-      displayMessage("msgLogin", "User logged out with success!", "success");
-      location.reload();
-    });
+    document.getElementById("btnLogout")?.addEventListener("click", () => {
+    User.logout();
+    localStorage.removeItem("userLogged");
+
+    // Mostra a modal
+    const modal = document.getElementById("modalLogoutSuccess");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex"); // aplica flex para centralizar
+
+    // Opcional: bloquear scroll de fundo
+    document.body.classList.add("overflow-hidden");
+  });
+
+  // Fechar a modal ao clicar em "OK"
+  document.getElementById("closeLogoutModal")?.addEventListener("click", () => {
+    const modal = document.getElementById("modalLogoutSuccess");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.classList.remove("overflow-hidden");
+
+    // Opcional: recarregar página depois de fechar
+    location.reload();
+  });
 
     // MENSAGEM
-    function displayMessage(modal, message, type) {
-      const divMessage = document.getElementById(modal);
-      divMessage.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
-      setTimeout(() => {
-        divMessage.innerHTML = "";
-      }, 2000);
-    }
+    function displayMessage(modalId, message, type) {
+    const modalElement = document.getElementById(modalId);
+    if (!modalElement) return;
+    const colorMap = {
+      success: "green",
+      danger: "red",
+      warning: "yellow",
+      info: "blue"
+    };
+    const color = colorMap[type] || "blue";
+    modalElement.innerHTML = `
+      <div class="flex items-center p-4 mb-4 text-sm text-${color}-800 rounded-lg bg-${color}-100" role="alert">
+        <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" 
+          fill="currentColor" viewBox="0 0 20 20">
+          <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9 5a1 1 0 112 0v4a1 1 0 11-2 0V5zm1 10a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>${message}</div>
+      </div>
+    `;
+    setTimeout(() => {
+      modalElement.innerHTML = "";
+    }, 2500);
+  }
 
     //função direcionamento
     function getDashboardUrl(role) {
