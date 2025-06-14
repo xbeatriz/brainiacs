@@ -1,6 +1,6 @@
 //imports
-import * as tutors from "./models/TutorModel.js";
-import * as User from "./models/UserModel.js";
+import * as tutorsModule from "./models/TutorModel.js";
+import * as UserModule from "./models/UserModel.js";
 
 // init.js
 initdata();
@@ -20,7 +20,10 @@ if (!localStorage.courses){
   { category: "Science", count: 38 },
   { category: "Network", count: 38 },
 ];
-localStorage.setItem("courses", JSON.stringify(courses));
+/*courses.forEach((course) => {
+      course.add(course.category, course.count);
+    });
+*/localStorage.setItem("courses", JSON.stringify(courses));
 }
 
 if (!localStorage.community){
@@ -95,20 +98,22 @@ const tutors = [
     image: "path/to/joao.jpg", // Substitua pelo caminho correto da imagem
   },
 ];
-localStorage.setItem("tutors", JSON.stringify(tutors));
+tutors.forEach((tutor) => {
+      tutorsModule.add(tutor.name, tutor.specialty, tutor.rate, tutor.students, tutor.image);
+    });
+//localStorage.setItem("tutors", JSON.stringify(tutors));
 }
-
 
 //Users predefinidos
-if (!localStorage.User) {
-  const User = [
-    { username: "admin", password: "admin", role: "admin" },
-    { username: "user1", password: "password1", role: "user" },
-    { username: "user2", password: "password2", role: "tutor" },
+if (!localStorage.getItem("users")) {
+  const preUsers = [
+    { id: 1, username: "admin", password: "admin", role: "admin" },
+    { id: 2, username: "user1", password: "password1", role: "user" },
+    { id: 3,username: "user2", password: "password2", role: "tutor" },
   ];
-  localStorage.setItem("users", JSON.stringify(User));
+  preUsers.forEach((user) => {
+    User.add(user.username, user.password, user.role);
+  });
 }
-
-
 
 }

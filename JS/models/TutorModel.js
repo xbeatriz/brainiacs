@@ -1,58 +1,50 @@
-let users;
+let tutors = [];
 
-// CARREGAR UTILIZADORES DA LOCALSTORAGE
-export function init() {
-   users = localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : [];
+if (localStorage.getItem("tutors")) {
+  tutors = JSON.parse(localStorage.getItem("tutors"));
+} else {
+  localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-// ADICIONAR UTILIZADOR
-export function add(username, password) {
-  if (users.some((user) => user.username === username)) {
-    throw Error(`User with username "${username}" already exists!`);
-  } else {
-    users.push(new User(username, password));
-    localStorage.setItem("users", JSON.stringify(users));
+// CLASSE MODELO
+class Tutor {
+  constructor(name, specialty, rate, students, image) {
+    this.id = Date.now(); // id único
+    this.name = name;
+    this.specialty = specialty;
+    this.rate = rate;
+    this.students = students;
+    this.image = image;
   }
 }
 
-// LOGIN DO UTILIZADOR
-export function login(username, password) {
-  const user = users.find(
-    (user) => user.username === username && user.password === password
-  );
-  if (user) {
-    sessionStorage.setItem("loggedUser", JSON.stringify(user));
-    return true;
-  } else {
-    throw Error("Invalid login!");
-  }
+// ADICIONAR
+export function add(name, specialty, rate, students, image) {
+  tutors.push(new Tutor(name, specialty, rate, students, image));
+  localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-// LOGOUT DO UTILIZADOR
-export function logout() {
-  sessionStorage.removeItem("loggedUser");
+// OBTER TODOS
+export function getAll() {
+  return tutors;
 }
 
-// VERIFICA EXISTÊNCIA DE ALGUÉM AUTENTICADO
-export function isLogged() {
-  return sessionStorage.getItem("loggedUser") ? true : false;
+// OBTER POR ID
+export function getById(id) {
+  return tutors.find((tutor) => tutor.id === id);
 }
 
-// DEVOLVE UTILZIADOR AUTENTICADO
-export function getUserLogged() {
-  return JSON.parse(sessionStorage.getItem("loggedUser"));
+// REMOVER
+export function remove(id) {
+  tutors = tutors.filter((tutor) => tutor.id !== id);
+  localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-/**
- * CLASSE QUE MODELA UM UTILIZADOR NA APLICAÇÃO
- */
-class User {
-  username = "";
-  password = "";
-  role = "tutor";
-
-  constructor(username, password) {
-    this.username = username;
-    this.password = password;
+// EDITAR
+export function update(id, updatedTutor) {
+  const index = tutors.findIndex((tutor) => tutor.id === id);
+  if (index !== -1) {
+    tutors[index] = { ...tutors[index], ...updatedTutor };
+    localStorage.setItem("tutors", JSON.stringify(tutors));
   }
 }
