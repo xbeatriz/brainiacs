@@ -1,15 +1,9 @@
-let tutors = [];
-
-if (localStorage.getItem("tutors")) {
-  tutors = JSON.parse(localStorage.getItem("tutors"));
-} else {
-  localStorage.setItem("tutors", JSON.stringify(tutors));
-}
+let tutors = JSON.parse(localStorage.getItem("tutors")) || [];
 
 // CLASSE MODELO
 class Tutor {
-  constructor(name, specialty, rate, students, image) {
-    this.id = Date.now(); // id único
+  constructor(id, name, specialty, rate, students, image) {
+    this.id = id ?? Date.now(); // se não for fornecido, gera automaticamente
     this.name = name;
     this.specialty = specialty;
     this.rate = rate;
@@ -19,8 +13,9 @@ class Tutor {
 }
 
 // ADICIONAR
-export function add(name, specialty, rate, students, image) {
-  tutors.push(new Tutor(name, specialty, rate, students, image));
+export function add(name, specialty, rate, students, image, id = null) {
+  const newTutor = new Tutor(id, name, specialty, rate, students, image);
+  tutors.push(newTutor);
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
@@ -36,8 +31,9 @@ export function getById(id) {
 
 // REMOVER
 export function remove(id) {
-  tutors = tutors.filter((tutor) => tutor.id !== id);
-  localStorage.setItem("tutors", JSON.stringify(tutors));
+  const updated = tutors.filter((tutor) => tutor.id !== id);
+  localStorage.setItem("tutors", JSON.stringify(updated));
+  tutors = updated; // atualizar array local
 }
 
 // EDITAR
