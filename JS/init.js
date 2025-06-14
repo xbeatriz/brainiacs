@@ -60,59 +60,54 @@ const tutors = [
     specialty: "Full-Stack Development (JavaScript, React, Node.js)",
     rate: 424,
     students: 9500,
-    image: "path/to/lucas.jpg", // Substitua pelo caminho correto da imagem
   },
   {
     name: "Ana Ribeiro",
     specialty: "Front-End Development (HTML, CSS, JavaScript)",
     rate: 384,
     students: 900,
-    image: "path/to/ana.jpg", // Substitua pelo caminho correto da imagem
   },
   {
     name: "Rafael Costa",
     specialty: "Back-End Development (Node.js, Express, MongoDB)",
     rate: 456,
     students: 450,
-    image: "path/to/rafael.jpg", // Substitua pelo caminho correto da imagem
   },
   {
     name: "Mariana Lopes",
     specialty: "Full-Stack Development (Python, Django)",
     rate: 406,
     students: 1200,
-    image: "path/to/mariana.jpg", // Substitua pelo caminho correto da imagem
   },
   {
     name: "Tiago Fernandes",
     specialty: "Mobile Development (React Native, Expo)",
     rate: 400,
     students: 800,
-    image: "path/to/tiago.jpg", // Substitua pelo caminho correto da imagem
   },
   {
     name: "João Martins",
     specialty: "Full-Stack Development (Java, Spring, Boot)",
     rate: 412,
     students: 600,
-    image: "path/to/joao.jpg", // Substitua pelo caminho correto da imagem
   },
 ];
 tutors.forEach((tutor) => {
-      tutorsModule.add(tutor.name, tutor.specialty, tutor.rate, tutor.students, tutor.image);
+      tutorsModule.add(tutor.name, tutor.specialty, tutor.rate, tutor.students);
     });
 //localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
 //Users predefinidos
-if (!localStorage.getItem("users")) {
+const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+if (existingUsers.length === 0) {
   const preUsers = [
     { id: 1, username: "admin", password: "admin", role: "admin" },
     { id: 2, username: "user1", password: "password1", role: "user" },
-    { id: 3,username: "user2", password: "password2", role: "tutor" },
+    { id: 3, username: "user2", password: "password2", role: "tutor" },
   ];
   preUsers.forEach((user) => {
-    User.add(user.username, user.password, user.role);
+    UserModule.add(user.username, user.password, user.role);
   });
 }
 
