@@ -9,44 +9,19 @@
 </head>
 <body class="bg-[#FBF9F5] pt-16">
   <!-- Navbar placeholder -->
-  <div id="navbarDashboard"></div>
+  <div id="navbarDashBoard"></div>
 
   <main class="max-w-screen-xl mx-auto px-6 py-8 flex-grow">
     <!-- Saudação -->
-    <section class="mb-8">
-      <h1 class="text-xl font-extrabold text-gray-900 mb-2">Olá, João!</h1>
-      <p class="text-gray-600 text-md">Este é o seu painel de controle.</p>
+    <section class="mb-8" id="greeting-section">
+
     </section>
 
     <!-- Cards -->
     <section id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     </section>
   </main>
-   <script type="module">
-    import { renderNavbarDashboard } from "/JS/views/NavbarStudentView.js";
-    renderNavbarDashboard();
-  </script>
-
-  <script type="module">
-    import { createCourseCard } from '/JS/components/CourseCard.js';
-
-    const cardsData = [
-      { icon: '📚', title: 'My Sessions', tutorCount: 5 },
-      { icon: '🌐', title: 'Community', tutorCount: 20 },
-      { icon: '📈', title: 'Progress', tutorCount: 3 }
-    ];
-
-    const cardsContainer = document.getElementById('cards-container');
-
-    cardsData.forEach(cardInfo => {
-      const card = createCourseCard(cardInfo);
-      cardsContainer.appendChild(card);
-    });
-  </script>
- <script type="module" src="/JS/script.js"></script>
-  <script type="module">
-            import { renderNavbarDashboard } from '/JS/views/NavbarStudentView.js';
-            renderNavbarDashboard();
-      </script>
+  <script type="module" src="/JS/views/NavbarStudentView.js"></script>
+  <script type="module" src="/JS/views/stdDash.js"></script>
 </body>
 </html>

@@ -38,8 +38,6 @@ export function renderNavbar() {
       <!-- BOTÕES À DIREITA -->
       <div class="flex items-center gap-2">
   `;
-
-
 if (User.isLogged()) {
   const user = User.getUserLogged();
   const dashboardUrl = getDashboardUrl(user.role);
@@ -139,7 +137,7 @@ document.getElementById("navbar").innerHTML = navbar;
             document.getElementById("txtPassword").value
           );
           displayMessage("msgLogin", "User logged in with success!", "success");
-          localStorage.setItem("userLogged", JSON.stringify(User.getUserLogged()));
+          //localStorage.setItem("userLogged", JSON.stringify(User.getUserLogged()));
           setTimeout(() => location.reload(), 1500);
         } catch (e) {
           displayMessage("msgLogin", e.message, "danger");
@@ -149,7 +147,6 @@ document.getElementById("navbar").innerHTML = navbar;
   // LOGOUT
     document.getElementById("btnLogout")?.addEventListener("click", () => {
     User.logout();
-    localStorage.removeItem("userLogged");
 
     // Mostra a modal
     const modal = document.getElementById("modalLogoutSuccess");

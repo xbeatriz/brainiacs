@@ -7,7 +7,7 @@ export function renderNavbarTutorDashboard() {
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         
         <!-- Logo -->
-        <a href="/html/tutorDash/tutorDash.html" class="flex items-center space-x-3">
+        <a href="/" class="flex items-center space-x-3">
           <img src="/media/img/logo-tutor.svg" class="h-5" alt="Brainiacs Logo" />
          
         </a>
