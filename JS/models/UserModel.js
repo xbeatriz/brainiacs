@@ -6,11 +6,11 @@ export function init() {
 }
 
 // ADICIONAR UTILIZADOR
-export function add(username, password, role = "user") {
+export function add(name, username, password, role = "user", community = [], sessions = [], progress = []) {
   if (users.some((user) => user.username === username)) {
     throw Error(`User with username "${username}" already exists!`);
   } else {
-    users.push(new User(username, password,role));
+    users.push(new User(name, username, password, role, community, sessions, progress));
     localStorage.setItem("users", JSON.stringify(users));
   }
 }
@@ -47,13 +47,21 @@ export function getUserLogged() {
  * CLASSE QUE MODELA UM UTILIZADOR NA APLICAÇÃO
  */
 class User {
+  name = "";
   username = "";
   password = "";
   role = "user";
+  community = [];
+  sessions = [];
+  progress = [];
 
-  constructor(username, password, role = "user") {
+  constructor(name, username, password, role = "user" , community = [], sessions = [], progress = []) {
+    this.name = name;
     this.username = username;
     this.password = password;
     this.role = role;
+    this.community = community;
+    this.sessions = sessions;    
+    this.progress = progress;
   }
 }

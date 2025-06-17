@@ -26,11 +26,11 @@ User.init(); // Inicializa os utilizadores do localStorage
   container.appendChild(logoLink);
   
   if (User.isLogged()) {
-  console.log('User is logged in ' + User.getUserLogged().username);
+  console.log('User is logged in ' + User.getUserLogged().name);
     // Cria o link do user e o botão de logout
     const userLink = document.createElement('a');
     userLink.className = 'text-gray-900 hover:text-orange-500';
-    userLink.textContent = User.getUserLogged().username;
+    userLink.textContent = User.getUserLogged().name;
 
     const logoutButton = document.createElement('button');
     logoutButton.id = 'btnLogout';

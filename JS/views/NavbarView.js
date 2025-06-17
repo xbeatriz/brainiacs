@@ -42,7 +42,7 @@ if (User.isLogged()) {
   const user = User.getUserLogged();
   const dashboardUrl = getDashboardUrl(user.role);
   navbar += `
-        <a href="${dashboardUrl}" class="text-gray-900 hover:text-orange-500">${User.getUserLogged().username}</a>
+        <a href="${dashboardUrl}" class="text-gray-900 hover:text-orange-500">${User.getUserLogged().name}</a>
         <button id="btnLogout" class="text-gray-900 hover:text-orange-500">Logout</button>
   `;
 } else {
