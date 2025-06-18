@@ -25,7 +25,7 @@ export function renderNavbar() {
       <a href="/" class="flex items-center space-x-2">
         <img src="/media/img/logo.svg" class="h-5" alt="Brainiacs Logo">
       </a>
-
+f
       <!-- MENU CENTRAL -->
       <div class="hidden md:flex mx-auto">
         <ul class="flex space-x-6 font-medium text-sm">
@@ -52,7 +52,7 @@ export function renderNavbar() {
       <button 
         id="loginButton"
         data-dialog-target="mdlLogin"
-        class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
+        class="text-blacks text-sm px-4 py-1.5 text-center">
         Login
       </button>
 
