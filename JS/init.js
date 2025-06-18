@@ -40,19 +40,19 @@ if (existingCommunity.length === 0) {
       title: "Linear Algebra Circle",
       subject: "Linear Algebra",
       description: "A study group focused on solving problem sets, discussing theory, and preparing for exams.",
-      image: "https://placehold.co/400"
+      image: "/media/img/algebra.png"
     },
     {
       title: "Code & Logic Lab",
       subject: "Development",
       description: "Explore programming fundamentals, algorithms, and web projects.",
-      image: "https://placehold.co/400"
+      image: "/media/img/code.png"
     },
     {
       title: "Finance Fundamentals",
       subject: "Finance",
       description: "Discuss budgeting, investment basics, and financial modeling.",
-      image: "https://placehold.co/400"
+      image: "/media/img/finance.png"
     }
   ];
 

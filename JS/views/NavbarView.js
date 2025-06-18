@@ -25,7 +25,6 @@ export function renderNavbar() {
       <a href="/" class="flex items-center space-x-2">
         <img src="/media/img/logo.svg" class="h-5" alt="Brainiacs Logo">
       </a>
-f
       <!-- MENU CENTRAL -->
       <div class="hidden md:flex mx-auto">
         <ul class="flex space-x-6 font-medium text-sm">
@@ -116,7 +115,12 @@ f
         }
 
         let name = registerUsername.value;
-        User.add(name, registerUsername.value, registerPassword.value, registerRole);
+        User.add(
+          name,
+          registerUsername.value,
+          registerPassword.value,
+          registerRole
+        );
         displayMessage(
           "msgRegister",
           "User registered with success!",
