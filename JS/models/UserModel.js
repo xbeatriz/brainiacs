@@ -6,7 +6,7 @@ export function init() {
 }
 
 // ADICIONAR UTILIZADOR
-export function add(name, username, password, role = "user", community = [], sessions = [], progress = []) {
+export function add(name = "", username, password, role = "user", community = [], sessions = [], progress = []) {
   if (users.some((user) => user.username === username)) {
     throw Error(`User with username "${username}" already exists!`);
   } else {
@@ -18,8 +18,7 @@ export function add(name, username, password, role = "user", community = [], ses
 // LOGIN DO UTILIZADOR
 export function login(username, password) {
   const user = users.find(
-    (user) => user.username === username && user.password === password
-  );
+    (user) => user.username === username && user.password === password );
   if (user) {
     sessionStorage.setItem("loggedUser", JSON.stringify(user));
     return true;
@@ -47,19 +46,20 @@ export function getUserLogged() {
  * CLASSE QUE MODELA UM UTILIZADOR NA APLICAÇÃO
  */
 class User {
-  name = "";
   username = "";
   password = "";
   role = "user";
+  name = "";
   community = [];
   sessions = [];
   progress = [];
 
   constructor(name, username, password, role = "user" , community = [], sessions = [], progress = []) {
-    this.name = name;
+    
     this.username = username;
     this.password = password;
     this.role = role;
+    this.name = name;
     this.community = community;
     this.sessions = sessions;    
     this.progress = progress;

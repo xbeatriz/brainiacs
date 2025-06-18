@@ -115,7 +115,8 @@ f
           registerRole = "tutor";
         }
 
-        User.add(registerUsername.value, registerPassword.value, registerRole);
+        let name = registerUsername.value;
+        User.add(name, registerUsername.value, registerPassword.value, registerRole);
         displayMessage(
           "msgRegister",
           "User registered with success!",
