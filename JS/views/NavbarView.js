@@ -38,15 +38,17 @@ export function renderNavbar() {
       <!-- BOTÕES À DIREITA -->
       <div class="flex items-center gap-2">
   `;
-if (User.isLogged()) {
-  const user = User.getUserLogged();
-  const dashboardUrl = getDashboardUrl(user.role);
-  navbar += `
-        <a href="${dashboardUrl}" class="text-gray-900 hover:text-orange-500">${User.getUserLogged().name}</a>
+  if (User.isLogged()) {
+    const user = User.getUserLogged();
+    const dashboardUrl = getDashboardUrl(user.role);
+    navbar += `
+        <a href="${dashboardUrl}" class="text-gray-900 hover:text-orange-500">${
+      User.getUserLogged().name
+    }</a>
         <button id="btnLogout" class="text-gray-900 hover:text-orange-500">Logout</button>
   `;
-} else {
-  navbar += `
+  } else {
+    navbar += `
       <button 
         id="loginButton"
         data-dialog-target="mdlLogin"
@@ -62,15 +64,15 @@ if (User.isLogged()) {
         Register
       </button>
   `;
-}
+  }
 
-navbar += `
+  navbar += `
       </div>
     </div>
   </nav>
 `;
 
-document.getElementById("navbar").innerHTML = navbar;
+  document.getElementById("navbar").innerHTML = navbar;
 
   // ABRIR MODAIS
   document.getElementById("loginButton")?.addEventListener("click", () => {
@@ -84,7 +86,7 @@ document.getElementById("navbar").innerHTML = navbar;
   });
 
   // FECHAR MODAIS
-  document.querySelectorAll(".btnCloseModal").forEach(btn => {
+  document.querySelectorAll(".btnCloseModal").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.getElementById("mdlLogin")?.classList.add("hidden");
       document.getElementById("mdlLogin")?.classList.remove("flex");
@@ -93,59 +95,60 @@ document.getElementById("navbar").innerHTML = navbar;
     });
   });
 
-
   // REGISTER
-    document
-      .getElementById("frmRegister")
-      ?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const registerUsername = document.getElementById("txtUsernameRegister");
-        const registerPassword = document.getElementById("txtPasswordRegister");
-        const registerPassword2 = document.getElementById("txtPasswordRegister2");
-        try {
-          if (registerPassword.value !== registerPassword2.value) {
-            throw Error("Password and Confirm Password are not equal");
-          }
-
-          // Verifica a página atual para definir o role
-          let registerRole = "user"; // default
-
-          if (window.location.pathname.includes("be-a-tutor.html")) {
-            registerRole = "tutor";
-          }
-
-          User.add(registerUsername.value, registerPassword.value, registerRole);
-          displayMessage("msgRegister", "User registered with success!", "success");
-          //setTimeout(() => location.reload(), 1000);
-          // Atualiza a interface sem reload
-          document.getElementById("frmRegister").reset();
-          document.getElementById("mdlRegister").classList.add("hidden");
-          document.getElementById("mdlRegister").classList.remove("flex");
-        } catch (e) {
-          displayMessage("msgRegister", e.message, "danger");
+  document
+    .getElementById("frmRegister")
+    ?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const registerUsername = document.getElementById("txtUsernameRegister");
+      const registerPassword = document.getElementById("txtPasswordRegister");
+      const registerPassword2 = document.getElementById("txtPasswordRegister2");
+      try {
+        if (registerPassword.value !== registerPassword2.value) {
+          throw Error("Password and Confirm Password are not equal");
         }
-      });
+
+        // Verifica a página atual para definir o role
+        let registerRole = "user"; // default
+
+        if (window.location.pathname.includes("be-a-tutor.html")) {
+          registerRole = "tutor";
+        }
+
+        User.add(registerUsername.value, registerPassword.value, registerRole);
+        displayMessage(
+          "msgRegister",
+          "User registered with success!",
+          "success"
+        );
+        //setTimeout(() => location.reload(), 1000);
+        // Atualiza a interface sem reload
+        document.getElementById("frmRegister").reset();
+        document.getElementById("mdlRegister").classList.add("hidden");
+        document.getElementById("mdlRegister").classList.remove("flex");
+      } catch (e) {
+        displayMessage("msgRegister", e.message, "danger");
+      }
+    });
 
   // LOGIN
-    document
-      .getElementById("frmLogin")
-      ?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        try {
-          User.login(
-            document.getElementById("txtUsername").value,
-            document.getElementById("txtPassword").value
-          );
-          displayMessage("msgLogin", "User logged in with success!", "success");
-          //localStorage.setItem("userLogged", JSON.stringify(User.getUserLogged()));
-          setTimeout(() => location.reload(), 1500);
-        } catch (e) {
-          displayMessage("msgLogin", e.message, "danger");
-        }
-      });
+  document.getElementById("frmLogin")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    try {
+      User.login(
+        document.getElementById("txtUsername").value,
+        document.getElementById("txtPassword").value
+      );
+      displayMessage("msgLogin", "User logged in with success!", "success");
+      //localStorage.setItem("userLogged", JSON.stringify(User.getUserLogged()));
+      setTimeout(() => location.reload(), 1500);
+    } catch (e) {
+      displayMessage("msgLogin", e.message, "danger");
+    }
+  });
 
   // LOGOUT
-    document.getElementById("btnLogout")?.addEventListener("click", () => {
+  document.getElementById("btnLogout")?.addEventListener("click", () => {
     User.logout();
 
     // Mostra a modal
@@ -168,15 +171,15 @@ document.getElementById("navbar").innerHTML = navbar;
     location.reload();
   });
 
-    // MENSAGEM
-    function displayMessage(modalId, message, type) {
+  // MENSAGEM
+  function displayMessage(modalId, message, type) {
     const modalElement = document.getElementById(modalId);
     if (!modalElement) return;
     const colorMap = {
       success: "green",
       danger: "red",
       warning: "yellow",
-      info: "blue"
+      info: "blue",
     };
     const color = colorMap[type] || "blue";
     modalElement.innerHTML = `
@@ -194,17 +197,16 @@ document.getElementById("navbar").innerHTML = navbar;
     }, 2500);
   }
 
-    //função direcionamento
-    function getDashboardUrl(role) {
-      switch (role) {
-        case "admin":
-          return "/html/adminDash/adminDash.html";
-        case "tutor":
-          return "/html/tutorDash/tutorDash.html";
-        case "user":
-        default:
-          return "/html/studentDash/studentDash.html";
-      }
+  //função direcionamento
+  function getDashboardUrl(role) {
+    switch (role) {
+      case "admin":
+        return "/html/adminDash/adminDash.html";
+      case "tutor":
+        return "/html/tutorDash/tutorDash.html";
+      case "user":
+      default:
+        return "/html/studentDash/studentDash.html";
     }
-
+  }
 }

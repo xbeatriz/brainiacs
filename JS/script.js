@@ -1,7 +1,9 @@
 import { createCourseCard } from '/JS/components/CourseCard.js';
 import { createCommunityCard } from '/JS/components/CommunityCard.js';
 import { renderNavbar } from './views/NavbarView.js';
-import { renderFooter} from './views/FoterView.js'
+import { renderFooter} from './views/FooterView.js'
+import { styleButtons } from './components/button.js';
+
 
 // Render Navbar and Footer
 renderNavbar();
@@ -108,4 +110,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  styleButtons();
+});
 
