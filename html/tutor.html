@@ -48,6 +48,75 @@
       </div>
     </div>
   </main>
+
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
+    <h2 class="text-xl font-semibold mb-4">Agendar explicação</h2>
+    <form id="contactForm" class="space-y-4">
+      <label class="block">
+        Data:
+        <input type="date" name="date" required class="w-full border rounded p-2" />
+      </label>
+      <label class="block">
+        Horário:
+        <input type="time" name="time" required class="w-full border rounded p-2" />
+      </label>
+      <label class="block">
+        Mensagem:
+        <textarea name="message" rows="3" class="w-full border rounded p-2" placeholder="Sua mensagem"></textarea>
+      </label>
+      <div class="flex justify-end gap-2 pt-4">
+        <button type="button" id="btnCloseModal" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancelar</button>
+        <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modals -->
+      <!-- LOGIN MODAL -->
+      <div id="mdlLogin" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+          <h2 class="text-xl font-semibold mb-4">Login</h2>
+          <form id="frmLogin" class="space-y-4">
+            <input type="text" id="txtUsername" placeholder="Username" class="w-full border p-2 rounded" required />
+            <input type="password" id="txtPassword" placeholder="Password" class="w-full border p-2 rounded" required />
+            <div id="msgLogin" class="text-sm"></div>
+            <div class="flex justify-end space-x-4">
+              <button type="button" class="btnCloseModal text-gray-500">
+                Cancel
+              </button>
+              <button type="submit" class="bg-orange-500 text-white py-2 rounded-full px-6 hover:bg-orange-600">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- REGISTER MODAL user -->
+      <div id="mdlRegister" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+          <h2 class="text-xl font-semibold mb-4">Register User</h2>
+          <form id="frmRegister" class="space-y-4">
+            <input type="text" id="txtUsernameRegister" placeholder="Username" class="w-full border p-2 rounded"
+              required />
+            <input type="password" id="txtPasswordRegister" placeholder="Password" class="w-full border p-2 rounded"
+              required />
+            <input type="password" id="txtPasswordRegister2" placeholder="Confirm Password"
+              class="w-full border p-2 rounded" required />
+            <div id="msgRegister" class="text-sm"></div>
+            <div class="flex justify-end space-x-2">
+              <button type="button" class="btnCloseModal text-gray-500">
+                Cancel
+              </button>
+              <button type="submit" class="bg-orange-500 text-white py-2 rounded-full px-6 hover:bg-orange-600">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
   <div id="footer"></div>
 
   <!-- Scripts -->
