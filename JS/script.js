@@ -3,6 +3,7 @@ import { createCommunityCard } from "/JS/components/CommunityCard.js";
 import { renderNavbar } from "./views/NavbarView.js";
 import { renderFooter } from "./views/FooterView.js";
 import { styleButtons } from "./components/button.js";
+import * as Tutor from "./models/TutorModel.js";
 
 const coursesContainer = document.getElementById("courses-container");
 const filterForm = document.getElementById("filterForm");
@@ -64,6 +65,8 @@ filterForm.addEventListener("submit", (e) => {
 });
 
 function renderTutors(tutors) {
+  Tutor.init();
+
   const coursesContainer = document.getElementById("courses-container");
   coursesContainer.innerHTML = "";
 
