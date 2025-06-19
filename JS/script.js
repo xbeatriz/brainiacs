@@ -80,30 +80,44 @@ function renderTutors(tutors) {
     `;
 
     card.innerHTML = `
-      <a href="#">
-        <img 
-          class="w-full h-32 object-cover rounded-t-lg" 
-          src="${tutor.photo}" 
-          alt="${tutor.name}" 
-        />
-      </a>
-      <div class="px-4 py-3">
-        <a href="#">
-          <h5 class="text-lg font-semibold text-gray-900 truncate">${tutor.name}</h5>
-        </a>
-        <p class="text-sm font-medium text-orange-600 mt-1">${tutor.subject} (${tutor.grade})</p>
-        <p class="text-sm text-gray-700 mt-1 line-clamp-2">${tutor.desc || ""}</p>
-        <p class="text-xs italic text-gray-500 mt-1">
-          ${tutor.availability} • ${tutor.location} • ${tutor.mode === "online" ? "Online" : "Presencial"}
-        </p>
-        <p class="text-sm font-bold text-orange-600 mt-2">€${tutor.price} / hora</p>
-      </div>
-    `;
+  <a href="#">
+    <img 
+      class="w-full h-32 object-cover rounded-t-lg" 
+      src="${tutor.photo}" 
+      alt="${tutor.name}" 
+    />
+  </a>
+  <div class="px-4 py-3">
+    <a href="#">
+      <h5 class="tutorName text-lg font-semibold text-gray-900 truncate" data-id="${
+        tutor.id
+      }">${tutor.name}</h5>
+    </a>
+    <p class="text-sm font-medium text-orange-600 mt-1">${tutor.subject} (${
+      tutor.grade
+    })</p>
+    <p class="text-sm text-gray-700 mt-1 line-clamp-2">${tutor.desc || ""}</p>
+    <p class="text-xs italic text-gray-500 mt-1">
+      ${tutor.availability} • ${tutor.location} • ${
+      tutor.mode === "online" ? "Online" : "Presencial"
+    }
+    </p>
+    <p class="text-sm font-bold text-orange-600 mt-2">€${tutor.price} / hora</p>
+  </div>
+`;
 
     coursesContainer.appendChild(card);
   });
-}
 
+  // CLICAR NO H5 COM NOME DO TUTOR
+  const btnsSeeMore = document.getElementsByClassName("tutorName");
+  for (const button of btnsSeeMore) {
+    button.addEventListener("click", () => {
+      Tutor.setCurrentTutor(button.id);
+      location.href = "./html/tutor.html";
+    });
+  }
+}
 
 // Renderizar todos no início
 renderTutors(allTutors);

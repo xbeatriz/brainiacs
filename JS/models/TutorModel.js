@@ -18,26 +18,39 @@ export function removeTutor(name) {
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-export function setCurrentTutor(name) {
-  localStorage.setItem("tutor", name);
+export function setCurrentTutor(tutor) {
+  localStorage.setItem("currentTutor", JSON.stringify(tutor));
 }
 
+// OBTER A BANDA ATUAL (TODO O OBJETO)
 export function getCurrentTutor() {
   return tutors.find((tutor) => tutor.name === localStorage.getItem("tutor"));
+}
+
+export function getTutorById(id) {
+  const allTutors = JSON.parse(localStorage.getItem("tutors")) || [];
+  return allTutors.find((tutor) => tutor.id === id);
 }
 
 export function sortTutors() {
   tutors.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function getTutors(filterName = "", filterSubject = "", isSorted = false) {
+export function getTutors(
+  filterName = "",
+  filterSubject = "",
+  isSorted = false
+) {
   let filtered = tutors.filter(
     (tutor) =>
-      (tutor.name.toLowerCase().includes(filterName.toLowerCase()) || filterName === "") &&
+      (tutor.name.toLowerCase().includes(filterName.toLowerCase()) ||
+        filterName === "") &&
       (tutor.subject === filterSubject || filterSubject === "")
   );
 
-  return isSorted ? filtered.sort((a, b) => a.name.localeCompare(b.name)) : filtered;
+  return isSorted
+    ? filtered.sort((a, b) => a.name.localeCompare(b.name))
+    : filtered;
 }
 
 class Tutor {
