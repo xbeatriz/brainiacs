@@ -12,7 +12,7 @@
 
 <body class="bg-[#FBF9F5] text-gray-800 min-h-screen">
   <!-- Navbar container -->
-  <div id="navbar"></div>
+  <div id="navbarTutorDashboard"></div>
 
   <!-- Main Content -->
   <section
@@ -34,6 +34,7 @@
       <h2 class="text-xl font-semibold mb-4">Register Tutor</h2>
       <form id="frmRegisterTutor" class="space-y-4">
         <input type="text" id="txtUsernameRegister" placeholder="Username" class="w-full border p-2 rounded" required />
+        <input type="email" id="email" placeholder="Email" class="w-full border p-2 rounded" required />
         <input type="password" id="txtPasswordRegister" placeholder="Password" class="w-full border p-2 rounded"
           required />
         <input type="password" id="txtPasswordRegister2" placeholder="Confirm Password"
@@ -103,72 +104,7 @@
   <!-- Footer -->
   <div id="footer"></div>
   <script type="module" src="/JS/init.js"></script>
-  <script type="module" src="/JS/script.js"></script>
-  <!-- Your JS code -->
-  <script type="module">
-    document.addEventListener("DOMContentLoaded", () => {
-      const frmRegisterTutor = document.getElementById("frmRegisterTutor");
-      if (!frmRegisterTutor) return;
-
-      frmRegisterTutor.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const msgRegister = document.getElementById("msgRegister");
-        msgRegister.textContent = "";
-
-        const username = document.getElementById("txtUsernameRegister").value.trim();
-        const password = document.getElementById("txtPasswordRegister").value;
-        const confirmPassword = document.getElementById("txtPasswordRegister2").value;
-        const subjects = document.getElementById("subjects").value.trim();
-        const availability = document.getElementById("txtAvailability").value;
-        const teachingMode = document.getElementById("txtTeachingMode").value;
-        const price = parseFloat(document.getElementById("price").value);
-        const location = document.getElementById("location").value.trim();
-
-        // Validação básica
-        if (password !== confirmPassword) {
-          msgRegister.textContent = "Passwords do not match!";
-          return;
-        }
-
-        if (!username || !password || !subjects || !availability || !teachingMode || isNaN(price) || !location) {
-          msgRegister.textContent = "Please fill in all required fields correctly.";
-          return;
-        }
-
-        // Cria novo tutor
-        const newTutor = {
-          id: Date.now(), // id simples timestamp
-          name: username,
-          password,  // cuidado, não salve senha em plaintext em apps reais!
-          subject: subjects,
-          availability,
-          mode: teachingMode.toLowerCase(),
-          price,
-          location,
-          desc: "", // pode adicionar um campo descrição futuramente
-          photo: "https://via.placeholder.com/150", // placeholder de foto
-        };
-
-        // Pega os tutores existentes do localStorage ou cria array vazio
-        const tutors = JSON.parse(localStorage.getItem("tutors")) || [];
-
-        // Adiciona novo tutor
-        tutors.push(newTutor);
-
-        // Salva de volta no localStorage
-        localStorage.setItem("tutors", JSON.stringify(tutors));
-
-        // Feedback sucesso
-        msgRegister.style.color = "green";
-        msgRegister.textContent = "Tutor registered successfully!";
-
-        // Opcional: resetar o form
-        frmRegisterTutor.reset();
-      });
-    });
-
-  </script>
+  <script type="module" src="/JS/views/NavbarTutorView.js"></script>
 </body>
 
 </html>

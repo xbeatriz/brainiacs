@@ -1,7 +1,7 @@
 //imports
-import * as tutors from "./models/TutorModel.js";
+import * as tutors from "../models/TutorModel.js";
 
-export function renderNavbarTutorDashboard() {
+function renderNavbarTutorDashboard() {
   // Initialize the Tutor model
   tutors.init();
 
@@ -71,62 +71,45 @@ document
   ?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const registerUsername = document
-      .getElementById("txtUsernameRegister")
-      .value.trim();
-    const registerPassword = document.getElementById(
-      "txtPasswordRegister"
-    ).value;
-    const registerPassword2 = document.getElementById(
-      "txtPasswordRegister2"
-    ).value;
-    const registerSubjects = document.getElementById("subjects").value.trim();
-    const registerAvailability =
-      document.getElementById("txtAvailability").value;
-    const registerTeachingMode =
-      document.getElementById("txtTeachingMode").value;
-    const registerPrice = Number(document.getElementById("price").value);
-    const registerLocation = document.getElementById("location").value.trim();
+    let registerUsername = document.getElementById("txtUsernameRegister").value.trim();
+    let registerEmail = document.getElementById("email").value.trim();
+    let registerPassword = document.getElementById("txtPasswordRegister").value;
+    let registerPassword2 = document.getElementById("txtPasswordRegister2").value;
+    let registerSubjects = document.getElementById("subjects").value.trim();
+    let registerAvailability = document.getElementById("txtAvailability").value;
+    let registerTeachingMode = document.getElementById("txtTeachingMode").value;
+    let registerPrice = Number(document.getElementById("price").value);
+    let registerLocation = document.getElementById("location").value.trim();
 
     try {
       if (registerPassword !== registerPassword2) {
         throw Error("Password and Confirm Password are not equal");
       }
 
-      const name = registerUsername;
-      const subject = registerSubjects;
-      const photo = ""; // Ainda não tens input
-      const desc = ""; // Ainda não tens input
-      const email = ""; // Ainda não tens input
-      const grade = ""; // Ainda não tens input
-      const availability = registerAvailability;
-      const price = registerPrice;
-      const mode = registerTeachingMode;
-      const location = registerLocation;
-
       tutors.add(
-        name,
-        subject,
-        photo,
-        desc,
-        email,
-        grade,
-        availability,
-        price,
-        mode,
-        location
+        registerUsername,
+        registerSubjects.split(',').map(s => s.trim()),
+        registerAvailability,
+        registerTeachingMode,
+        registerPrice,
+        registerLocation,
+        0, // rating
+        "", // photo
+        "", // desc
+        registerEmail,
+        registerPassword
       );
 
-      displayMessage(
-        "msgRegister",
-        "Tutor registered with success!",
-        "success"
-      );
+      displayMessage("msgRegister", "Tutor registered with success!", "success");
 
       document.getElementById("frmRegisterTutor").reset();
-      document.getElementById("mdlRegister").classList.add("hidden");
-      document.getElementById("mdlRegister").classList.remove("flex");
+      document.getElementById("mdlRegister")?.classList.add("hidden");
+      document.getElementById("mdlRegister")?.classList.remove("flex");
     } catch (e) {
       displayMessage("msgRegister", e.message, "danger");
     }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderNavbarTutorDashboard();
   });
