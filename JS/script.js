@@ -117,7 +117,7 @@ function renderTutors(tutors) {
   for (const button of btnsSeeMore) {
     button.addEventListener("click", () => {
       Tutor.setCurrentTutor(button.id);
-      location.href = "./html/tutor.html";
+      location.href = "/html/tutor.html";
     });
   }
 }

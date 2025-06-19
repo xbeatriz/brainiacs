@@ -54,14 +54,36 @@ export function getTutors(
 }
 
 class Tutor {
+  id = ""; // This will be set later when adding to the array
   name = "";
+  grade = "";
+  availability = "";
+  price = 0;
+  location = "";
+  mode = ""; // online or nearby
   subject = "";
   photo = "";
   desc = "";
   email = "";
 
-  constructor(name, subject, photo, desc, email) {
+  constructor(
+    id,
+    name,
+    grade,
+    availability,
+    price,
+    mode,
+    subject,
+    photo,
+    desc,
+    email
+  ) {
+    this.id = id;
     this.name = name;
+    this.grade = grade;
+    this.availability = availability;
+    this.price = price;
+    this.mode = mode;
     this.subject = subject;
     this.photo = photo;
     this.desc = desc;
