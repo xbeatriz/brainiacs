@@ -1,5 +1,7 @@
 import * as User from "../models/UserModel.js";
 import * as Tutor from "../models/TutorModel.js";
+import *  as Course from "../models/CourseModel.js";
+import * as Sessions from "../models/CommunityModel.js";
 
 function renderDash() {
   Tutor.init();
@@ -64,15 +66,15 @@ function renderDash() {
         break;
       case "courses":
         console.log("Courses card clicked");
-        // Aqui você pode redirecionar ou executar outra ação
+        displayCourses();
         break;
       case "sessions":
         console.log("Sessions card clicked");
-        // Aqui você pode redirecionar ou executar outra ação
+        displaySessions();
         break;
       case "community":
         console.log("Community card clicked");
-        // Aqui você pode redirecionar ou executar outra ação
+        displaCommunity();
         break;
       default:
         console.log("Unknown card clicked");
@@ -176,6 +178,84 @@ function displayTutors() {
   });
 }
 
+function displayCourses() {
+  let courses = Course.getAll();
+  console.log("Cursos encontrados:", courses);
+
+  if (!courses || courses.length === 0) {
+    console.error("Nenhum curso encontrado");
+    courses = localStorage.getItem("courses")
+      ? JSON.parse(localStorage.getItem("courses"))
+      : [];
+  }
+
+  const dataSection = document.getElementById("data-sections");
+
+  let courseTable = `
+    <div class="overflow-x-auto rounded-lg shadow border border-gray-200">
+      <table class="min-w-full bg-white text-sm text-left">
+        <thead class="bg-gray-100 text-gray-700 font-semibold">
+          <tr>
+            <th class="py-3 px-4 border-b">Categoria</th>
+            <th class="py-3 px-4 border-b">Nº Cursos</th>
+            <th class="py-3 px-4 border-b">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${courses
+            .map(
+              (course) => `
+            <tr class="odd:bg-gray-50 hover:bg-gray-100 transition-colors">
+              <td class="py-3 px-4 border-b">${course.category}</td>
+              <td class="py-3 px-4 border-b text-center">
+                ${Array.isArray(course.count) ? course.count.length : course.count}
+              </td>
+              <td class="py-3 px-4 border-b">
+                <button class="text-blue-600 hover:underline font-medium edit-course-btn" data-id="${course.id}">
+                  Editar
+                </button>
+              </td>
+            </tr>
+          `
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  dataSection.innerHTML = courseTable;
+  dataSection.classList.remove("hidden");
+
+  document.querySelectorAll(".edit-course-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      openCourseModal(button.dataset.id);
+    });
+  });
+}
+
+function displaySessions() {
+  let dataSection = document.getElementById("data-sections");
+  dataSection.innerHTML = `
+  <div class="p-4">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Sessões</h2>
+    <p class="text-gray-600">Esta funcionalidade ainda não está implementada.</p>
+  </div>
+  `;
+  dataSection.classList.remove("hidden");
+}
+
+function displaCommunity() {
+  let dataSection = document.getElementById("data-sections");
+  dataSection.innerHTML = `
+  <div class="p-4">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Comunidade</h2>
+    <p class="text-gray-600">Esta funcionalidade ainda não está implementada.</p>
+  </div>
+  `;
+  dataSection.classList.remove("hidden");
+}
+
 function openModal(username) {
   let user = User.getByUsername(username);
   console.log("User encontrado:", user);
@@ -209,6 +289,8 @@ function openTutorModal(id) {
   document.getElementById("tutorModal").classList.remove("hidden");
 }
 
+
+//event listeners for buttons
 // Form submit para update
 document.getElementById("tutorForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -309,6 +391,38 @@ document.getElementById("deleteUser")?.addEventListener("click", () => {
       alert("Erro ao eliminar: " + err.message);
     }
   }
+});
+
+function openCourseModal(id) {
+  let course = Course.getById(Number(id));
+  console.log("Curso encontrado:", course);
+  if (!course) return;
+
+  document.getElementById("editCourseId").value = course.id;
+  document.getElementById("editCourseCategory").value = course.category;
+
+  document.getElementById("courseModal").classList.remove("hidden");
+}
+
+document.getElementById("cancelEdit").addEventListener("click", () => {
+  document.getElementById("courseModal").classList.add("hidden");
+});
+
+document.getElementById("editCourseForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let id = Number(document.getElementById("editCourseId").value);
+  let category = document.getElementById("editCourseCategory").value.trim();
+
+  if (category) {
+    Course.update(id, { category }); // apenas o nome
+    document.getElementById("courseModal").classList.add("hidden");
+    displayCourses();
+  }
+});
+
+document.getElementById("cancelEdit").addEventListener("click", () => {
+  document.getElementById("courseModal").classList.add("hidden");
 });
 
 renderDash();
