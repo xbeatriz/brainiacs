@@ -15,7 +15,7 @@ export function add(
   rating,
   photo,
   desc,
-  email
+  email,
 ) {
   if (tutors.some((t) => t.name === name || t.email === email)) {
     throw Error(`Tutor com nome ou email já existe!`);
@@ -42,9 +42,30 @@ export function add(
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
+export function login(email, password) {
+    // Busca tutores registrados no localStorage
+    const tutors = JSON.parse(localStorage.getItem("tutors")) || [];
+    // Procura o tutor pelo email
+    const tutor = tutors.find(t => t.email === email);
+    // Verifica se o tutor existe
+    if (!tutor) {
+        throw new Error("Tutor não encontrado com este email");
+    }
+    // Verifica a senha (em produção, use hashing para senhas)
+    if (tutor.password !== password) {
+        throw new Error("Senha incorreta");
+    }
+    // Armazena o tutor logado no localStorage
+    sessionStorage.setItem("loggedUser", JSON.stringify(tutor));
+}
 
-export function removeTutor(name) {
-  tutors = tutors.filter((tutor) => tutor.name !== name);
+// DEVOLVE O UTILIZADOR AUTENTICADO
+export function getTutorLogged() {
+  return JSON.parse(sessionStorage.getItem("loggedUser"));
+}
+
+export function removeTutor(username) {
+  tutors = tutors.filter((tutor) => tutor.username !== username);
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
@@ -122,6 +143,7 @@ class Tutor {
   photo = "";
   desc = "";
   email = "";
+  password = ""; // senha do tutor
 
   constructor(
     id,
@@ -134,7 +156,8 @@ class Tutor {
     rating,
     photo,
     desc,
-    email
+    email,
+    password
   ) {
     this.id = id;
     this.name = name;
@@ -147,5 +170,6 @@ class Tutor {
     this.photo = photo;
     this.desc = desc;
     this.email = email;
+    this.password = password;
   }
 }
