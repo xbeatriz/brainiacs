@@ -4,11 +4,35 @@ export function init() {
   tutors = localStorage.tutors ? JSON.parse(localStorage.tutors) : [];
 }
 
-export function add(name, subject, photo, desc, email) {
+export function add(
+  name,
+  subject,
+  photo,
+  desc,
+  email,
+  grade,
+  availability,
+  price,
+  mode,
+  location
+) {
   if (tutors.some((tutor) => tutor.name === name)) {
     throw Error(`Tutor with name "${name}" already exists!`);
   } else {
-    tutors.push(new Tutor(name, subject, photo, desc, email));
+    tutors.push(
+      new Tutor(
+        name,
+        subject,
+        photo,
+        desc,
+        email,
+        grade,
+        availability,
+        price,
+        mode,
+        location
+      )
+    );
     localStorage.setItem("tutors", JSON.stringify(tutors));
   }
 }
@@ -22,7 +46,7 @@ export function setCurrentTutor(tutor) {
   localStorage.setItem("currentTutor", JSON.stringify(tutor));
 }
 
-// OBTER A BANDA ATUAL (TODO O OBJETO)
+// OBTER o tutor ATUAL (TODO O OBJETO)
 export function getCurrentTutor() {
   const tutorJSON = localStorage.getItem("currentTutor");
   if (!tutorJSON) return null;
