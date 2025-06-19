@@ -1,118 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard | Brainiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Admin Dashboard | Brainiacs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+  <body class="bg-[#FBF9F5] pt-16 text-gray-800">
+    <div id="navbarAdmin"></div>
 
-<body class="bg-[#FBF9F5] pt-16 text-gray-800">
-  <div id="navbarAdmin"></div>
+    <main class="max-w-7xl mx-auto px-6 py-8">
+      <!-- Welcome -->
+      <section class="mb-8" id="welcome-section"></section>
 
-  <main class="max-w-7xl mx-auto px-6 py-8">
-    <!-- Welcome -->
-    <section class="mb-8" id="welcome-section">
-    </section>
+      <!-- Summary Cards -->
+      <section
+        class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10"
+        id="summary-cards"
+      ></section>
 
-    <!-- Summary Cards -->
-    <section class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10" id="summary-cards">
+      <!-- Data Sections -->
+      <section class="grid lg:grid-cols-2 gap-8" id="data-sections"></section>
 
-    </section>
+      <!-- Recent Searches -->
+      <section
+        class="bg-white rounded-xl shadow p-6 my-10"
+        id="recent-searches"
+      ></section>
+    </main>
 
-    <!-- Data Sections -->
-    <section class="grid lg:grid-cols-2 gap-8" id="data-sections">
+    <!-- Modal de Users -->
+    <div
+      id="userModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+    >
+      <div class="bg-white rounded-lg p-6 w-1/3">
+        <h2 class="text-lg font-semibold mb-4">Editar Usuário</h2>
+        <form id="userForm">
+          <input type="hidden" id="originalUsername" />
 
-    </section>
+          <label for="userName" class="block mb-2">Nome:</label>
+          <input
+            type="text"
+            id="userName"
+            class="border rounded w-full p-2 mb-4"
+            required
+          />
 
-    <!-- Recent Searches -->
-    <section class="bg-white rounded-xl shadow p-6 my-10" id="recent-searches">
+          <label for="userEmail" class="block mb-2">Username:</label>
+          <input
+            type="text"
+            id="userEmail"
+            class="border rounded w-full p-2 mb-4"
+            required
+          />
 
-    </section>
-  </main>
+          <label for="userPassword" class="block mb-2">Password:</label>
+          <input
+            type="text"
+            id="userPassword"
+            class="border rounded w-full p-2 mb-4"
+            required
+          />
 
-  <!-- Modal de Users -->
-  <div id="userModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-white rounded-lg p-6 w-1/3">
-      <h2 class="text-lg font-semibold mb-4">Editar Usuário</h2>
-      <form id="userForm">
+          <label for="userRole" class="block mb-2">Role:</label>
+          <select id="userRole" class="border rounded w-full p-2 mb-4">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
 
-        <input type="hidden" id="originalUsername" />
-
-        <label for="userName" class="block mb-2">Nome:</label>
-        <input type="text" id="userName" class="border rounded w-full p-2 mb-4" required />
-
-        <label for="userEmail" class="block mb-2">Username:</label>
-        <input type="text" id="userEmail" class="border rounded w-full p-2 mb-4" required />
-
-        <label for="userPassword" class="block mb-2">Password:</label>
-        <input type="text" id="userPassword" class="border rounded w-full p-2 mb-4" required />
-
-        <label for="userRole" class="block mb-2">Role:</label>
-        <select id="userRole" class="border rounded w-full p-2 mb-4">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-
-        <div class="flex justify-between mt-4">
-          <button type="submit" class="bg-blue-500 text-white rounded p-2">Salvar</button>
-          <button type="button" id="deleteUser" class="bg-red-500 text-white rounded p-2">Eliminar</button>
-          <button type="button" id="closeModal" class="bg-gray-500 text-white rounded p-2">Fechar</button>
-        </div>
-      </form>
+          <div class="flex justify-between mt-4">
+            <button type="submit" class="bg-blue-500 text-white rounded p-2">
+              Salvar
+            </button>
+            <button
+              type="button"
+              id="deleteUser"
+              class="bg-red-500 text-white rounded p-2"
+            >
+              Eliminar
+            </button>
+            <button
+              type="button"
+              id="closeModal"
+              class="bg-gray-500 text-white rounded p-2"
+            >
+              Fechar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <!-- Modal de Tutores -->
-  <div id="tutorModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-white rounded-lg p-6 w-1/3">
-      <h2 class="text-lg font-semibold mb-4">Editar Tutor</h2>
-      <form id="tutorForm">
+    <!-- Modal de Tutores -->
+    <div
+      id="tutorModal"
+      class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center px-4 py-6"
+    >
+      <div
+        class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6"
+      >
+        <h2 class="text-2xl font-semibold mb-4">Editar Tutor</h2>
+        <form id="tutorForm" class="space-y-4">
+          <input type="hidden" id="originalTutorId" />
 
-        <input type="hidden" id="originalTutorId" />
+          <div>
+            <label for="tutorName" class="block text-sm font-medium"
+              >Nome:</label
+            >
+            <input
+              type="text"
+              id="tutorName"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorName" class="block mb-2">Nome:</label>
-        <input type="text" id="tutorName" class="border rounded w-full p-2 mb-4" required />
+          <div>
+            <label for="tutorGrade" class="block text-sm font-medium"
+              >Ano:</label
+            >
+            <input
+              type="text"
+              id="tutorGrade"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorGrade" class="block mb-2">Ano:</label>
-        <input type="text" id="tutorGrade" class="border rounded w-full p-2 mb-4" required />
+          <div>
+            <label for="tutorAvailability" class="block text-sm font-medium"
+              >Disponibilidade:</label
+            >
+            <input
+              type="text"
+              id="tutorAvailability"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorAvailability" class="block mb-2">Disponibilidade:</label>
-        <input type="text" id="tutorAvailability" class="border rounded w-full p-2 mb-4" required />
+          <div>
+            <label for="tutorPrice" class="block text-sm font-medium"
+              >Preço (€):</label
+            >
+            <input
+              type="number"
+              id="tutorPrice"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorPrice" class="block mb-2">Preço (€):</label>
-        <input type="number" id="tutorPrice" class="border rounded w-full p-2 mb-4" required />
+          <div>
+            <label for="tutorMode" class="block text-sm font-medium"
+              >Modo (online/nearby):</label
+            >
+            <input
+              type="text"
+              id="tutorMode"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorMode" class="block mb-2">Modo (online/nearby):</label>
-        <input type="text" id="tutorMode" class="border rounded w-full p-2 mb-4" required />
+          <div>
+            <label for="tutorSubject" class="block text-sm font-medium"
+              >Disciplina:</label
+            >
+            <input
+              type="text"
+              id="tutorSubject"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorSubject" class="block mb-2">Disciplina:</label>
-        <input type="text" id="tutorSubject" class="border rounded w-full p-2 mb-4" required />
+          <div>
+            <label for="tutorPhoto" class="block text-sm font-medium"
+              >URL da Foto:</label
+            >
+            <input
+              type="text"
+              id="tutorPhoto"
+              class="mt-1 border rounded w-full p-2"
+            />
+          </div>
 
-        <label for="tutorPhoto" class="block mb-2">URL da Foto:</label>
-        <input type="text" id="tutorPhoto" class="border rounded w-full p-2 mb-4" />
+          <div>
+            <label for="tutorDesc" class="block text-sm font-medium"
+              >Descrição:</label
+            >
+            <textarea
+              id="tutorDesc"
+              class="mt-1 border rounded w-full p-2"
+              rows="3"
+            ></textarea>
+          </div>
 
-        <label for="tutorDesc" class="block mb-2">Descrição:</label>
-        <textarea id="tutorDesc" class="border rounded w-full p-2 mb-4"></textarea>
+          <div>
+            <label for="tutorEmail" class="block text-sm font-medium"
+              >Email:</label
+            >
+            <input
+              type="email"
+              id="tutorEmail"
+              class="mt-1 border rounded w-full p-2"
+              required
+            />
+          </div>
 
-        <label for="tutorEmail" class="block mb-2">Email:</label>
-        <input type="email" id="tutorEmail" class="border rounded w-full p-2 mb-4" required />
-
-        <div class="flex justify-between mt-4">
-          <button type="submit" class="bg-blue-500 text-white rounded p-2">Salvar</button>
-          <button type="button" id="deleteTutor" class="bg-red-500 text-white rounded p-2">Eliminar</button>
-          <button type="button" id="closeTutorModal" class="bg-gray-500 text-white rounded p-2">Fechar</button>
-        </div>
-      </form>
+          <div class="flex justify-between mt-6">
+            <button
+              type="submit"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-medium rounded px-4 py-2"
+            >
+              Salvar
+            </button>
+            <button
+              type="button"
+              id="deleteTutor"
+              class="bg-red-600 hover:bg-red-700 text-white font-medium rounded px-4 py-2"
+            >
+              Eliminar
+            </button>
+            <button
+              type="button"
+              id="closeTutorModal"
+              class="bg-gray-500 hover:bg-gray-600 text-white font-medium rounded px-4 py-2"
+            >
+              Fechar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  <!-- Modal -->
 
-
-  <script type="module" src="/JS/views/NavbarAdminView.js"></script>
-  <script type="module" src="/JS/views/adminDash.js"></script>
-</body>
-
+    <script type="module" src="/JS/views/NavbarAdminView.js"></script>
+    <script type="module" src="/JS/views/adminDash.js"></script>
+  </body>
 </html>
