@@ -1,130 +1,226 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tutor Profile - Brainiacs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Tutor Profile - Brainiacs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-</head>
+  <body class="bg-[#FBF9F5] text-gray-800 font-inter min-h-screen">
+    <!-- Navbar -->
+    <div id="navbar"></div>
 
-<body class="bg-[#FBF9F5] text-gray-800 font-inter min-h-screen">
-  <!-- Navbar -->
-  <div id="navbar"></div>
+    <!-- Tutor Details -->
+    <main class="max-w-4xl mx-auto mt-24 px-4">
+      <div class="bg-white rounded-2xl shadow-md p-6 md:p-10">
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+          <img
+            id="tutorPhoto"
+            class="rounded-xl w-full md:w-1/3 h-auto object-cover shadow"
+            alt="Tutor Photo"
+          />
 
-  <!-- Tutor Details -->
-  <main class="max-w-4xl mx-auto mt-24 px-4">
-    <div class="bg-white rounded-2xl shadow-md p-6 md:p-10">
-      <div class="flex flex-col md:flex-row gap-8 items-center">
-        <img id="tutorPhoto" class="rounded-xl w-full md:w-1/3 h-auto object-cover shadow" alt="Tutor Photo" />
+          <div class="flex-1 text-center md:text-left">
+            <h1 id="tutorName" class="text-3xl font-bold mb-2"></h1>
+            <p
+              id="tutorSubject"
+              class="text-orange-500 font-semibold text-lg mb-4"
+            ></p>
 
-        <div class="flex-1 text-center md:text-left">
-          <h1 id="tutorName" class="text-3xl font-bold mb-2"></h1>
-          <p id="tutorSubject" class="text-orange-500 font-semibold text-lg mb-4"></p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
-            <p><strong>Location:</strong> <span id="tutorLocation"></span></p>
-            <p><strong>Experience:</strong> <span id="tutorExperience"></span> years</p>
-            <p><strong>Price:</strong> <span id="tutorPrice"></span> €/hour</p>
-            <p><strong>Availability:</strong> <span id="tutorAvailability"></span></p>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600"
+            >
+              <p><strong>Location:</strong> <span id="tutorLocation"></span></p>
+              <p>
+                <strong>Experience:</strong>
+                <span id="tutorExperience"></span> years
+              </p>
+              <p>
+                <strong>Price:</strong> <span id="tutorPrice"></span> €/hour
+              </p>
+              <p>
+                <strong>Availability:</strong>
+                <span id="tutorAvailability"></span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="mt-8">
-        <h2 class="text-xl font-semibold mb-3">About the Tutor</h2>
-        <p id="tutorBio" class="text-gray-700 leading-relaxed text-justify"></p>
-      </div>
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold mb-3">About the Tutor</h2>
+          <p
+            id="tutorBio"
+            class="text-gray-700 leading-relaxed text-justify"
+          ></p>
+        </div>
 
-      <!-- Contact Button -->
-      <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="../index.html" class="text-sm text-gray-600 hover:text-orange-500 transition underline">← Back to
-          Tutors</a>
-        <button id="btnContact"
-          class="bg-orange-500 hover:bg-orange-600 transition text-white px-8 py-2 rounded-full text-sm font-semibold">
-          Contact this Tutor
-        </button>
+        <!-- Contact Button -->
+        <div
+          class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <a
+            href="../index.html"
+            class="text-sm text-gray-600 hover:text-orange-500 transition underline"
+            >← Back to Tutors</a
+          >
+          <button
+            id="btnContact"
+            class="bg-orange-500 hover:bg-orange-600 transition text-white px-8 py-2 rounded-full text-sm font-semibold"
+          >
+            Contact this Tutor
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
+        <h2 class="text-xl font-semibold mb-4">Agendar explicação</h2>
+        <form id="contactForm" class="space-y-4">
+          <label class="block">
+            Data:
+            <input
+              type="date"
+              name="date"
+              required
+              class="w-full border rounded p-2"
+            />
+          </label>
+          <label class="block">
+            Horário:
+            <input
+              type="time"
+              name="time"
+              required
+              class="w-full border rounded p-2"
+            />
+          </label>
+          <label class="block">
+            Mensagem:
+            <textarea
+              name="message"
+              rows="3"
+              class="w-full border rounded p-2"
+              placeholder="Sua mensagem"
+            ></textarea>
+          </label>
+          <div class="flex justify-end gap-2 pt-4">
+            <button
+              type="button"
+              id="btnCloseModal"
+              class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </main>
 
-  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-  <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
-    <h2 class="text-xl font-semibold mb-4">Agendar explicação</h2>
-    <form id="contactForm" class="space-y-4">
-      <label class="block">
-        Data:
-        <input type="date" name="date" required class="w-full border rounded p-2" />
-      </label>
-      <label class="block">
-        Horário:
-        <input type="time" name="time" required class="w-full border rounded p-2" />
-      </label>
-      <label class="block">
-        Mensagem:
-        <textarea name="message" rows="3" class="w-full border rounded p-2" placeholder="Sua mensagem"></textarea>
-      </label>
-      <div class="flex justify-end gap-2 pt-4">
-        <button type="button" id="btnCloseModal" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancelar</button>
-        <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">Enviar</button>
+    <!-- LOGIN MODAL -->
+    <div
+      id="mdlLogin"
+      class="fixed inset-0 z-30 hidden flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+        <h2 class="text-xl font-semibold mb-4">Login</h2>
+        <form id="frmLogin" class="space-y-4">
+          <input
+            type="text"
+            id="txtUsername"
+            placeholder="Username"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="password"
+            id="txtPassword"
+            placeholder="Password"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <div id="msgLogin" class="text-sm"></div>
+          <div class="flex justify-end space-x-4">
+            <button type="button" class="btnCloseModal text-gray-500">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="bg-orange-500 text-white py-2 rounded-full px-6 hover:bg-orange-600"
+            >
+              Login
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-</div>
+    </div>
 
-<!-- Modals -->
-      <!-- LOGIN MODAL -->
-      <div id="mdlLogin" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-          <h2 class="text-xl font-semibold mb-4">Login</h2>
-          <form id="frmLogin" class="space-y-4">
-            <input type="text" id="txtUsername" placeholder="Username" class="w-full border p-2 rounded" required />
-            <input type="password" id="txtPassword" placeholder="Password" class="w-full border p-2 rounded" required />
-            <div id="msgLogin" class="text-sm"></div>
-            <div class="flex justify-end space-x-4">
-              <button type="button" class="btnCloseModal text-gray-500">
-                Cancel
-              </button>
-              <button type="submit" class="bg-orange-500 text-white py-2 rounded-full px-6 hover:bg-orange-600">
-                Login
-              </button>
-            </div>
-          </form>
-        </div>
+    <!-- REGISTER MODAL -->
+    <div
+      id="mdlRegister"
+      class="fixed inset-0 z-30 hidden flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+        <h2 class="text-xl font-semibold mb-4">Register User</h2>
+        <form id="frmRegister" class="space-y-4">
+          <input
+            type="text"
+            id="txtUsernameRegister"
+            placeholder="Username"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="password"
+            id="txtPasswordRegister"
+            placeholder="Password"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="password"
+            id="txtPasswordRegister2"
+            placeholder="Confirm Password"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <div id="msgRegister" class="text-sm"></div>
+          <div class="flex justify-end space-x-2">
+            <button type="button" class="btnCloseModal text-gray-500">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="bg-orange-500 text-white py-2 rounded-full px-6 hover:bg-orange-600"
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
+    </div>
 
-      <!-- REGISTER MODAL user -->
-      <div id="mdlRegister" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-          <h2 class="text-xl font-semibold mb-4">Register User</h2>
-          <form id="frmRegister" class="space-y-4">
-            <input type="text" id="txtUsernameRegister" placeholder="Username" class="w-full border p-2 rounded"
-              required />
-            <input type="password" id="txtPasswordRegister" placeholder="Password" class="w-full border p-2 rounded"
-              required />
-            <input type="password" id="txtPasswordRegister2" placeholder="Confirm Password"
-              class="w-full border p-2 rounded" required />
-            <div id="msgRegister" class="text-sm"></div>
-            <div class="flex justify-end space-x-2">
-              <button type="button" class="btnCloseModal text-gray-500">
-                Cancel
-              </button>
-              <button type="submit" class="bg-orange-500 text-white py-2 rounded-full px-6 hover:bg-orange-600">
-                Register
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-  <div id="footer"></div>
+    <div id="footer"></div>
 
-  <!-- Scripts -->
-  <!-- Scripts -->
-  <script type="module" src="/JS/init.js"></script>
-  <script type="module" src="/JS/script.js"></script>
-  <script type="module" src="../js/views/NavbarView.js"></script>
-  <script type="module" src="../js/views/TutorView.js"></script>
-</body>
-
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script type="module" src="/JS/init.js"></script>
+    <script type="module" src="/JS/script.js"></script>
+    <script type="module" src="../js/views/NavbarView.js"></script>
+    <script type="module" src="../js/views/TutorView.js"></script>
+  </body>
 </html>
