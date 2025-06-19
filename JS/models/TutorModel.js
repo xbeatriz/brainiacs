@@ -6,36 +6,40 @@ export function init() {
 
 export function add(
   name,
-  subject,
+  subjects,
+  availability,
+  mode,
+  price,
+  location,
+  rating,
   photo,
   desc,
-  email,
-  grade,
-  availability,
-  price,
-  mode,
-  location
+  email
 ) {
-  if (tutors.some((tutor) => tutor.name === name)) {
-    throw Error(`Tutor with name "${name}" already exists!`);
-  } else {
-    tutors.push(
-      new Tutor(
-        name,
-        subject,
-        photo,
-        desc,
-        email,
-        grade,
-        availability,
-        price,
-        mode,
-        location
-      )
-    );
-    localStorage.setItem("tutors", JSON.stringify(tutors));
+  if (tutors.some((t) => t.name === name || t.email === email)) {
+    throw Error(`Tutor com nome ou email já existe!`);
   }
+  
+  const id = Date.now().toString(); // id simples usando timestamp
+  
+  const newTutor = new Tutor(
+    id,
+    name,
+    subjects,
+    availability,
+    mode,
+    price,
+    location,
+    rating,
+    photo,
+    desc,
+    email
+  );
+
+  tutors.push(newTutor);
+  localStorage.setItem("tutors", JSON.stringify(tutors));
 }
+
 
 export function removeTutor(name) {
   tutors = tutors.filter((tutor) => tutor.name !== name);
@@ -84,14 +88,14 @@ export function getTutors(
 }
 
 class Tutor {
-  id = ""; // This will be set later when adding to the array
+  id = "";
   name = "";
-  grade = "";
-  availability = "";
+  subjects = []; // pode ser um array de disciplinas
+  availability = ""; // horário disponível (ex: "Manhã", "Tarde", "Noite")
+  mode = ""; // "online" ou "presencial"
   price = 0;
   location = "";
-  mode = ""; // online or nearby
-  subject = "";
+  rating = 0; // classificação média (número)
   photo = "";
   desc = "";
   email = "";
@@ -99,24 +103,27 @@ class Tutor {
   constructor(
     id,
     name,
-    grade,
+    subjects,
     availability,
-    price,
     mode,
-    subject,
+    price,
+    location,
+    rating,
     photo,
     desc,
     email
   ) {
     this.id = id;
     this.name = name;
-    this.grade = grade;
+    this.subjects = subjects;
     this.availability = availability;
-    this.price = price;
     this.mode = mode;
-    this.subject = subject;
+    this.price = price;
+    this.location = location;
+    this.rating = rating;
     this.photo = photo;
     this.desc = desc;
     this.email = email;
   }
 }
+

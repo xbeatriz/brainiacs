@@ -1,172 +1,140 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be a Tutor | Brainiacs</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Eclonica&family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body class="bg-[#FBF9F5] text-gray-800 min-h-screen">
-    <!-- Navbar container -->
-    <div id="navbar"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Be a Tutor | Brainiacs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Eclonica&family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+</head>
 
-    <!-- Main Content -->
-    <section
-      class="pt-24 flex flex-col lg:flex-row justify-between items-center px-6 md:px-20 py-16 gap-10 max-w-7xl mx-auto"
-    >
-      <!-- Left Text -->
-      <div class="lg:w-1/2 text-center lg:text-left">
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
-          Be a tutor.<br />
-          Share Your Knowledge.<br />
-          Empower Students.
-        </h1>
-        <p class="text-gray-600 text-base">
-          Grow as a Certified Brainiacs Tutor.
-        </p>
-      </div>
+<body class="bg-[#FBF9F5] text-gray-800 min-h-screen">
+  <!-- Navbar container -->
+  <div id="navbar"></div>
 
-      <!-- necessario colocar mais texto como tem no students-->
-    </section>
-
-    <!-- Footer -->
-    <div id="footer"></div>
-
-    <!-- Modals -->
-    <!-- LOGIN MODAL -->
-    <div
-      id="mdlLogin"
-      class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50"
-    >
-      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-        <h2 class="text-xl font-semibold mb-4">Login</h2>
-        <form id="frmLogin" class="space-y-4">
-          <input
-            type="text"
-            id="txtUsername"
-            placeholder="Username"
-            class="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="password"
-            id="txtPassword"
-            placeholder="Password"
-            class="w-full border p-2 rounded"
-            required
-          />
-
-          <div id="msgLogin" class="text-sm"></div>
-          <div class="flex justify-end space-x-2">
-            <button
-              type="submit"
-              class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
-            >
-              Login
-            </button>
-            <button type="button" class="btnCloseModal text-gray-500">
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
+  <!-- Main Content -->
+  <section
+    class="pt-24 flex flex-col lg:flex-row justify-between items-center px-6 md:px-20 py-16 gap-10 max-w-7xl mx-auto">
+    <!-- Left Text -->
+    <div class="lg:w-1/2 text-center lg:text-left">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+        Be a tutor.<br />
+        Share Your Knowledge.<br />
+        Empower Students.
+      </h1>
+      <p class="text-gray-600 text-base">
+        Grow as a Certified Brainiacs Tutor.
+      </p>
     </div>
 
-    <!-- REGISTER MODAL user -->
-    <div
-      id="mdlRegister"
-      class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50"
-    >
-      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-        <h2 class="text-xl font-semibold mb-4">Register Tutor</h2>
-        <form id="frmRegisterTutor" class="space-y-4">
-          <input
-            type="text"
-            id="txtUsernameRegister"
-            placeholder="Username"
-            class="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="password"
-            id="txtPasswordRegister"
-            placeholder="Password"
-            class="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="password"
-            id="txtPasswordRegister2"
-            placeholder="Confirm Password"
-            class="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="text"
-            id="subjects"
-            placeholder="Subjects you teach"
-            class="w-full border p-2 rounded"
-            required
-          />
-          <select
-            id="txtAvailability"
-            class="w-full border p-2 rounded"
-            required
-          >
-            <option value="" disabled selected>Availability</option>
-            <option value="Morning">Morning</option>
-            <option value="Evening">Evening</option>
-            <option value="Afternoon">Afternoon</option>
-          </select>
-          <select
-            id="txtTeachingMode"
-            class="w-full border p-2 rounded"
-            required
-          >
-            <option value="" disabled selected>Teaching Mode</option>
-            <option value="Online">Online</option>
-            <option value="Nearby">Nearby</option>
-          </select>
-          <input
-            type="number"
-            id="price"
-            placeholder="Price"
-            class="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="text"
-            id="location"
-            placeholder="Location"
-            class="w-full border p-2 rounded"
-            required
-          />
+    <!-- Right side - Register Tutor Form -->
+    <div class="lg:w-1/2 bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-4">Register Tutor</h2>
+      <form id="frmRegisterTutor" class="space-y-4">
+        <input type="text" id="txtUsernameRegister" placeholder="Username" class="w-full border p-2 rounded" required />
+        <input type="password" id="txtPasswordRegister" placeholder="Password" class="w-full border p-2 rounded"
+          required />
+        <input type="password" id="txtPasswordRegister2" placeholder="Confirm Password"
+          class="w-full border p-2 rounded" required />
+        <input type="text" id="subjects" placeholder="Subjects you teach" class="w-full border p-2 rounded" required />
+        <select id="txtAvailability" class="w-full border p-2 rounded" required>
+          <option value="" disabled selected>Availability</option>
+          <option value="Morning">Morning</option>
+          <option value="Evening">Evening</option>
+          <option value="Afternoon">Afternoon</option>
+        </select>
+        <select id="txtTeachingMode" class="w-full border p-2 rounded" required>
+          <option value="" disabled selected>Teaching Mode</option>
+          <option value="Online">Online</option>
+          <option value="Nearby">Nearby</option>
+        </select>
+        <input type="number" id="price" placeholder="Price" class="w-full border p-2 rounded" required />
+        <input type="text" id="location" placeholder="Location" class="w-full border p-2 rounded" required />
 
-          <div id="msgRegister" class="text-sm"></div>
-          <div class="flex justify-end space-x-2">
-            <button
-              type="submit"
-              class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
-            >
-              Register
-            </button>
-            <button type="button" class="btnCloseModal text-gray-500">
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
+        <div id="msgRegister" class="text-sm text-red-600"></div>
+        <div class="flex justify-end space-x-2">
+          <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+            Register
+          </button>
+          <button type="reset" class="text-gray-500 px-4 py-2 rounded border border-gray-300 hover:bg-gray-100">
+            Reset
+          </button>
+        </div>
+      </form>
     </div>
+  </section>
 
-    <!-- Modal -->
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script type="module" src="/JS/init.js"></script>
+  <script type="module" src="/JS/script.js"></script>
+  <!-- Your JS code -->
+  <script type="module">
+   document.addEventListener("DOMContentLoaded", () => {
+  const frmRegisterTutor = document.getElementById("frmRegisterTutor");
+  if (!frmRegisterTutor) return;
 
-    <!-- Scripts -->
-    <script type="module" src="/JS/init.js"></script>
-    <script type="module" src="/JS/script.js"></script>
-  </body>
+  frmRegisterTutor.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const msgRegister = document.getElementById("msgRegister");
+    msgRegister.textContent = "";
+
+    const username = document.getElementById("txtUsernameRegister").value.trim();
+    const password = document.getElementById("txtPasswordRegister").value;
+    const confirmPassword = document.getElementById("txtPasswordRegister2").value;
+    const subjects = document.getElementById("subjects").value.trim();
+    const availability = document.getElementById("txtAvailability").value;
+    const teachingMode = document.getElementById("txtTeachingMode").value;
+    const price = parseFloat(document.getElementById("price").value);
+    const location = document.getElementById("location").value.trim();
+
+    // Validação básica
+    if (password !== confirmPassword) {
+      msgRegister.textContent = "Passwords do not match!";
+      return;
+    }
+
+    if (!username || !password || !subjects || !availability || !teachingMode || isNaN(price) || !location) {
+      msgRegister.textContent = "Please fill in all required fields correctly.";
+      return;
+    }
+
+    // Cria novo tutor
+    const newTutor = {
+      id: Date.now(), // id simples timestamp
+      name: username,
+      password,  // cuidado, não salve senha em plaintext em apps reais!
+      subject: subjects,
+      availability,
+      mode: teachingMode.toLowerCase(),
+      price,
+      location,
+      desc: "", // pode adicionar um campo descrição futuramente
+      photo: "https://via.placeholder.com/150", // placeholder de foto
+    };
+
+    // Pega os tutores existentes do localStorage ou cria array vazio
+    const tutors = JSON.parse(localStorage.getItem("tutors")) || [];
+
+    // Adiciona novo tutor
+    tutors.push(newTutor);
+
+    // Salva de volta no localStorage
+    localStorage.setItem("tutors", JSON.stringify(tutors));
+
+    // Feedback sucesso
+    msgRegister.style.color = "green";
+    msgRegister.textContent = "Tutor registered successfully!";
+
+    // Opcional: resetar o form
+    frmRegisterTutor.reset();
+  });
+});
+
+  </script>
+</body>
+
 </html>

@@ -5,6 +5,24 @@ import { renderFooter } from "./views/FooterView.js";
 import { styleButtons } from "./components/button.js";
 import * as Tutor from "./models/TutorModel.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded and parsed");
+});
+document.getElementById("frmRegisterTutor")?.addEventListener("submit", (e) => {
+  console.log("Direct listener");
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const frmRegisterTutor = document.getElementById("frmRegisterTutor");
+  console.log("Form element:", frmRegisterTutor);
+  if (!frmRegisterTutor) return;
+
+  frmRegisterTutor.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Form submitted!");
+    const msgRegister = document.getElementById("msgRegister");
+    msgRegister.textContent = "Form submit detected.";
+  });
+});
 const coursesContainer = document.getElementById("courses-container");
 const filterForm = document.getElementById("filterForm");
 // Render Navbar and Footer
@@ -189,3 +207,19 @@ document.addEventListener("click", function (e) {
 document.addEventListener("DOMContentLoaded", () => {
   styleButtons();
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const frmRegisterTutor = document.getElementById("frmRegisterTutor");
+  console.log("frmRegisterTutor:", frmRegisterTutor);
+
+  if (!frmRegisterTutor) return;
+
+  frmRegisterTutor.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Form submitted!");
+    const msgRegister = document.getElementById("msgRegister");
+    msgRegister.textContent = "Form submit detected.";
+  });
+})
+
