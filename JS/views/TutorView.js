@@ -1,16 +1,8 @@
 import * as Tutor from "../models/TutorModel.js";
-/* console.log("Tutor object:", Tutor);
-console.log("getCurrentTutor:", Tutor.getCurrentTutor);
-if (typeof Tutor.getCurrentTutor !== "function") {
-  console.error("getCurrentTutor não é uma função");
-} else {
-  console.log("Chamando getCurrentTutor...");
-  const currentTutor = Tutor.getCurrentTutor();
-  console.log("Current tutor:", currentTutor);
-} */
-function tutorView() {
-  Tutor.init();
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar dados do tutor
+  Tutor.init();
   const tutor = Tutor.getCurrentTutor();
 
   if (!tutor) {
@@ -26,6 +18,43 @@ function tutorView() {
   document.getElementById("tutorExperience").textContent = tutor.experience;
   document.getElementById("tutorPrice").textContent = tutor.price;
   document.getElementById("tutorAvailability").textContent = tutor.availability;
-}
 
-tutorView();
+  // Agora os elementos do modal existem, então adicionamos os listeners aqui:
+  const btnContact = document.getElementById('btnContact');
+  const modal = document.getElementById('modal');
+  const btnCloseModal = document.getElementById('btnCloseModal');
+  const form = document.getElementById('contactForm');
+
+  if (btnContact && modal && btnCloseModal && form) {
+    btnContact.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    btnCloseModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const session = {
+        tutorName: tutor.name,
+        date: formData.get('date'),
+        time: formData.get('time'),
+        message: formData.get('message')
+      };
+
+      // Simples persistência local
+      const sessions = JSON.parse(localStorage.getItem('mySessions')) || [];
+      sessions.push(session);
+      localStorage.setItem('mySessions', JSON.stringify(sessions));
+
+      alert("Sessão agendada!");
+      modal.classList.add('hidden');
+      form.reset();
+    });
+  } else {
+    console.error('Modal elements not found!');
+  }
+});
