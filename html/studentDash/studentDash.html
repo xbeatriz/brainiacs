@@ -6,50 +6,136 @@
   <title>Dashboard | Brainiacs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="bg-[#FBF9F5] pt-16">
-  <div id="body">
+<body class="bg-[#FBF9F5] pt-16 min-h-screen flex flex-col">
+  <div id="body" class="flex-grow max-w-screen-xl mx-auto px-6 py-8 w-full">
     <!-- Navbar placeholder -->
     <div id="navbarDashBoard"></div>
-    <main class="max-w-screen-xl mx-auto px-6 py-8 flex-grow">
-      <!-- Saudação -->
-      <section class="mb-8" id="greeting-section">
 
+    <main>
+      <!-- Saudação -->
+      <section id="greeting-section" class="mb-12">
+        <!-- Você pode injetar aqui uma saudação personalizada -->
       </section>
 
-      <!-- Cards -->
-      <section id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Minhas Sessões -->
+      <section class="mb-12">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-extrabold text-gray-900">Minhas Sessões</h2>
+          <a href="/html/courses.html"
+            class="bg-orange-500 text-white px-5 py-3 rounded-lg text-sm font-semibold shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
+            Marcar Sessão
+          </a>
+        </div>
+
+        <div id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Cards de sessões vão aqui via JS -->
+        </div>
+      </section>
+
+      <!-- Meu Progresso -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Meu Progresso</h2>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+          <!-- Progresso por matéria -->
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Matemática</h3>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-orange-500 h-4 rounded-full" style="width: 75%"></div>
+            </div>
+            <p class="mt-3 text-sm text-gray-600 font-medium">75% concluído</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Física</h3>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-orange-500 h-4 rounded-full" style="width: 50%"></div>
+            </div>
+            <p class="mt-3 text-sm text-gray-600 font-medium">50% concluído</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Português</h3>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-orange-500 h-4 rounded-full" style="width: 90%"></div>
+            </div>
+            <p class="mt-3 text-sm text-gray-600 font-medium">90% concluído</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">História</h3>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-orange-500 h-4 rounded-full" style="width: 65%"></div>
+            </div>
+            <p class="mt-3 text-sm text-gray-600 font-medium">65% concluído</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Evolução Geral</h3>
+            <canvas id="chartProgress" class="w-full"></canvas>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Desempenho por Matéria</h3>
+            <canvas id="chartSubjects" class="w-full"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Minhas Comunidades -->
+      <section>
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Minhas Comunidades</h2>
+        <div id="community-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- JS vai injetar aqui -->
+        </div>
       </section>
     </main>
+  </div>
 
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-  <div class="bg-white rounded-lg p-6 max-w-md w-full relative">
-    <h2 class="text-xl font-semibold mb-4">Agendar explicação com o tutor</h2>
-    <form id="contactForm" class="space-y-4">
-      <label>
-        Data:
-        <input type="date" name="date" required class="border p-2 rounded w-full" />
-      </label>
-      <label>
-        Horário:
-        <input type="time" name="time" required class="border p-2 rounded w-full" />
-      </label>
-      <label>
-        Mensagem:
-        <textarea name="message" rows="3" class="border p-2 rounded w-full" placeholder="Sua mensagem"></textarea>
-      </label>
-      <div class="flex justify-end gap-3">
-        <button type="button" id="btnCloseModal" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">Cancelar</button>
-        <button type="submit" class="px-4 py-2 rounded bg-orange-500 text-white hover:bg-orange-600">Enviar</button>
-      </div>
-    </form>
-  </div>
-</div>
-  </div>
   <script type="module" src="/JS/views/NavbarStudentView.js"></script>
   <script type="module" src="/JS/views/stdDash.js"></script>
+
+  <script>
+    new Chart(document.getElementById('chartProgress'), {
+      type: 'line',
+      data: {
+        labels: ['Abr', 'Mai', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Progresso (%)',
+          data: [40, 60, 70, 85],
+          borderColor: '#f97316',
+          backgroundColor: 'rgba(249, 115, 22, 0.1)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        scales: { y: { beginAtZero: true, max: 100 } },
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    new Chart(document.getElementById('chartSubjects'), {
+      type: 'bar',
+      data: {
+        labels: ['Matemática', 'Física', 'Português', 'História'],
+        datasets: [{
+          label: 'Desempenho',
+          data: [75, 50, 90, 65],
+          backgroundColor: '#f97316',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        scales: { y: { beginAtZero: true, max: 100 } },
+        plugins: { legend: { display: false } }
+      }
+    });
+  </script>
 </body>
 
 </html>

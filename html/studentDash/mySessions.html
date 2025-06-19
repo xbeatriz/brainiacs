@@ -117,6 +117,8 @@
         const renderSessions = (containerId, sessions) => {
             const container = document.getElementById(containerId);
             sessions.forEach(session => {
+                  console.log("Session ID:", session.id);
+
                 const card = createSessionCard(session);
                 container.appendChild(card);
             });
