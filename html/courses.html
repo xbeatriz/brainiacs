@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="media/icon/icon_brain.svg" type="image/png" />
   <title>Brainiacs</title>
-  <link rel="stylesheet" href="/CSS/lib/tailwind.css" />
-  <link rel="stylesheet" href="/CSS/minecss.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -24,38 +22,60 @@
     <p class="text-gray-600 text-sm mb-6">Powered by Brainiacs</p>
 
     <!-- Filters -->
-    <div class="bg-white max-w-5xl mx-auto rounded-2xl shadow px-6 py-6 space-y-4">
-
-      <div class="flex flex-wrap gap-2">
-        <button id="btn-online"
-          class="filter-btn bg-orange-500 text-white text-sm px-4 py-1 rounded-full">Online</button>
-        <button id="btn-nearby" class="filter-btn bg-orange-100 text-orange-600 text-sm px-4 py-1 rounded-full">Near by
-          me</button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
-        <input type="text" placeholder="What would you like to learn?" class="col-span-2 border px-4 py-2 rounded-md" />
-        <select class="border px-4 py-2 rounded-md">
-          <option>Grade level</option>
-        </select>
-        <select class="border px-4 py-2 rounded-md">
-          <option>Availability</option>
-        </select>
-        <select class="border px-4 py-2 rounded-md">
-          <option>Price limit</option>
-        </select>
-        <select class="border px-4 py-2 rounded-md">
-          <option>Location</option>
-        </select>
-        <select class="border px-4 py-2 rounded-md">
-          <option>Radius</option>
-        </select>
-        <button
-          class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition col-span-1 md:col-span-1">
-          Search
-        </button>
-      </div>
+    <!-- Filters -->
+<section class="bg-white max-w-5xl mx-auto rounded-2xl shadow px-6 py-6 space-y-4">
+  <form class="form-inline" id="filterForm">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <button id="btn-online" type="button" class="filter-btn bg-orange-500 text-white text-sm px-4 py-1 rounded-full">
+        Online
+      </button>
+      <button id="btn-nearby" type="button"
+        class="filter-btn bg-orange-100 text-orange-600 text-sm px-4 py-1 rounded-full">
+        Near by me
+      </button>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+      <input id="txtSubject" type="text" placeholder="What would you like to learn?"
+        class="col-span-2 border px-4 py-2 rounded-md" />
+      <select id="sltGrade" class="border px-4 py-2 rounded-md">
+        <option value="">Grade level</option>
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="High School">High School</option>
+      </select>
+      <select id="sltAvailability" class="border px-4 py-2 rounded-md">
+        <option value="">Availability</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+      </select>
+      <select id="sltPrice" class="border px-4 py-2 rounded-md">
+        <option value="">Price limit</option>
+        <option value="20">Max 20€</option>
+        <option value="30">Max 30€</option>
+        <option value="50">Max 50€</option>
+      </select>
+      <select id="sltLocation" class="border px-4 py-2 rounded-md">
+        <option value="">Location</option>
+        <option value="Lisboa">Lisboa</option>
+        <option value="Porto">Porto</option>
+      </select>
+      <select id="sltRadius" class="border px-4 py-2 rounded-md">
+        <option value="">Radius</option>
+        <option value="5">5km</option>
+        <option value="10">10km</option>
+        <option value="20">20km</option>
+      </select>
+
+      <button id="btnFilter" type="button"
+        class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition col-span-1 md:col-span-1">
+        Search
+      </button>
+    </div>
+  </form>
+</section>
+
   </section>
 
   <!-- Categories -->
