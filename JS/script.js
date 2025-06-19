@@ -64,6 +64,7 @@ filterForm.addEventListener("submit", (e) => {
 });
 
 function renderTutors(tutors) {
+  const coursesContainer = document.getElementById("courses-container");
   coursesContainer.innerHTML = "";
 
   if (tutors.length === 0) {
@@ -74,40 +75,35 @@ function renderTutors(tutors) {
   tutors.forEach((tutor) => {
     const card = document.createElement("div");
     card.className = `
-      max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm
-      flex flex-col
+      max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow-sm 
+      flex flex-col text-left overflow-hidden
     `;
 
     card.innerHTML = `
       <a href="#">
         <img 
-          class="rounded-t-lg w-full h-48 object-cover"
+          class="w-full h-32 object-cover rounded-t-lg" 
           src="${tutor.photo}" 
           alt="${tutor.name}" 
         />
       </a>
-      <div class="p-5 flex flex-col flex-grow">
+      <div class="px-4 py-3">
         <a href="#">
-          <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900  truncate">${
-            tutor.name
-          }</h5>
+          <h5 class="text-lg font-semibold text-gray-900 truncate">${tutor.name}</h5>
         </a>
-        <p class="mb-2 font-semibold text-orange-600">${tutor.subject} (${
-      tutor.grade
-    })</p>
-        <p class="mb-3 font-normal text-gray-700  line-clamp-3">${
-          tutor.desc || ""
-        }</p>
-        <p class="mb-3 italic text-gray-500">${tutor.availability} • ${
-      tutor.location
-    } • ${tutor.mode === "online" ? "Online" : "Presencial"}</p>
-      <p class="mb-2 font-semibold text-orange-600">€${tutor.price} / hora</p>
+        <p class="text-sm font-medium text-orange-600 mt-1">${tutor.subject} (${tutor.grade})</p>
+        <p class="text-sm text-gray-700 mt-1 line-clamp-2">${tutor.desc || ""}</p>
+        <p class="text-xs italic text-gray-500 mt-1">
+          ${tutor.availability} • ${tutor.location} • ${tutor.mode === "online" ? "Online" : "Presencial"}
+        </p>
+        <p class="text-sm font-bold text-orange-600 mt-2">€${tutor.price} / hora</p>
       </div>
     `;
 
     coursesContainer.appendChild(card);
   });
 }
+
 
 // Renderizar todos no início
 renderTutors(allTutors);
