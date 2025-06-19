@@ -87,6 +87,7 @@ function initdata() {
         photo: "/media/img/algebra.png",
         desc: "Explicadora paciente e com métodos visuais.",
         email: "ana.silva@email.com",
+        password: "pass1"
       },
       {
         id: 2,
@@ -100,6 +101,7 @@ function initdata() {
         photo: "https://randomuser.me/api/portraits/men/31.jpg",
         desc: "Ajudo com dificuldades básicas e avançadas.",
         email: "bruno.rocha@email.com",
+        password: "pass1"
       },
       {
         id: 3,
@@ -113,6 +115,7 @@ function initdata() {
         photo: "https://randomuser.me/api/portraits/women/56.jpg",
         desc: "Foco em preparação para exames nacionais.",
         email: "carla.mendes@email.com",
+        password: "pass1"
       },
       {
         id: 4,
@@ -126,6 +129,7 @@ function initdata() {
         photo: "https://randomuser.me/api/portraits/men/60.jpg",
         desc: "Torne a física mais simples e intuitiva.",
         email: "david.oliveira@email.com",
+        password: "pass1"
       },
       {
         id: 5,
@@ -139,6 +143,7 @@ function initdata() {
         photo: "https://randomuser.me/api/portraits/women/66.jpg",
         desc: "Ensino com foco em curiosidade e exemplos reais.",
         email: "elisa.ramos@email.com",
+        password: "pass1"
       },
       {
         id: 6,
@@ -152,6 +157,7 @@ function initdata() {
         photo: "https://randomuser.me/api/portraits/men/75.jpg",
         desc: "Conversação e escrita para todos os níveis.",
         email: "filipe.costa@email.com",
+        password: "pass1"
       },
       {
         id: 7,
@@ -165,6 +171,7 @@ function initdata() {
         photo: "https://randomuser.me/api/portraits/women/81.jpg",
         desc: "Ensino com experiências e demonstrações práticas.",
         email: "gabriela.tavares@email.com",
+        password: "pass1"
       },
     ];
     localStorage.setItem("tutors", JSON.stringify(tutors));

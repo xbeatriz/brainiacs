@@ -1,5 +1,6 @@
 //imports
 import * as User from "../models/UserModel.js";
+import * as Tutor from "../models/TutorModel.js";
 
 export function renderNavbar() {
   // Initialize the User model
@@ -140,18 +141,33 @@ export function renderNavbar() {
   document.getElementById("frmLogin")?.addEventListener("submit", (event) => {
     event.preventDefault();
     try {
-      User.login(
-        document.getElementById("txtUsername").value,
-        document.getElementById("txtPassword").value
-      );
-      let user = User.getUserLogged();
-      displayMessage("msgLogin", "User logged in with success!", "success");
-      setTimeout(() => {window.location.href = getDashboardUrl(user.role)}, 1500);
-      
+        // Tenta fazer login como usuário
+        User.login(
+            document.getElementById("txtUsername").value,
+            document.getElementById("txtPassword").value
+        );
+        let user = User.getUserLogged();
+        displayMessage("msgLogin", "User  logged in with success!", "success");
+        setTimeout(() => { window.location.href = getDashboardUrl(user.role) }, 1500);
+        
     } catch (e) {
-      displayMessage("msgLogin", e.message, "danger");
+        // Se falhar, tenta fazer login como tutor
+        try {
+            Tutor.login(
+                document.getElementById("txtUsername").value,
+                document.getElementById("txtPassword").value
+            );
+            let tutor = Tutor.getTutorLogged();
+            console.log(tutor);
+            displayMessage("msgLogin", "Tutor logged in with success!", "success");
+            setTimeout(() => { window.location.href = getDashboardUrl(tutor.role) }, 1500);
+            
+        } catch (e) {
+            // Se ambos falharem, exibe a mensagem de erro
+            displayMessage("msgLogin", e.message, "danger");
+        }
     }
-  });
+});
 
   // LOGOUT
   document.getElementById("btnLogout")?.addEventListener("click", () => {
