@@ -144,9 +144,10 @@ export function renderNavbar() {
         document.getElementById("txtUsername").value,
         document.getElementById("txtPassword").value
       );
+      let user = User.getUserLogged();
       displayMessage("msgLogin", "User logged in with success!", "success");
-      //localStorage.setItem("userLogged", JSON.stringify(User.getUserLogged()));
-      setTimeout(() => location.reload(), 1500);
+      setTimeout(() => {window.location.href = getDashboardUrl(user.role)}, 1500);
+      
     } catch (e) {
       displayMessage("msgLogin", e.message, "danger");
     }
