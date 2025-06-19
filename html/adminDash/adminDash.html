@@ -33,8 +33,7 @@
     </section>
   </main>
 
-  <!-- Modal -->
-  <!-- Modal -->
+  <!-- Modal de Users -->
   <div id="userModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
     <div class="bg-white rounded-lg p-6 w-1/3">
       <h2 class="text-lg font-semibold mb-4">Editar Usuário</h2>
@@ -65,6 +64,51 @@
       </form>
     </div>
   </div>
+
+  <!-- Modal de Tutores -->
+  <div id="tutorModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 w-1/3">
+      <h2 class="text-lg font-semibold mb-4">Editar Tutor</h2>
+      <form id="tutorForm">
+
+        <input type="hidden" id="originalTutorId" />
+
+        <label for="tutorName" class="block mb-2">Nome:</label>
+        <input type="text" id="tutorName" class="border rounded w-full p-2 mb-4" required />
+
+        <label for="tutorGrade" class="block mb-2">Ano:</label>
+        <input type="text" id="tutorGrade" class="border rounded w-full p-2 mb-4" required />
+
+        <label for="tutorAvailability" class="block mb-2">Disponibilidade:</label>
+        <input type="text" id="tutorAvailability" class="border rounded w-full p-2 mb-4" required />
+
+        <label for="tutorPrice" class="block mb-2">Preço (€):</label>
+        <input type="number" id="tutorPrice" class="border rounded w-full p-2 mb-4" required />
+
+        <label for="tutorMode" class="block mb-2">Modo (online/nearby):</label>
+        <input type="text" id="tutorMode" class="border rounded w-full p-2 mb-4" required />
+
+        <label for="tutorSubject" class="block mb-2">Disciplina:</label>
+        <input type="text" id="tutorSubject" class="border rounded w-full p-2 mb-4" required />
+
+        <label for="tutorPhoto" class="block mb-2">URL da Foto:</label>
+        <input type="text" id="tutorPhoto" class="border rounded w-full p-2 mb-4" />
+
+        <label for="tutorDesc" class="block mb-2">Descrição:</label>
+        <textarea id="tutorDesc" class="border rounded w-full p-2 mb-4"></textarea>
+
+        <label for="tutorEmail" class="block mb-2">Email:</label>
+        <input type="email" id="tutorEmail" class="border rounded w-full p-2 mb-4" required />
+
+        <div class="flex justify-between mt-4">
+          <button type="submit" class="bg-blue-500 text-white rounded p-2">Salvar</button>
+          <button type="button" id="deleteTutor" class="bg-red-500 text-white rounded p-2">Eliminar</button>
+          <button type="button" id="closeTutorModal" class="bg-gray-500 text-white rounded p-2">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Modal -->
 
 
   <script type="module" src="/JS/views/NavbarAdminView.js"></script>

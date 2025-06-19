@@ -25,6 +25,7 @@ export function add(
   const newTutor = new Tutor(
     id,
     name,
+    username,
     subjects,
     availability,
     mode,
@@ -39,6 +40,7 @@ export function add(
   tutors.push(newTutor);
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
+
 
 export function removeTutor(name) {
   tutors = tutors.filter((tutor) => tutor.name !== name);
@@ -59,6 +61,22 @@ export function getCurrentTutor() {
     return null;
   }
 }
+
+// READ - Obter todos os tutores
+export function getAll() {
+  return [...tutors]; 
+}
+
+// UPDATE - Atualizar tutor
+export function update(id, updatedFields) {
+  const idStr = id.toString();
+  const index = tutors.findIndex((tutor) => tutor.id.toString() === idStr);
+  if (index === -1) throw Error(`Tutor com ID "${id}" não encontrado!`);
+
+  tutors[index] = { ...tutors[index], ...updatedFields };
+  save();
+}
+
 
 export function getTutorById(id) {
   const allTutors = JSON.parse(localStorage.getItem("tutors")) || [];
@@ -84,6 +102,11 @@ export function getTutors(
   return isSorted
     ? filtered.sort((a, b) => a.name.localeCompare(b.name))
     : filtered;
+}
+
+// Salvar no localStorage
+function save() {
+  localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
 class Tutor {
