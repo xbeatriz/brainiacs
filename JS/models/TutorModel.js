@@ -24,7 +24,13 @@ export function setCurrentTutor(tutor) {
 
 // OBTER A BANDA ATUAL (TODO O OBJETO)
 export function getCurrentTutor() {
-  return tutors.find((tutor) => tutor.name === localStorage.getItem("tutor"));
+  const tutorJSON = localStorage.getItem("currentTutor");
+  if (!tutorJSON) return null;
+  try {
+    return JSON.parse(tutorJSON);
+  } catch {
+    return null;
+  }
 }
 
 export function getTutorById(id) {

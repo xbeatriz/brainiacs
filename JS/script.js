@@ -75,9 +75,9 @@ function renderTutors(tutors) {
     return;
   }
 
-  tutors.forEach((tutor) => {
-    const card = document.createElement("div");
-    card.className = `
+tutors.forEach((tutor) => {
+  const card = document.createElement("div");
+  card.className = `
       max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow-sm 
       flex flex-col text-left overflow-hidden
     `;
@@ -109,19 +109,16 @@ function renderTutors(tutors) {
   </div>
 `;
 
-    coursesContainer.appendChild(card);
+
+  coursesContainer.appendChild(card);
+
+  const nameElement = card.querySelector(".tutorName");
+  nameElement.addEventListener("click", () => {
+    Tutor.setCurrentTutor(tutor);
+    location.href = "/html/tutor.html";
   });
-
-  // CLICAR NO H5 COM NOME DO TUTOR
-  const btnsSeeMore = document.getElementsByClassName("tutorName");
-  for (const button of btnsSeeMore) {
-    button.addEventListener("click", () => {
-      Tutor.setCurrentTutor(button.id);
-      location.href = "/html/tutor.html";
-    });
-  }
+});
 }
-
 // Renderizar todos no início
 renderTutors(allTutors);
 
