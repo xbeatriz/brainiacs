@@ -66,55 +66,95 @@ const existingTutors = JSON.parse(localStorage.getItem("tutors") || "[]");
 
 if (existingTutors.length === 0) {
   const tutors = [
-    {
-    id: 1,
-    username: "user2",
-    password: "password2",
-    name: "Lucas Moreira",
-    specialty: "Full-Stack Development (JavaScript, React, Node.js)",
-    rate: 0,
-    students: [],
+  {
+    name: "Ana Silva",
+    subject: "Matemática",
+    grade: "1st",
+    availability: "Morning",
+    price: 20,
+    location: "Lisboa",
+    mode: "online",
+    photo: "/media/img/algebra.png",
+    desc: "Explicadora paciente e com métodos visuais.",
+    email: "ana.silva@email.com"
   },
   {
-    id: 2,
-    name: "Ana Ribeiro",
-    specialty: "Front-End Development (HTML, CSS, JavaScript)",
-    rate: 0,
-    students: [],
+    name: "Bruno Rocha",
+    subject: "Matemática",
+    grade: "2nd",
+    availability: "Afternoon",
+    price: 25,
+    location: "Porto",
+    mode: "nearby",
+    photo: "https://randomuser.me/api/portraits/men/31.jpg",
+    desc: "Ajudo com dificuldades básicas e avançadas.",
+    email: "bruno.rocha@email.com"
   },
   {
-    id: 3,
-    name: "Rafael Costa",
-    specialty: "Back-End Development (Node.js, Express, MongoDB)",
-    rate: 0,
-    students: [],
+    name: "Carla Mendes",
+    subject: "Matemática",
+    grade: "High School",
+    availability: "Evening",
+    price: 30,
+    location: "Lisboa",
+    mode: "online",
+    photo: "https://randomuser.me/api/portraits/women/56.jpg",
+    desc: "Foco em preparação para exames nacionais.",
+    email: "carla.mendes@email.com"
   },
   {
-    id: 4,
-    name: "Mariana Lopes",
-    specialty: "Full-Stack Development (Python, Django)",
-    rate: 0,
-    students: [],
+    name: "David Oliveira",
+    subject: "Física",
+    grade: "High School",
+    availability: "Morning",
+    price: 30,
+    location: "Lisboa",
+    mode: "online",
+    photo: "https://randomuser.me/api/portraits/men/60.jpg",
+    desc: "Torne a física mais simples e intuitiva.",
+    email: "david.oliveira@email.com"
   },
   {
-    id: 5,
-    name: "Tiago Fernandes",
-    specialty: "Mobile Development (React Native, Expo)",
-    rate: 0,
-    students: [],
+    name: "Elisa Ramos",
+    subject: "Biologia",
+    grade: "2nd",
+    availability: "Afternoon",
+    price: 22,
+    location: "Porto",
+    mode: "nearby",
+    photo: "https://randomuser.me/api/portraits/women/66.jpg",
+    desc: "Ensino com foco em curiosidade e exemplos reais.",
+    email: "elisa.ramos@email.com"
   },
   {
-    id: 6,
-    name: "João Martins",
-    specialty: "Full-Stack Development (Java, Spring, Boot)",
-    rate: 0,
-    students: [],
+    name: "Filipe Costa",
+    subject: "Inglês",
+    grade: "High School",
+    availability: "Evening",
+    price: 28,
+    location: "Lisboa",
+    mode: "online",
+    photo: "https://randomuser.me/api/portraits/men/75.jpg",
+    desc: "Conversação e escrita para todos os níveis.",
+    email: "filipe.costa@email.com"
   },
-];
-tutors.forEach((tutor) => {
-      tutorsModule.add(tutor.id, tutor.name, tutor.specialty, tutor.rate, tutor.students);
-    });
+  {
+    name: "Gabriela Tavares",
+    subject: "Química",
+    grade: "1st",
+    availability: "Morning",
+    price: 24,
+    location: "Lisboa",
+    mode: "nearby",
+    photo: "https://randomuser.me/api/portraits/women/81.jpg",
+    desc: "Ensino com experiências e demonstrações práticas.",
+    email: "gabriela.tavares@email.com"
   }
+
+];
+localStorage.setItem("tutors", JSON.stringify(tutors));
+
+}
 
 //Users predefinidos
 const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");

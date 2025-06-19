@@ -1,52 +1,124 @@
-import { createCourseCard } from '/JS/components/CourseCard.js';
-import { createCommunityCard } from '/JS/components/CommunityCard.js';
-import { renderNavbar } from './views/NavbarView.js';
-import { renderFooter} from './views/FooterView.js'
-import { styleButtons } from './components/button.js';
+import { createCourseCard } from "/JS/components/CourseCard.js";
+import { createCommunityCard } from "/JS/components/CommunityCard.js";
+import { renderNavbar } from "./views/NavbarView.js";
+import { renderFooter } from "./views/FooterView.js";
+import { styleButtons } from "./components/button.js";
 
-
+const coursesContainer = document.getElementById("courses-container");
+const filterForm = document.getElementById("filterForm");
 // Render Navbar and Footer
 renderNavbar();
 renderFooter();
 
-// Funções
-function displayCourses() {
-  const container = document.getElementById('courses-container');
-  if (!container) return;
+const allTutors = JSON.parse(localStorage.getItem("tutors")) || [];
 
-  const courses = JSON.parse(localStorage.getItem('courses')) || [];
+const container = document.getElementById("courses-container");
+container.innerHTML = ""; // Limpa conteúdo anterior
 
-  const iconsMap = {
-    "Art & Design": "🎨",
-    "Development": "💻",
-    "Communication": "🗣️",
-    "Videography": "🎥",
-    "Photography": "📸",
-    "Marketing": "📈",
-    "Content Writing": "✍️",
-    "Finance": "💰",
-    "Science": "🔬",
-    "Network": "🌐",
+// Alterna os botões (online / nearby)
+document.querySelectorAll(".filter-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach((b) => {
+      b.classList.remove("bg-orange-500", "text-white");
+      b.classList.add("bg-orange-100", "text-orange-600");
+    });
+    btn.classList.add("bg-orange-500", "text-white");
+    btn.classList.remove("bg-orange-100", "text-orange-600");
+  });
+});
+
+// Evento do formulário
+filterForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const filters = {
+    subject: document.getElementById("txtSubject").value.toLowerCase(),
+    grade: document.getElementById("sltGrade").value,
+    availability: document.getElementById("sltAvailability").value,
+    price: parseInt(document.getElementById("sltPrice").value) || Infinity,
+    location: document.getElementById("sltLocation").value,
+    radius: parseInt(document.getElementById("sltRadius").value) || Infinity,
+    mode: document
+      .getElementById("btn-online")
+      .classList.contains("bg-orange-500")
+      ? "online"
+      : "nearby",
   };
 
-  courses.forEach(course => {
-    const icon = iconsMap[course.category] || "📚";
-    const card = createCourseCard({
-      icon,
-      title: course.category,
-      tutorCount: course.count,
-    });
-    container.appendChild(card);
+  // Filtrar explicadores
+  const filtered = allTutors.filter((tutor) => {
+    return (
+      (filters.subject === "" ||
+        tutor.subject.toLowerCase().includes(filters.subject)) &&
+      (filters.grade === "" || tutor.grade === filters.grade) &&
+      (filters.availability === "" ||
+        tutor.availability === filters.availability) &&
+      (filters.location === "" || tutor.location === filters.location) &&
+      tutor.price <= filters.price &&
+      (filters.mode === "" || tutor.mode === filters.mode)
+    );
+  });
+
+  // Mostrar resultados
+  renderTutors(filtered);
+});
+
+function renderTutors(tutors) {
+  coursesContainer.innerHTML = "";
+
+  if (tutors.length === 0) {
+    coursesContainer.innerHTML = `<p class="col-span-full text-center text-gray-500">No tutors found. Try adjusting your filters.</p>`;
+    return;
+  }
+
+  tutors.forEach((tutor) => {
+    const card = document.createElement("div");
+    card.className = `
+      max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm
+      flex flex-col
+    `;
+
+    card.innerHTML = `
+      <a href="#">
+        <img 
+          class="rounded-t-lg w-full h-48 object-cover"
+          src="${tutor.photo}" 
+          alt="${tutor.name}" 
+        />
+      </a>
+      <div class="p-5 flex flex-col flex-grow">
+        <a href="#">
+          <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900  truncate">${
+            tutor.name
+          }</h5>
+        </a>
+        <p class="mb-2 font-semibold text-orange-600">${tutor.subject} (${
+      tutor.grade
+    })</p>
+        <p class="mb-3 font-normal text-gray-700  line-clamp-3">${
+          tutor.desc || ""
+        }</p>
+        <p class="mb-3 italic text-gray-500">${tutor.availability} • ${
+      tutor.location
+    } • ${tutor.mode === "online" ? "Online" : "Presencial"}</p>
+      <p class="mb-2 font-semibold text-orange-600">€${tutor.price} / hora</p>
+      </div>
+    `;
+
+    coursesContainer.appendChild(card);
   });
 }
 
+// Renderizar todos no início
+renderTutors(allTutors);
+
 function displayCommunity() {
-  const container = document.getElementById('community-container');
+  const container = document.getElementById("community-container");
   if (!container) return;
 
-  const communityGroups = JSON.parse(localStorage.getItem('community')) || [];
+  const communityGroups = JSON.parse(localStorage.getItem("community")) || [];
 
-  communityGroups.forEach(group => {
+  communityGroups.forEach((group) => {
     const card = createCommunityCard({
       image: group.image,
       title: group.title,
@@ -57,13 +129,7 @@ function displayCommunity() {
   });
 }
 
-
 // Event Listeners
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  displayCourses();
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   displayCommunity();
@@ -110,7 +176,6 @@ document.addEventListener("click", function (e) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   styleButtons();
 });
-

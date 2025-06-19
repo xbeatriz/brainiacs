@@ -1,46 +1,57 @@
-let tutors = JSON.parse(localStorage.getItem("tutors")) || [];
+let tutors = [];
 
-// CLASSE MODELO
-class Tutor {
-  constructor(id, name, specialty, rate, students, image) {
-    this.id = id ?? Date.now(); // se não for fornecido, gera automaticamente
-    this.name = name;
-    this.specialty = specialty;
-    this.rate = rate;
-    this.students = students;
-    this.image = image;
+export function init() {
+  tutors = localStorage.tutors ? JSON.parse(localStorage.tutors) : [];
+}
+
+export function add(name, subject, photo, desc, email) {
+  if (tutors.some((tutor) => tutor.name === name)) {
+    throw Error(`Tutor with name "${name}" already exists!`);
+  } else {
+    tutors.push(new Tutor(name, subject, photo, desc, email));
+    localStorage.setItem("tutors", JSON.stringify(tutors));
   }
 }
 
-// ADICIONAR
-export function add(name, specialty, rate, students, image, id = null) {
-  const newTutor = new Tutor(id, name, specialty, rate, students, image);
-  tutors.push(newTutor);
+export function removeTutor(name) {
+  tutors = tutors.filter((tutor) => tutor.name !== name);
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-// OBTER TODOS
-export function getAll() {
-  return tutors;
+export function setCurrentTutor(name) {
+  localStorage.setItem("tutor", name);
 }
 
-// OBTER POR ID
-export function getById(id) {
-  return tutors.find((tutor) => tutor.id === id);
+export function getCurrentTutor() {
+  return tutors.find((tutor) => tutor.name === localStorage.getItem("tutor"));
 }
 
-// REMOVER
-export function remove(id) {
-  const updated = tutors.filter((tutor) => tutor.id !== id);
-  localStorage.setItem("tutors", JSON.stringify(updated));
-  tutors = updated; // atualizar array local
+export function sortTutors() {
+  tutors.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-// EDITAR
-export function update(id, updatedTutor) {
-  const index = tutors.findIndex((tutor) => tutor.id === id);
-  if (index !== -1) {
-    tutors[index] = { ...tutors[index], ...updatedTutor };
-    localStorage.setItem("tutors", JSON.stringify(tutors));
+export function getTutors(filterName = "", filterSubject = "", isSorted = false) {
+  let filtered = tutors.filter(
+    (tutor) =>
+      (tutor.name.toLowerCase().includes(filterName.toLowerCase()) || filterName === "") &&
+      (tutor.subject === filterSubject || filterSubject === "")
+  );
+
+  return isSorted ? filtered.sort((a, b) => a.name.localeCompare(b.name)) : filtered;
+}
+
+class Tutor {
+  name = "";
+  subject = "";
+  photo = "";
+  desc = "";
+  email = "";
+
+  constructor(name, subject, photo, desc, email) {
+    this.name = name;
+    this.subject = subject;
+    this.photo = photo;
+    this.desc = desc;
+    this.email = email;
   }
 }

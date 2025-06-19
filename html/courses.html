@@ -24,9 +24,10 @@
     <!-- Filters -->
     <!-- Filters -->
 <section class="bg-white max-w-5xl mx-auto rounded-2xl shadow px-6 py-6 space-y-4">
-  <form class="form-inline" id="filterForm">
+  <form id="filterForm">
     <div class="flex flex-wrap gap-2 mb-4">
-      <button id="btn-online" type="button" class="filter-btn bg-orange-500 text-white text-sm px-4 py-1 rounded-full">
+      <button id="btn-online" type="button"
+        class="filter-btn bg-orange-500 text-white text-sm px-4 py-1 rounded-full">
         Online
       </button>
       <button id="btn-nearby" type="button"
@@ -36,31 +37,42 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+      <!-- Subject -->
       <input id="txtSubject" type="text" placeholder="What would you like to learn?"
         class="col-span-2 border px-4 py-2 rounded-md" />
+
+      <!-- Grade -->
       <select id="sltGrade" class="border px-4 py-2 rounded-md">
         <option value="">Grade level</option>
         <option value="1st">1st</option>
         <option value="2nd">2nd</option>
         <option value="High School">High School</option>
       </select>
+
+      <!-- Availability -->
       <select id="sltAvailability" class="border px-4 py-2 rounded-md">
         <option value="">Availability</option>
         <option value="Morning">Morning</option>
         <option value="Afternoon">Afternoon</option>
         <option value="Evening">Evening</option>
       </select>
+
+      <!-- Price -->
       <select id="sltPrice" class="border px-4 py-2 rounded-md">
         <option value="">Price limit</option>
         <option value="20">Max 20€</option>
         <option value="30">Max 30€</option>
         <option value="50">Max 50€</option>
       </select>
+
+      <!-- Location -->
       <select id="sltLocation" class="border px-4 py-2 rounded-md">
         <option value="">Location</option>
         <option value="Lisboa">Lisboa</option>
         <option value="Porto">Porto</option>
       </select>
+
+      <!-- Radius -->
       <select id="sltRadius" class="border px-4 py-2 rounded-md">
         <option value="">Radius</option>
         <option value="5">5km</option>
@@ -68,7 +80,8 @@
         <option value="20">20km</option>
       </select>
 
-      <button id="btnFilter" type="button"
+      <!-- Search Button -->
+      <button id="btnFilter" type="submit"
         class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition col-span-1 md:col-span-1">
         Search
       </button>
@@ -76,15 +89,16 @@
   </form>
 </section>
 
+
   </section>
 
   <!-- Categories -->
   <section class="px-6 pb-20">
-    <div id="courses-container"
-      class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center text-sm">
-      <!-- Cards dos cursos vão ser inseridos aqui via JS -->
-    </div>
-  </section>
+  <div id="courses-container" class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <!-- Cards aqui -->
+  </div>
+</section>
+
 
   <!-- Footer -->
   <div id="footer"></div>
