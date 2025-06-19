@@ -137,6 +137,71 @@ export function renderNavbar() {
       }
     });
 
+    document
+      .getElementById("frmRegisterTutor")
+      ?.addEventListener("submit", (event) => {
+        event.preventDefault();
+    
+        const registerUsername = document
+          .getElementById("txtUsernameRegister")
+          .value.trim();
+        const registerPassword = document.getElementById(
+          "txtPasswordRegister"
+        ).value;
+        const registerPassword2 = document.getElementById(
+          "txtPasswordRegister2"
+        ).value;
+        const registerSubjects = document.getElementById("subjects").value.trim();
+        const registerAvailability =
+          document.getElementById("txtAvailability").value;
+        const registerTeachingMode =
+          document.getElementById("txtTeachingMode").value;
+        const registerPrice = Number(document.getElementById("price").value);
+        const registerLocation = document.getElementById("location").value.trim();
+    
+        try {
+          if (registerPassword !== registerPassword2) {
+            throw Error("Password and Confirm Password are not equal");
+          }
+    
+          const name = registerUsername;
+          const subject = registerSubjects;
+          const photo = ""; // Ainda não tens input
+          const desc = ""; // Ainda não tens input
+          const email = ""; // Ainda não tens input
+          const grade = ""; // Ainda não tens input
+          const availability = registerAvailability;
+          const price = registerPrice;
+          const mode = registerTeachingMode;
+          const location = registerLocation;
+    
+          tutors.add(
+            name,
+            subject,
+            photo,
+            desc,
+            email,
+            grade,
+            availability,
+            price,
+            mode,
+            location
+          );
+    
+          displayMessage(
+            "msgRegister",
+            "Tutor registered with success!",
+            "success"
+          );
+    
+          document.getElementById("frmRegisterTutor").reset();
+          document.getElementById("mdlRegister").classList.add("hidden");
+          document.getElementById("mdlRegister").classList.remove("flex");
+        } catch (e) {
+          displayMessage("msgRegister", e.message, "danger");
+        }
+      });
+
   // LOGIN
   document.getElementById("frmLogin")?.addEventListener("submit", (event) => {
     event.preventDefault();

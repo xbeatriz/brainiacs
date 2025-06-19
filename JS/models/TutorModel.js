@@ -16,6 +16,7 @@ export function add(
   photo,
   desc,
   email,
+  password
 ) {
   if (tutors.some((t) => t.name === name || t.email === email)) {
     throw Error(`Tutor com nome ou email já existe!`);
@@ -26,7 +27,6 @@ export function add(
   const newTutor = new Tutor(
     id,
     name,
-    username,
     subjects,
     availability,
     mode,
@@ -35,7 +35,8 @@ export function add(
     rating,
     photo,
     desc,
-    email
+    email,
+    password
   );
 
   tutors.push(newTutor);
