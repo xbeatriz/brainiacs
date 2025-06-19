@@ -21,7 +21,7 @@ function tutorView() {
   document.getElementById("tutorName").textContent = tutor.name;
   document.getElementById("tutorSubject").textContent = tutor.subject;
   document.getElementById("tutorPhoto").src = tutor.photo;
-  document.getElementById("tutorBio").textContent = tutor.bio;
+  document.getElementById("tutorBio").textContent = tutor.desc;
   document.getElementById("tutorLocation").textContent = tutor.location;
   document.getElementById("tutorExperience").textContent = tutor.experience;
   document.getElementById("tutorPrice").textContent = tutor.price;
