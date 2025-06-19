@@ -56,4 +56,6 @@ function renderSessionCards() {
   });
 }
 
+
+
 document.addEventListener("DOMContentLoaded", renderDash);
