@@ -1,46 +1,127 @@
-let tutors = JSON.parse(localStorage.getItem("tutors")) || [];
+let tutors = [];
 
-// CLASSE MODELO
-class Tutor {
-  constructor(id, name, specialty, rate, students, image) {
-    this.id = id ?? Date.now(); // se não for fornecido, gera automaticamente
-    this.name = name;
-    this.specialty = specialty;
-    this.rate = rate;
-    this.students = students;
-    this.image = image;
-  }
+export function init() {
+  tutors = localStorage.tutors ? JSON.parse(localStorage.tutors) : [];
 }
 
-// ADICIONAR
-export function add(name, specialty, rate, students, image, id = null) {
-  const newTutor = new Tutor(id, name, specialty, rate, students, image);
+export function add(
+  name,
+  subjects,
+  availability,
+  mode,
+  price,
+  location,
+  rating,
+  photo,
+  desc,
+  email
+) {
+  if (tutors.some((t) => t.name === name || t.email === email)) {
+    throw Error(`Tutor com nome ou email já existe!`);
+  }
+
+  const id = Date.now().toString(); // id simples usando timestamp
+
+  const newTutor = new Tutor(
+    id,
+    name,
+    subjects,
+    availability,
+    mode,
+    price,
+    location,
+    rating,
+    photo,
+    desc,
+    email
+  );
+
   tutors.push(newTutor);
   localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-// OBTER TODOS
-export function getAll() {
-  return tutors;
+export function removeTutor(name) {
+  tutors = tutors.filter((tutor) => tutor.name !== name);
+  localStorage.setItem("tutors", JSON.stringify(tutors));
 }
 
-// OBTER POR ID
-export function getById(id) {
-  return tutors.find((tutor) => tutor.id === id);
+export function setCurrentTutor(tutor) {
+  localStorage.setItem("currentTutor", JSON.stringify(tutor));
 }
 
-// REMOVER
-export function remove(id) {
-  const updated = tutors.filter((tutor) => tutor.id !== id);
-  localStorage.setItem("tutors", JSON.stringify(updated));
-  tutors = updated; // atualizar array local
+// OBTER o tutor ATUAL (TODO O OBJETO)
+export function getCurrentTutor() {
+  const tutorJSON = localStorage.getItem("currentTutor");
+  if (!tutorJSON) return null;
+  try {
+    return JSON.parse(tutorJSON);
+  } catch {
+    return null;
+  }
 }
 
-// EDITAR
-export function update(id, updatedTutor) {
-  const index = tutors.findIndex((tutor) => tutor.id === id);
-  if (index !== -1) {
-    tutors[index] = { ...tutors[index], ...updatedTutor };
-    localStorage.setItem("tutors", JSON.stringify(tutors));
+export function getTutorById(id) {
+  const allTutors = JSON.parse(localStorage.getItem("tutors")) || [];
+  return allTutors.find((tutor) => tutor.id === id);
+}
+
+export function sortTutors() {
+  tutors.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function getTutors(
+  filterName = "",
+  filterSubject = "",
+  isSorted = false
+) {
+  let filtered = tutors.filter(
+    (tutor) =>
+      (tutor.name.toLowerCase().includes(filterName.toLowerCase()) ||
+        filterName === "") &&
+      (tutor.subject === filterSubject || filterSubject === "")
+  );
+
+  return isSorted
+    ? filtered.sort((a, b) => a.name.localeCompare(b.name))
+    : filtered;
+}
+
+class Tutor {
+  id = "";
+  name = "";
+  subjects = []; // pode ser um array de disciplinas
+  availability = ""; // horário disponível (ex: "Manhã", "Tarde", "Noite")
+  mode = ""; // "online" ou "presencial"
+  price = 0;
+  location = "";
+  rating = 0; // classificação média (número)
+  photo = "";
+  desc = "";
+  email = "";
+
+  constructor(
+    id,
+    name,
+    subjects,
+    availability,
+    mode,
+    price,
+    location,
+    rating,
+    photo,
+    desc,
+    email
+  ) {
+    this.id = id;
+    this.name = name;
+    this.subjects = subjects;
+    this.availability = availability;
+    this.mode = mode;
+    this.price = price;
+    this.location = location;
+    this.rating = rating;
+    this.photo = photo;
+    this.desc = desc;
+    this.email = email;
   }
 }
