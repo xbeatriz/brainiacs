@@ -3,6 +3,7 @@ import { createCommunityCard } from "/JS/components/CommunityCard.js";
 import { renderNavbar } from "./views/NavbarView.js";
 import { renderFooter } from "./views/FooterView.js";
 import { styleButtons } from "./components/button.js";
+import * as Tutor from "./models/TutorModel.js";
 
 const coursesContainer = document.getElementById("courses-container");
 const filterForm = document.getElementById("filterForm");
@@ -64,6 +65,8 @@ filterForm.addEventListener("submit", (e) => {
 });
 
 function renderTutors(tutors) {
+  Tutor.init();
+
   const coursesContainer = document.getElementById("courses-container");
   coursesContainer.innerHTML = "";
 
@@ -72,39 +75,50 @@ function renderTutors(tutors) {
     return;
   }
 
-  tutors.forEach((tutor) => {
-    const card = document.createElement("div");
-    card.className = `
+tutors.forEach((tutor) => {
+  const card = document.createElement("div");
+  card.className = `
       max-w-sm w-full bg-white border border-gray-200 rounded-lg shadow-sm 
       flex flex-col text-left overflow-hidden
     `;
 
     card.innerHTML = `
-      <a href="#">
-        <img 
-          class="w-full h-32 object-cover rounded-t-lg" 
-          src="${tutor.photo}" 
-          alt="${tutor.name}" 
-        />
-      </a>
-      <div class="px-4 py-3">
-        <a href="#">
-          <h5 class="text-lg font-semibold text-gray-900 truncate">${tutor.name}</h5>
-        </a>
-        <p class="text-sm font-medium text-orange-600 mt-1">${tutor.subject} (${tutor.grade})</p>
-        <p class="text-sm text-gray-700 mt-1 line-clamp-2">${tutor.desc || ""}</p>
-        <p class="text-xs italic text-gray-500 mt-1">
-          ${tutor.availability} • ${tutor.location} • ${tutor.mode === "online" ? "Online" : "Presencial"}
-        </p>
-        <p class="text-sm font-bold text-orange-600 mt-2">€${tutor.price} / hora</p>
-      </div>
-    `;
+  <a href="#">
+    <img 
+      class="w-full h-32 object-cover rounded-t-lg" 
+      src="${tutor.photo}" 
+      alt="${tutor.name}" 
+    />
+  </a>
+  <div class="px-4 py-3">
+    <a href="#">
+      <h5 class="tutorName text-lg font-semibold text-gray-900 truncate" data-id="${
+        tutor.id
+      }">${tutor.name}</h5>
+    </a>
+    <p class="text-sm font-medium text-orange-600 mt-1">${tutor.subject} (${
+      tutor.grade
+    })</p>
+    <p class="text-sm text-gray-700 mt-1 line-clamp-2">${tutor.desc || ""}</p>
+    <p class="text-xs italic text-gray-500 mt-1">
+      ${tutor.availability} • ${tutor.location} • ${
+      tutor.mode === "online" ? "Online" : "Presencial"
+    }
+    </p>
+    <p class="text-sm font-bold text-orange-600 mt-2">€${tutor.price} / hora</p>
+  </div>
+`;
 
-    coursesContainer.appendChild(card);
+
+  coursesContainer.appendChild(card);
+
+  const nameElement = card.querySelector(".tutorName");
+  nameElement.addEventListener("click", () => {
+    Tutor.setCurrentTutor(tutor);
+    location.href = "/html/tutor.html";
   });
+});
 }
-
-
 // Renderizar todos no início
 renderTutors(allTutors);
 

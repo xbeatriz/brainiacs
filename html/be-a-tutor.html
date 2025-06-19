@@ -1,85 +1,172 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be a Tutor | Brainiacs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eclonica&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Be a Tutor | Brainiacs</title>
-      <script src="https://cdn.tailwindcss.com"></script>
-      <link href="https://fonts.googleapis.com/css2?family=Eclonica&family=Inter:wght@400;600;700&display=swap"
-            rel="stylesheet" />
-</head>
+  <body class="bg-[#FBF9F5] text-gray-800 min-h-screen">
+    <!-- Navbar container -->
+    <div id="navbar"></div>
 
-<body class="bg-[#FBF9F5] text-gray-800 min-h-screen">
-      <!-- Navbar container -->
-      <div id="navbar"></div>
-
-      <!-- Main Content -->
-      <section
-            class="pt-24 flex flex-col lg:flex-row justify-between items-center px-6 md:px-20 py-16 gap-10 max-w-7xl mx-auto">
-            <!-- Left Text -->
-            <div class="lg:w-1/2 text-center lg:text-left">
-                  <h1 class=" text-4xl md:text-5xl  font-bold leading-tight mb-6">
-                        Be a tutor.<br />
-                        Share Your Knowledge.<br />
-                        Empower Students.
-                  </h1>
-                  <p class="text-gray-600 text-base">Grow as a Certified Brainiacs Tutor.</p>
-            </div>
-
-            <!-- necessario colocar mais texto como tem no students-->
-      </section>
-
-      <!-- Footer -->
-      <div id="footer"></div>
-
-      <!-- Modals -->
-      <!-- LOGIN MODAL -->
-      <div id="mdlLogin" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
-            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                  <h2 class="text-xl font-semibold mb-4">Login</h2>
-                  <form id="frmLogin" class="space-y-4">
-                        <input type="text" id="txtUsername" placeholder="Username" class="w-full border p-2 rounded"
-                              required />
-                        <input type="password" id="txtPassword" placeholder="Password" class="w-full border p-2 rounded"
-                              required />
-                        <div id="msgLogin" class="text-sm"></div>
-                        <div class="flex justify-end space-x-2">
-                              <button type="submit"
-                                    class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
-                              <button type="button" class="btnCloseModal text-gray-500">Cancel</button>
-                        </div>
-                  </form>
-            </div>
+    <!-- Main Content -->
+    <section
+      class="pt-24 flex flex-col lg:flex-row justify-between items-center px-6 md:px-20 py-16 gap-10 max-w-7xl mx-auto"
+    >
+      <!-- Left Text -->
+      <div class="lg:w-1/2 text-center lg:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+          Be a tutor.<br />
+          Share Your Knowledge.<br />
+          Empower Students.
+        </h1>
+        <p class="text-gray-600 text-base">
+          Grow as a Certified Brainiacs Tutor.
+        </p>
       </div>
 
-      <!-- REGISTER MODAL user -->
-      <div id="mdlRegister" class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50">
-            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                  <h2 class="text-xl font-semibold mb-4">Register Tutor</h2>
-                  <form id="frmRegisteruser" class="space-y-4">
-                        <input type="text" id="txtUsernameRegister" placeholder="Username"
-                              class="w-full border p-2 rounded" required />
-                        <input type="password" id="txtPasswordRegister" placeholder="Password"
-                              class="w-full border p-2 rounded" required />
-                        <input type="password" id="txtPasswordRegister2" placeholder="Confirm Password"
-                              class="w-full border p-2 rounded" required />
-                        <div id="msgRegister" class="text-sm"></div>
-                        <div class="flex justify-end space-x-2">
-                              <button type="submit"
-                                    class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Register</button>
-                              <button type="button" class="btnCloseModal text-gray-500">Cancel</button>
-                        </div>
-                  </form>
-            </div>
+      <!-- necessario colocar mais texto como tem no students-->
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Modals -->
+    <!-- LOGIN MODAL -->
+    <div
+      id="mdlLogin"
+      class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+        <h2 class="text-xl font-semibold mb-4">Login</h2>
+        <form id="frmLogin" class="space-y-4">
+          <input
+            type="text"
+            id="txtUsername"
+            placeholder="Username"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="password"
+            id="txtPassword"
+            placeholder="Password"
+            class="w-full border p-2 rounded"
+            required
+          />
+
+          <div id="msgLogin" class="text-sm"></div>
+          <div class="flex justify-end space-x-2">
+            <button
+              type="submit"
+              class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+            >
+              Login
+            </button>
+            <button type="button" class="btnCloseModal text-gray-500">
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
+    </div>
 
+    <!-- REGISTER MODAL user -->
+    <div
+      id="mdlRegister"
+      class="fixed inset-0 z-30 hidden items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+        <h2 class="text-xl font-semibold mb-4">Register Tutor</h2>
+        <form id="frmRegisteruser" class="space-y-4">
+          <input
+            type="text"
+            id="txtUsernameRegister"
+            placeholder="Username"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="password"
+            id="txtPasswordRegister"
+            placeholder="Password"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="password"
+            id="txtPasswordRegister2"
+            placeholder="Confirm Password"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            id="subjects"
+            placeholder="Subjects you teach"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <select
+            id="txtAvailability"
+            class="w-full border p-2 rounded"
+            required
+          >
+            <option value="" disabled selected>Availability</option>
+            <option value="Morning">Morning</option>
+            <option value="Evening">Evening</option>
+            <option value="Afternoon">Afternoon</option>
+          </select>
+          <select
+            id="txtTeachingMode"
+            class="w-full border p-2 rounded"
+            required
+          >
+            <option value="" disabled selected>Teaching Mode</option>
+            <option value="Online">Online</option>
+            <option value="Nearby">Nearby</option>
+          </select>
+          <input
+            type="number"
+            id="price"
+            placeholder="Price"
+            class="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            id="location"
+            placeholder="Location"
+            class="w-full border p-2 rounded"
+            required
+          />
 
-      <!-- Modal -->
+          <div id="msgRegister" class="text-sm"></div>
+          <div class="flex justify-end space-x-2">
+            <button
+              type="submit"
+              class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+            >
+              Register
+            </button>
+            <button type="button" class="btnCloseModal text-gray-500">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-      <!-- Scripts -->
-      <script type="module" src="/JS/init.js"></script>
-      <script type="module" src="/JS/script.js"></script>
-</body>
+    <!-- Modal -->
 
+    <!-- Scripts -->
+    <script type="module" src="/JS/init.js"></script>
+    <script type="module" src="/JS/script.js"></script>
+  </body>
 </html>
