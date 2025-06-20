@@ -52,7 +52,7 @@ export function renderNavbar() {
       <button 
         id="loginButton"
         data-dialog-target="mdlLogin"
-        class=" hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
+        class=" hover:bg-orange-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
         Login
       </button>
 
