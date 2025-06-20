@@ -1,5 +1,5 @@
 // imports
-import * as tutors from "../models/TutorModel.js";
+import * as Tutors from "../models/TutorModel.js";
 import * as User from "../models/UserModel.js";
 
 // Função para exibir mensagens
@@ -14,7 +14,7 @@ function displayMessage(elementId, message, type) {
 
 function renderNavbarTutorDashboard() {
   // Initialize the Tutor model
-  tutors.init();
+  Tutors.init();
 
   const navbarTutorDashboard = `
     <nav class="bg-white border-gray-200 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
@@ -76,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
       // Se falhar, tenta fazer login como tutor
       try {
-        Tutor.login(
+        Tutors.login(
           document.getElementById("txtUsername").value,
           document.getElementById("txtPassword").value
         );
-        let tutor = Tutor.getTutorLogged();
+        let tutor = Tutors.getTutorLogged();
         displayMessage("msgLogin", "Tutor logged in with success!", "success");
         setTimeout(() => { window.location.href = getDashboardUrl(tutor.role) }, 1500);
         
