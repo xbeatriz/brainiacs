@@ -82,25 +82,31 @@ document
     let registerLocation = document.getElementById("location").value.trim();
 
     try {
+      // Verificação de senha
+      if (!registerPassword || !registerPassword2) {
+        throw new Error("Both password fields are required");
+      }
+      
       if (registerPassword !== registerPassword2) {
-        throw Error("Password and Confirm Password are not equal");
+        throw new Error("Password and Confirm Password do not match");
       }
 
+      // Chamada correta do método add
       tutors.add(
-        registerUsername,
-        registerSubjects.split(',').map(s => s.trim()),
-        registerAvailability,
-        registerTeachingMode,
-        registerPrice,
-        registerLocation,
-        0, // rating
-        "", // photo
-        "", // desc
-        registerEmail,
-        registerPassword
+        registerUsername,  // name
+        registerSubjects.split(',').map(s => s.trim()),  // subjects
+        registerAvailability,  // availability
+        registerTeachingMode,  // mode
+        registerPrice,  // price
+        registerLocation,  // location
+        0,  // rating
+        "",  // photo
+        "",  // desc
+        registerEmail,  // email
+        registerPassword  // password
       );
 
-      displayMessage("msgRegister", "Tutor registered with success!", "success");
+      displayMessage("msgRegister", "Tutor registered successfully!", "success");
 
       document.getElementById("frmRegisterTutor").reset();
       document.getElementById("mdlRegister")?.classList.add("hidden");
@@ -109,6 +115,7 @@ document
       displayMessage("msgRegister", e.message, "danger");
     }
   });
+
 
   document.addEventListener('DOMContentLoaded', () => {
     renderNavbarTutorDashboard();

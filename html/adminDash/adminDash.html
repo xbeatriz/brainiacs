@@ -151,6 +151,28 @@
     </div>
   </div>
 
+  <!-- Modal da Comunidade -->
+  <div id="communityModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded p-6 w-96 shadow-lg max-w-full">
+      <h2 class="text-xl font-semibold mb-4">Editar Grupo</h2>
+      <form id="editCommunityForm">
+        <input type="hidden" id="editCommunityId" />
+        <label class="block mb-3">
+          Título:
+          <input type="text" id="editCommunityTitle" class="w-full border rounded p-2 mt-1" required />
+        </label>
+        <label class="block mb-3">
+          Descrição:
+          <textarea id="editCommunityDescription" class="w-full border rounded p-2 mt-1" rows="3" required></textarea>
+        </label>
+        <div class="flex justify-end space-x-2">
+          <button type="button" id="cancelCommunityEdit" class="px-3 py-1 bg-gray-300 rounded">Cancelar</button>
+          <button type="submit" class="px-3 py-1 bg-blue-600 text-white rounded">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script type="module" src="/JS/views/NavbarAdminView.js"></script>
   <script type="module" src="/JS/views/adminDash.js"></script>
 </body>

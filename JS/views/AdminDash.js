@@ -83,6 +83,8 @@ function renderDash() {
 }
 //final renderDash
 
+
+//functions to display data
 function displayUsers() {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let dataSection = document.getElementById("data-sections");
@@ -289,6 +291,87 @@ function openTutorModal(id) {
   document.getElementById("tutorModal").classList.remove("hidden");
 }
 
+function openCourseModal(id) {
+  let course = Course.getById(Number(id));
+  console.log("Curso encontrado:", course);
+  if (!course) return;
+
+  document.getElementById("editCourseId").value = course.id;
+  document.getElementById("editCourseCategory").value = course.category;
+
+  document.getElementById("courseModal").classList.remove("hidden");
+}
+
+function displayCommunity() {
+  let groups = getAll();
+  console.log("Grupos encontrados:", groups);
+
+  if (!groups || groups.length === 0) {
+    console.error("Nenhum grupo encontrado");
+    groups = localStorage.getItem("community")
+      ? JSON.parse(localStorage.getItem("community"))
+      : [];
+  }
+
+  const dataSection = document.getElementById("data-sections");
+
+  let groupTable = `
+    <div class="overflow-x-auto rounded-lg shadow border border-gray-200">
+      <table class="min-w-full bg-white text-sm text-left">
+        <thead class="bg-gray-100 text-gray-700 font-semibold">
+          <tr>
+            <th class="py-3 px-4 border-b">Título</th>
+            <th class="py-3 px-4 border-b">Assunto</th>
+            <th class="py-3 px-4 border-b">Descrição</th>
+            <th class="py-3 px-4 border-b">Imagem</th>
+            <th class="py-3 px-4 border-b">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${groups
+            .map(
+              (group) => `
+            <tr class="odd:bg-gray-50 hover:bg-gray-100 transition-colors align-top">
+              <td class="py-3 px-4 border-b">${group.title}</td>
+              <td class="py-3 px-4 border-b">${group.subject}</td>
+              <td class="py-3 px-4 border-b">${group.description}</td>
+              <td class="py-3 px-4 border-b">
+                <img src="${group.image}" alt="${group.title}" class="h-10 object-contain"/>
+              </td>
+              <td class="py-3 px-4 border-b">
+                <button class="text-blue-600 hover:underline font-medium edit-community-btn" data-id="${group.id}">
+                  Editar
+                </button>
+              </td>
+            </tr>
+          `
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  dataSection.innerHTML = groupTable;
+  dataSection.classList.remove("hidden");
+
+  document.querySelectorAll(".edit-community-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      openCommunityModal(button.dataset.id);
+    });
+  });
+}
+
+function openCommunityModal(id) {
+  const group = getById(Number(id));
+  if (!group) return;
+
+  document.getElementById("editCommunityId").value = group.id;
+  document.getElementById("editCommunityTitle").value = group.title;
+  document.getElementById("editCommunityDescription").value = group.description;
+
+  document.getElementById("communityModal").classList.remove("hidden");
+}
 
 //event listeners for buttons
 // Form submit para update
@@ -393,17 +476,6 @@ document.getElementById("deleteUser")?.addEventListener("click", () => {
   }
 });
 
-function openCourseModal(id) {
-  let course = Course.getById(Number(id));
-  console.log("Curso encontrado:", course);
-  if (!course) return;
-
-  document.getElementById("editCourseId").value = course.id;
-  document.getElementById("editCourseCategory").value = course.category;
-
-  document.getElementById("courseModal").classList.remove("hidden");
-}
-
 document.getElementById("cancelEdit").addEventListener("click", () => {
   document.getElementById("courseModal").classList.add("hidden");
 });
@@ -423,6 +495,24 @@ document.getElementById("editCourseForm").addEventListener("submit", (e) => {
 
 document.getElementById("cancelEdit").addEventListener("click", () => {
   document.getElementById("courseModal").classList.add("hidden");
+});
+
+document.getElementById("cancelCommunityEdit").addEventListener("click", () => {
+  document.getElementById("communityModal").classList.add("hidden");
+});
+
+document.getElementById("editCommunityForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const id = Number(document.getElementById("editCommunityId").value);
+  const title = document.getElementById("editCommunityTitle").value.trim();
+  const description = document.getElementById("editCommunityDescription").value.trim();
+
+  if (title && description) {
+    update(id, { title, description });
+    document.getElementById("communityModal").classList.add("hidden");
+    displayCommunity();
+  }
 });
 
 renderDash();

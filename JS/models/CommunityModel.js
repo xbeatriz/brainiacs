@@ -1,44 +1,49 @@
 let community = JSON.parse(localStorage.getItem("community")) || [];
 
-// Classe modelo (opcional)
-class CommunityGroup {
-  constructor(title, subject, description, image) {
-    this.id = Date.now();
-    this.title = title;
-    this.subject = subject;
-    this.description = description;
-    this.image = image;
-  }
-}
-
-// Adicionar grupo
-export function add(title, subject, description, image) {
-  const group = new CommunityGroup(title, subject, description, image);
-  community.push(group);
+// Função para salvar localStorage
+function save() {
   localStorage.setItem("community", JSON.stringify(community));
 }
 
-// Obter todos os grupos
 export function getAll() {
   return community;
 }
 
-// Obter por ID
 export function getById(id) {
-  return community.find((group) => group.id === id);
+  return community.find(c => c.id === id);
 }
 
-// Atualizar grupo
+export function add(title, subject, description, image) {
+  const newGroup = {
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    title,
+    subject,
+    description,
+    image
+  };
+  community.push(newGroup);
+  save();
+}
+
 export function update(id, updatedData) {
-  const index = community.findIndex((group) => group.id === id);
-  if (index !== -1) {
-    community[index] = { ...community[index], ...updatedData };
-    localStorage.setItem("community", JSON.stringify(community));
+  const numericId = Number(id);
+  community = JSON.parse(localStorage.getItem("community")) || [];
+
+  const index = community.findIndex(c => c.id === numericId);
+  if (index === -1) {
+    throw new Error(`Grupo com ID ${id} não encontrado.`);
   }
+
+  community[index] = {
+    ...community[index],
+    ...updatedData,
+    id: community[index].id
+  };
+
+  save();
 }
 
-// Remover grupo
 export function remove(id) {
-  community = community.filter((group) => group.id !== id);
-  localStorage.setItem("community", JSON.stringify(community));
+  community = community.filter(c => c.id !== id);
+  save();
 }
