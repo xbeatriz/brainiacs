@@ -1,5 +1,16 @@
-//imports
+// imports
 import * as tutors from "../models/TutorModel.js";
+import * as User from "../models/UserModel.js";
+
+// Função para exibir mensagens
+function displayMessage(elementId, message, type) {
+  const messageElement = document.getElementById(elementId);
+  if (messageElement) {
+    messageElement.textContent = message;
+    messageElement.className = type === "success" ? "text-green-600" : "text-red-600";
+    messageElement.style.display = "block"; // Exibe a mensagem
+  }
+}
 
 function renderNavbarTutorDashboard() {
   // Initialize the Tutor model
@@ -12,111 +23,83 @@ function renderNavbarTutorDashboard() {
         <!-- Logo -->
         <a href="/" class="flex items-center space-x-3">
           <img src="/media/img/logo-tutor.svg" class="h-5" alt="Brainiacs Logo" />
-         
         </a>
 
         <!-- Avatar + Toggle Button (Mobile) -->
         <div class="flex items-center md:order-2 space-x-3">
-          <button id="user-menu-button" aria-expanded="false" aria-haspopup="true" 
-            class="flex text-sm bg-white rounded-full focus:ring-4 focus:ring-orange-300 border border-gray-300 hover:ring-4 hover:ring-orange-400 p-1" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-            <span class="sr-only">Open user menu</span>
-            <img class="w-8 h-8 rounded-full" src="https://placehold.co/200" alt="user photo" />
-          </button>
-
-          <!-- Mobile menu toggle -->
-          <button data-collapse-toggle="navbar-dashboard" type="button" 
-            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" 
-            aria-controls="navbar-dashboard" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-            </svg>
+          <button 
+            id="loginButtonTutor"
+            class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm px-8 py-1.5 text-center">
+            Login
           </button>
         </div>
-
-
-        <!-- Dropdown menu do avatar -->
-        <div class="hidden z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-md absolute right-4 top-16 w-48" id="user-dropdown">
-          <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900">João</span>
-            <span class="block text-sm text-gray-500 truncate">joao@email.com</span>
-          </div>
-          <ul class="py-2" aria-labelledby="user-menu-button">
-            <li>
-              <a href="/html/dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-600">Dashboard</a>
-            </li>
-            <li>
-              <a href="/html/settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-600">Settings</a>
-            </li>
-            <li>
-              <a href="/html/earnings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-600">Earnings</a>
-            </li>
-            <li>
-              <a href="/html/login.html" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-100 hover:text-red-700">Sign out</a>
-            </li>
-          </ul>
-        </div>
-
       </div>
     </nav>
   `;
 
-  document.getElementById("navbarTutorDashboard").innerHTML =
-    navbarTutorDashboard;
+  document.getElementById("navbarTutorDashboard").innerHTML = navbarTutorDashboard;
 }
 
-// REGISTER
-document
-  .getElementById("frmRegisterTutor")
-  ?.addEventListener("submit", (event) => {
+// ABRIR MODAIS
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavbarTutorDashboard();
+
+  // Adiciona o evento de clique ao botão de login
+  document.getElementById("loginButtonTutor")?.addEventListener("click", () => {
+    const modalLogin = document.getElementById("mdlLogin");
+    modalLogin.classList.remove("hidden");
+    modalLogin.classList.add("flex");
+  });
+
+  // FECHAR MODAIS
+  document.querySelectorAll(".btnCloseModal").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const modalLogin = document.getElementById("mdlLogin");
+      modalLogin.classList.add("hidden");
+      modalLogin.classList.remove("flex");
+    });
+  });
+
+  // LOGIN
+  document.getElementById("frmLogin")?.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    let registerUsername = document.getElementById("txtUsernameRegister").value.trim();
-    let registerEmail = document.getElementById("email").value.trim();
-    let registerPassword = document.getElementById("txtPasswordRegister").value;
-    let registerPassword2 = document.getElementById("txtPasswordRegister2").value;
-    let registerSubjects = document.getElementById("subjects").value.trim();
-    let registerAvailability = document.getElementById("txtAvailability").value;
-    let registerTeachingMode = document.getElementById("txtTeachingMode").value;
-    let registerPrice = Number(document.getElementById("price").value);
-    let registerLocation = document.getElementById("location").value.trim();
-
     try {
-      // Verificação de senha
-      if (!registerPassword || !registerPassword2) {
-        throw new Error("Both password fields are required");
-      }
-      
-      if (registerPassword !== registerPassword2) {
-        throw new Error("Password and Confirm Password do not match");
-      }
-
-      // Chamada correta do método add
-      tutors.add(
-        registerUsername,  // name
-        registerSubjects.split(',').map(s => s.trim()),  // subjects
-        registerAvailability,  // availability
-        registerTeachingMode,  // mode
-        registerPrice,  // price
-        registerLocation,  // location
-        0,  // rating
-        "",  // photo
-        "",  // desc
-        registerEmail,  // email
-        registerPassword  // password
+      // Tenta fazer login como usuário
+      User.login(
+        document.getElementById("txtUsername").value,
+        document.getElementById("txtPassword").value
       );
-
-      displayMessage("msgRegister", "Tutor registered successfully!", "success");
-
-      document.getElementById("frmRegisterTutor").reset();
-      document.getElementById("mdlRegister")?.classList.add("hidden");
-      document.getElementById("mdlRegister")?.classList.remove("flex");
+      let user = User.getUserLogged();
+      displayMessage("msgLogin", "User  logged in with success!", "success");
+      setTimeout(() => { window.location.href = getDashboardUrl(user.role) }, 1500);
+      
     } catch (e) {
-      displayMessage("msgRegister", e.message, "danger");
+      // Se falhar, tenta fazer login como tutor
+      try {
+        Tutor.login(
+          document.getElementById("txtUsername").value,
+          document.getElementById("txtPassword").value
+        );
+        let tutor = Tutor.getTutorLogged();
+        displayMessage("msgLogin", "Tutor logged in with success!", "success");
+        setTimeout(() => { window.location.href = getDashboardUrl(tutor.role) }, 1500);
+        
+      } catch (e) {
+        // Se ambos falharem, exibe a mensagem de erro
+        displayMessage("msgLogin", e.message, "danger");
+      }
     }
   });
 
-
-  document.addEventListener('DOMContentLoaded', () => {
-    renderNavbarTutorDashboard();
-  });
+  function getDashboardUrl(role) {
+    switch (role) {
+      case "admin":
+        return "/html/adminDash/adminDash.html";
+      case "tutor":
+        return "/html/tutorDash/tutorDash.html";
+      case "user":
+      default:
+        return "/html/studentDash/studentDash.html";
+    }
+  }
+});
