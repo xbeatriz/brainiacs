@@ -38,27 +38,46 @@ function initdata() {
   if (existingCommunity.length === 0) {
     const groups = [
       {
-        title: "Linear Algebra Circle",
-        subject: "Linear Algebra",
-        description:
-          "A study group focused on solving problem sets, discussing theory, and preparing for exams.",
-        image: "/media/img/algebra.png",
-      },
-      {
-        title: "Code & Logic Lab",
-        subject: "Development",
-        description:
-          "Explore programming fundamentals, algorithms, and web projects.",
-        image: "/media/img/code.png",
-      },
-      {
-        title: "Finance Fundamentals",
-        subject: "Finance",
-        description:
-          "Discuss budgeting, investment basics, and financial modeling.",
-        image: "/media/img/finance.png",
-      },
-    ];
+      title: "Linear Algebra Circle",
+      subject: "Mathematics",
+      description:
+        "A study group focused on solving problem sets, discussing theory, and preparing for exams.",
+      location: "Lisboa",
+      image: "/media/img/algebra.png",
+    },
+    {
+      title: "Code & Logic Lab",
+      subject: "Programming",
+      description:
+        "Explore programming fundamentals, algorithms, and web projects.",
+      location: "Online",
+      image: "/media/img/code.png",
+    },
+    {
+      title: "Finance Fundamentals",
+      subject: "Finance",
+      description:
+        "Discuss budgeting, investment basics, and financial modeling.",
+      location: "Porto",
+      image: "/media/img/finance.png",
+    },
+    {
+      title: "Physics Explorers",
+      subject: "Physics",
+      description:
+        "Group for physics enthusiasts to dive deep into classical mechanics and electromagnetism.",
+      location: "Online",
+      image: "/media/img/physics.png",
+    },
+    {
+      title: "Creative Writing Club",
+      subject: "Communication",
+      description:
+        "Share your stories, poems, and writing techniques with fellow creatives.",
+      location: "Lisboa",
+      image: "/media/img/writing.png",
+    },
+  ];
 
     groups.forEach((group) => {
       CommunityModule.add(

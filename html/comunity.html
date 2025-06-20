@@ -27,25 +27,31 @@
                 <p class="text-gray-500 mb-10">Powered by Brainiacs</p>
 
                 <!-- Filtro -->
-                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 bg-white p-4 rounded-2xl shadow">
-                        <input type="text" placeholder="Community name"
+                <!-- Filtro como form -->
+                <form id="communityFilterForm"
+                        class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 bg-white p-4 rounded-2xl shadow">
+                        <input id="txtCommunityName" name="communityName" type="text" placeholder="Community name"
                                 class="border border-gray-300 rounded px-4 py-2 text-sm focus:ring-2 focus:ring-orange-400" />
-                        <input type="text" placeholder="Location"
+                        <input id="txtCommunityLocation" name="communityLocation" type="text" placeholder="Location"
                                 class="border border-gray-300 rounded px-4 py-2 text-sm focus:ring-2 focus:ring-orange-400" />
-                        <select
+                        <select id="sltCommunitySubject" name="communitySubject"
                                 class="border border-gray-300 rounded px-4 py-2 text-sm focus:ring-2 focus:ring-orange-400">
-                                <option>Subjects</option>
-                                <option>Math</option>
-                                <option>Programming</option>
-                                <option>Finance</option>
+                                <option value="">Subjects</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Programming">Programming</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Communication">Communication</option>
                         </select>
-                        <button data-btn data-color="orange" data-href="/">Search</button>
-                </div>
+                        <button type="submit" data-btn data-color="orange">Search</button>
+                </form>
+
         </section>
 
         <!-- Community Groups -->
         <section class="px-6 pb-20">
-                <div id="community-container" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="community-container"
+                        class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
         </section>
 

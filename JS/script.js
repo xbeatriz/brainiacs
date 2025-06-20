@@ -126,10 +126,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // PÁGINA DE COMUNIDADE
   const communityContainer = document.getElementById("community-container");
-  if (communityContainer) {
-    const communities = CommunityModule.getAll();
+ if (communityContainer && communityFilterForm) {
+  const communities = CommunityModule.getAll();
 
-    communities.forEach((group) => {
+  function renderCommunities(filtered) {
+    communityContainer.innerHTML = "";
+    if (filtered.length === 0) {
+      communityContainer.innerHTML = `<p class="col-span-full text-center text-gray-500">No community groups found.</p>`;
+      return;
+    }
+
+    filtered.forEach((group) => {
       const card = document.createElement("div");
       card.className = "bg-white p-6 rounded-2xl shadow flex flex-col";
 
@@ -146,6 +153,29 @@ document.addEventListener("DOMContentLoaded", () => {
       communityContainer.appendChild(card);
     });
   }
+
+  // Renderizar todos ao carregar
+  renderCommunities(communities);
+
+  // Escuta submit do form
+  communityFilterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = e.target.communityName.value.toLowerCase();
+    const location = e.target.communityLocation.value.toLowerCase();
+    const subject = e.target.communitySubject.value;
+
+    const filtered = communities.filter((group) => {
+      return (
+        (name === "" || group.title.toLowerCase().includes(name)) &&
+        (location === "" || (group.location?.toLowerCase().includes(location) ?? false)) &&
+        (subject === "" || group.subject === subject)
+      );
+    });
+
+    renderCommunities(filtered);
+  });
+}
 
   // MENU MOBILE TOGGLE
   document.addEventListener("click", function (e) {
