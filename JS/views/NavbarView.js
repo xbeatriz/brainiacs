@@ -1,6 +1,6 @@
 //imports
 import * as User from "../models/UserModel.js";
-import * as Tutor from "../models/TutorModel.js";
+import * as Tutors from "../models/TutorModel.js";
 
 export function renderNavbar() {
   // Initialize the User model
@@ -137,6 +137,7 @@ export function renderNavbar() {
       }
     });
 
+    //registo tutor
     document
       .getElementById("frmRegisterTutor")
       ?.addEventListener("submit", (event) => {
@@ -175,7 +176,7 @@ export function renderNavbar() {
           const mode = registerTeachingMode;
           const location = registerLocation;
     
-          tutors.add(
+          Tutors.add(
             name,
             subject,
             photo,
@@ -211,21 +212,20 @@ export function renderNavbar() {
             document.getElementById("txtUsername").value,
             document.getElementById("txtPassword").value
         );
-        let user = User.getUserLogged();
+        let role = "user";
         displayMessage("msgLogin", "User  logged in with success!", "success");
-        setTimeout(() => { window.location.href = getDashboardUrl(user.role) }, 1500);
+        setTimeout(() => { window.location.href = getDashboardUrl(role) }, 1500);
         
     } catch (e) {
         // Se falhar, tenta fazer login como tutor
         try {
-            Tutor.login(
+            Tutors.login(
                 document.getElementById("txtUsername").value,
                 document.getElementById("txtPassword").value
             );
-            let tutor = Tutor.getTutorLogged();
-            console.log(tutor);
+            let role = "tutor"
             displayMessage("msgLogin", "Tutor logged in with success!", "success");
-            setTimeout(() => { window.location.href = getDashboardUrl(tutor.role) }, 1500);
+            setTimeout(() => { window.location.href = getDashboardUrl(role) }, 1500);
             
         } catch (e) {
             // Se ambos falharem, exibe a mensagem de erro
